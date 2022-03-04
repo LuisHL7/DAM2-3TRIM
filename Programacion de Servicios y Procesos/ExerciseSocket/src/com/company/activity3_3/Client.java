@@ -15,7 +15,7 @@ public class Client {
         //Input
         InputStream input = clientConnect.getInputStream();
         DataInputStream dataI = new DataInputStream(input);
-        System.out.println("Recep the client: \n\t" + data.readUTF());
+        System.out.println("Recep the client: \n\t" + dataI.readUTF());
 
         //Output
         OutputStream output = clientConnect.getOutputStream();
