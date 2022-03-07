@@ -1,0 +1,11 @@
+global dlgClose
+global ui
+global dlgCalendar
+global avisoSalir
+global pay
+global pay2
+global sex
+global sex2
+global rbtSex
+global chkPago
+filebd ="BDCustomer.db"
