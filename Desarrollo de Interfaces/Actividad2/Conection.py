@@ -22,26 +22,26 @@ class Conection:
 
     def loadCustomer(client):
         query = QtSql.QSqlQuery()
-        query.prepare('insert into customer (dni, lastname, name, higthdate, address, province, sex, waytopay)'
-                      'VALUES (:dni, :lastname, :name, :higthdate, :address, :province, :sex, :waytopay)')
-        query.bindValue(':dni', str(client[1]))
-        query.bindValue(':lastname', str(client[2]))
-        query.bindValue(':name', str(client[3]))
-        query.bindValue(':higthdate', str(client[4]))
-        query.bindValue(':address', str(client[5]))
-        query.bindValue(':province', str(client[6]))
-        query.bindValue(':sex', str(client[7]))
-        query.bindValue(':waytopay', str(client[8]))
+        query.prepare("INSERT INTO customer (dni, lastname, name, higthdate, address, province, sex, waytopay) "
+                      "VALUES ( :dni, :lastname, :nombre, :higthdate, :address, :province, :sex, :waytopay)")
+        query.bindValue(':dni', str(client[0]))
+        query.bindValue(':lastname', str(client[1]))
+        query.bindValue(':nombre', str(client[2]))
+        query.bindValue(':higthdate', str(client[3]))
+        query.bindValue(':address', str(client[4]))
+        query.bindValue(':province', str(client[5]))
+        query.bindValue(':sex', str(client[6]))
+        query.bindValue(':waytopay', str(client[7]))
         if query.exec_():
             print("Insercion correcta")
             Conection.showCustomers(self)
         else:
             print("Error al insertar: ", query.lastError().text())
 
-    def showCustomers():
+    def showCustomers(self):
         index = 0
         query = QtSql.QSqlQuery()
-        query.prepare('select dni, lastname, name from customer')
+        query.prepare('SELECT dni, lastname, name, higthdate, address, province, sex, waytopay FROM customer')
         if query.exec_():
             while query.next():
                 dni = query.value(0)
@@ -52,7 +52,7 @@ class Conection:
                 province = query.value(5)
                 sex = query.value(6)
                 waytopay = query.value(7)
-                var.ui.cliTable.setRowCount(index+1)
+                var.ui.cliTable.setRowCount(index + 1)
                 var.ui.cliTable.setItem(index, 0, QtWidgets.QTableWidgetItem(dni))
                 var.ui.cliTable.setItem(index, 1, QtWidgets.QTableWidgetItem(lastname))
                 var.ui.cliTable.setItem(index, 2, QtWidgets.QTableWidgetItem(name))
@@ -62,7 +62,5 @@ class Conection:
                 var.ui.cliTable.setItem(index, 6, QtWidgets.QTableWidgetItem(sex))
                 var.ui.cliTable.setItem(index, 7, QtWidgets.QTableWidgetItem(waytopay))
                 index += 1
-            print("Cargado")
         else:
             print("Error show customer: ", query.lastError().text())
-

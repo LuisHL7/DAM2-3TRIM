@@ -51,7 +51,6 @@ class Customer():
                     var.pay.append('Efectivo')
                 if data.isChecked() and i == 2:
                     var.pay.append('Transferencia')
-            print(var.pay)
             return var.pay
         except Exception as error:
             print('Error: %s ' % str(error))
@@ -97,19 +96,18 @@ class Customer():
             var.sex = []
             newCli = []
             cliTab = []  # serán los datos que carguemos de la tabla.
-            client = [var.ui.TxtDni, var.ui.TxtApellidos, var.ui.TxtNombre, var.ui.TxtFecha,
-                      var.ui.TxtDireccion]
+            client = [var.ui.TxtDni, var.ui.TxtApellidos, var.ui.TxtNombre, var.ui.TxtFecha, var.ui.TxtDireccion]
             k = 0
             for i in client:
                 newCli.append(i.text())
                 # carguemos los valores para la tabla que solo tiene tres DNI, apellidos y nombre
-                if k < 5:
+                if k < 3:
                     cliTab.append(i.text())
                     k += 1
             newCli.append(vpro)
-            # var.pay2 = Customer.selPago()
+            var.pay2 = Customer.selPago()
             newCli.append(sex)
-            newCli.append(Customer.selPago())
+            newCli.append(var.pay2[0])
             if client:
             # Comprobamos que no esté vacía la principal
             # Aquí empieza como trabajar con la TableWidget
@@ -120,12 +118,11 @@ class Customer():
                     cell = QtWidgets.QTableWidgetItem(registro)
                     var.ui.cliTable.setItem(row, column, cell)
                     column += 1
-                Conection.Conection.loadCustomer(newCli)
 
+                Conection.Conection.loadCustomer(newCli)
             else:
                 print('Faltan datos')
             #Customer.cleanCli(client, var.rbtSex, var.chkPago)
-            print(newCli)
         except Exception as error:
             print('Error alta cliente: %s ' % str(error))
 

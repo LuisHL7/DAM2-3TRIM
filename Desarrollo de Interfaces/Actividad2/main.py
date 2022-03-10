@@ -32,7 +32,7 @@ class Main(QtWidgets.QMainWindow):
             i.stateChanged.connect(Customer.Customer.selPago)
         Customer.Customer.cargarProv()
         Conection.Conection.dbConnect(var.filebd)
-        Conection.Conection.showCustomers()
+        Conection.Conection.showCustomers(self)
         var.ui.CmbProvincia.activated[str].connect(Customer.Customer.selProv)
         var.ui.BtnAceptar.clicked.connect(Customer.Customer.highClients)
 
