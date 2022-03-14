@@ -64,3 +64,17 @@ class Conection:
                 index += 1
         else:
             print("Error show customer: ", query.lastError().text())
+
+    def deleteCli(dni):
+        query = QtSql.QSqlQuery()
+        query.prepare('delete from clientes where dni =:dni')
+        query.bindValue(':dni', dni)
+        if query.exec_():
+            print('Customer delete')
+            var.ui.lblStatus.setText('Customer with dni' + dni + 'has been deleted')
+        else:
+            print("Error displaying customers: ", query.lastError().text())
+
+    # def updateCli(code, newData):
+    #     query = QtSql.QSqlQuery()
+    #     code =int(code)

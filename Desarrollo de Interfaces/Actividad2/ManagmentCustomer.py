@@ -40,7 +40,7 @@ class Ui_MainWindow(object):
         self.BtnCalendar.setGeometry(QtCore.QRect(620, 110, 21, 23))
         self.BtnCalendar.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("Z:/DAM2/Desarrollo de Interfaces (DDI)/Tercer-Trimestre/Actividad2/calendar.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("calendar.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.BtnCalendar.setIcon(icon)
         self.BtnCalendar.setIconSize(QtCore.QSize(30, 30))
         self.BtnCalendar.setAutoDefault(False)
@@ -238,7 +238,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Proyecto Uno"))
         self.BtnSalir.setText(_translate("MainWindow", "Salir"))
-        self.BtnAceptar.setText(_translate("MainWindow", "Alta Cliente"))
+        self.BtnAceptar.setText(_translate("MainWindow", "Aceptar"))
         self.LbMetPagos.setText(_translate("MainWindow", "<html><head/><body><p>Métodos de Pago:</p></body></html>"))
         self.ChkTarjeta.setText(_translate("MainWindow", "Tarjeta"))
         self.ChkEfectivo.setText(_translate("MainWindow", "Efectivo"))

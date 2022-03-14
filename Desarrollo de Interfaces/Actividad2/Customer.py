@@ -126,5 +126,14 @@ class Customer():
         except Exception as error:
             print('Error alta cliente: %s ' % str(error))
 
+    def deleteClients(self):
+        try:
+            dni = var.ui.TxtDni.text()
+            Conection.Conection.deleteCus(dni)
+            Conection.Conection.showCustomers(self)
+            Customer.cleanCustomer()
+        except Exception as error:
+            print('Error cargar clientes: %s ' % str(error))
+
 
 

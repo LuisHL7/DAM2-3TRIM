@@ -88,7 +88,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>Z:/DAM2/Desarrollo de Interfaces (DDI)/Tercer-Trimestre/Actividad2/calendar.png</normaloff>Z:/DAM2/Desarrollo de Interfaces (DDI)/Tercer-Trimestre/Actividad2/calendar.png</iconset>
+        <normaloff>calendar.png</normaloff>calendar.png</iconset>
       </property>
       <property name="iconSize">
        <size>
