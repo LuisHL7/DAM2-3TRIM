@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1015</width>
+    <width>1144</width>
     <height>799</height>
    </rect>
   </property>
@@ -24,9 +24,12 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>941</width>
-      <height>721</height>
+      <width>1121</width>
+      <height>701</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
     </property>
     <property name="currentIndex">
      <number>0</number>
@@ -48,37 +51,69 @@
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
-     <widget class="QPushButton" name="BtnSalir">
+     <widget class="QPushButton" name="BtnClose">
       <property name="geometry">
        <rect>
-        <x>470</x>
-        <y>640</y>
-        <width>75</width>
-        <height>23</height>
+        <x>690</x>
+        <y>610</y>
+        <width>90</width>
+        <height>40</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
-       <string>Salir</string>
+       <string>Close</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>close.png</normaloff>close.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
       </property>
      </widget>
-     <widget class="QPushButton" name="BtnAceptar">
+     <widget class="QPushButton" name="BtnSave">
       <property name="geometry">
        <rect>
-        <x>350</x>
-        <y>640</y>
-        <width>75</width>
-        <height>23</height>
+        <x>290</x>
+        <y>610</y>
+        <width>90</width>
+        <height>40</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
-       <string>Aceptar</string>
+       <string>Save</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>save.png</normaloff>save.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
       </property>
      </widget>
      <widget class="QPushButton" name="BtnCalendar">
       <property name="geometry">
        <rect>
-        <x>620</x>
-        <y>110</y>
+        <x>1050</x>
+        <y>40</y>
         <width>21</width>
         <height>23</height>
        </rect>
@@ -106,8 +141,8 @@
      <widget class="QLabel" name="LbMetPagos">
       <property name="geometry">
        <rect>
-        <x>390</x>
-        <y>250</y>
+        <x>510</x>
+        <y>180</y>
         <width>151</width>
         <height>21</height>
        </rect>
@@ -127,11 +162,16 @@
      <widget class="QCheckBox" name="ChkTarjeta">
       <property name="geometry">
        <rect>
-        <x>650</x>
-        <y>250</y>
-        <width>70</width>
+        <x>800</x>
+        <y>180</y>
+        <width>81</width>
         <height>17</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Tarjeta</string>
@@ -140,27 +180,19 @@
        <string notr="true">ChkPago</string>
       </attribute>
      </widget>
-     <widget class="Line" name="line">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>80</y>
-        <width>841</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
      <widget class="QCheckBox" name="ChkEfectivo">
       <property name="geometry">
        <rect>
-        <x>560</x>
-        <y>250</y>
-        <width>70</width>
-        <height>17</height>
+        <x>660</x>
+        <y>180</y>
+        <width>91</width>
+        <height>20</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Efectivo</string>
@@ -172,9 +204,9 @@
      <widget class="QLineEdit" name="TxtDireccion">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>190</y>
-        <width>301</width>
+        <x>130</x>
+        <y>140</y>
+        <width>591</width>
         <height>20</height>
        </rect>
       </property>
@@ -182,8 +214,8 @@
      <widget class="QLabel" name="LbSexo">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>250</y>
+        <x>40</x>
+        <y>180</y>
         <width>91</width>
         <height>21</height>
        </rect>
@@ -203,9 +235,9 @@
      <widget class="QLineEdit" name="TxtNombre">
       <property name="geometry">
        <rect>
-        <x>580</x>
-        <y>150</y>
-        <width>281</width>
+        <x>660</x>
+        <y>100</y>
+        <width>411</width>
         <height>20</height>
        </rect>
       </property>
@@ -213,8 +245,8 @@
      <widget class="QLabel" name="LbValidar">
       <property name="geometry">
        <rect>
-        <x>310</x>
-        <y>110</y>
+        <x>330</x>
+        <y>40</y>
         <width>51</width>
         <height>21</height>
        </rect>
@@ -234,8 +266,8 @@
      <widget class="QLabel" name="LbDni">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>110</y>
+        <x>160</x>
+        <y>40</y>
         <width>51</width>
         <height>21</height>
        </rect>
@@ -255,9 +287,9 @@
      <widget class="QLineEdit" name="TxtApellidos">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>150</y>
-        <width>301</width>
+        <x>130</x>
+        <y>100</y>
+        <width>381</width>
         <height>20</height>
        </rect>
       </property>
@@ -265,8 +297,8 @@
      <widget class="QLineEdit" name="TxtFecha">
       <property name="geometry">
        <rect>
-        <x>460</x>
-        <y>110</y>
+        <x>890</x>
+        <y>40</y>
         <width>151</width>
         <height>20</height>
        </rect>
@@ -275,11 +307,16 @@
      <widget class="QRadioButton" name="RbtMasculino">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>250</y>
-        <width>82</width>
+        <x>130</x>
+        <y>180</y>
+        <width>101</width>
         <height>17</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Masculino</string>
@@ -291,8 +328,8 @@
      <widget class="QLabel" name="LbDireccion">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>190</y>
+        <x>40</x>
+        <y>140</y>
         <width>91</width>
         <height>21</height>
        </rect>
@@ -309,36 +346,19 @@
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Dirección:&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QLabel" name="LbGestion">
-      <property name="geometry">
-       <rect>
-        <x>350</x>
-        <y>20</y>
-        <width>281</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Century Gothic</family>
-        <pointsize>25</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-        <stylestrategy>PreferDefault</stylestrategy>
-       </font>
-      </property>
-      <property name="text">
-       <string>Gestión Clientes</string>
-      </property>
-     </widget>
      <widget class="QRadioButton" name="RbtFemenino">
       <property name="geometry">
        <rect>
         <x>250</x>
-        <y>250</y>
-        <width>82</width>
+        <y>180</y>
+        <width>101</width>
         <height>17</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Femenino</string>
@@ -350,9 +370,9 @@
      <widget class="QLineEdit" name="TxtDni">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>110</y>
-        <width>151</width>
+        <x>200</x>
+        <y>40</y>
+        <width>121</width>
         <height>20</height>
        </rect>
       </property>
@@ -360,8 +380,8 @@
      <widget class="QLabel" name="LbNombre">
       <property name="geometry">
        <rect>
-        <x>490</x>
-        <y>150</y>
+        <x>570</x>
+        <y>100</y>
         <width>81</width>
         <height>16</height>
        </rect>
@@ -381,8 +401,8 @@
      <widget class="QLabel" name="LbProvincia">
       <property name="geometry">
        <rect>
-        <x>490</x>
-        <y>190</y>
+        <x>780</x>
+        <y>140</y>
         <width>91</width>
         <height>21</height>
        </rect>
@@ -402,11 +422,16 @@
      <widget class="QCheckBox" name="ChkTransferencia">
       <property name="geometry">
        <rect>
-        <x>730</x>
-        <y>250</y>
-        <width>101</width>
+        <x>930</x>
+        <y>180</y>
+        <width>141</width>
         <height>17</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Transfererencia</string>
@@ -418,8 +443,8 @@
      <widget class="QComboBox" name="CmbProvincia">
       <property name="geometry">
        <rect>
-        <x>580</x>
-        <y>190</y>
+        <x>870</x>
+        <y>140</y>
         <width>201</width>
         <height>22</height>
        </rect>
@@ -428,8 +453,8 @@
      <widget class="QLabel" name="LbFecha">
       <property name="geometry">
        <rect>
-        <x>350</x>
-        <y>110</y>
+        <x>790</x>
+        <y>40</y>
         <width>111</width>
         <height>21</height>
        </rect>
@@ -449,8 +474,8 @@
      <widget class="QLabel" name="LbApellidos">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>150</y>
+        <x>40</x>
+        <y>100</y>
         <width>91</width>
         <height>21</height>
        </rect>
@@ -471,14 +496,28 @@
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>320</y>
-        <width>841</width>
-        <height>301</height>
+        <y>220</y>
+        <width>1031</width>
+        <height>371</height>
        </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="dragEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::SolidLine</enum>
       </property>
       <column>
        <property name="text">
-        <string>DNI</string>
+        <string>Id</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Dni</string>
        </property>
       </column>
       <column>
@@ -517,6 +556,155 @@
        </property>
       </column>
      </widget>
+     <widget class="QLineEdit" name="TxtCodigo">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>40</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BtnSearch">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>30</y>
+        <width>40</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>lupa.png</normaloff>lupa.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>25</width>
+        <height>25</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BtnRefresh">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>30</y>
+        <width>40</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>recarga1.png</normaloff>recarga1.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BtnUpdate">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>610</y>
+        <width>90</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Update</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>modify.png</normaloff>modify.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BtnDelete">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>610</y>
+        <width>90</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Delete</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>delete.png</normaloff>delete.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BtnClean">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>610</y>
+        <width>90</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Clean</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>papelera.png</normaloff>papelera.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -529,13 +717,26 @@
      </attribute>
     </widget>
    </widget>
+   <widget class="QLabel" name="LbStatus">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>740</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1015</width>
+     <width>1144</width>
      <height>21</height>
     </rect>
    </property>

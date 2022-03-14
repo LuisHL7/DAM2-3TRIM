@@ -23,15 +23,8 @@ class Conection:
     def loadCustomer(client):
         query = QtSql.QSqlQuery()
         query.prepare("INSERT INTO customer (dni, lastname, name, higthdate, address, province, sex, waytopay) "
-                      "VALUES ( :dni, :lastname, :nombre, :higthdate, :address, :province, :sex, :waytopay)")
-        query.bindValue(':dni', str(client[0]))
-        query.bindValue(':lastname', str(client[1]))
-        query.bindValue(':nombre', str(client[2]))
-        query.bindValue(':higthdate', str(client[3]))
-        query.bindValue(':address', str(client[4]))
-        query.bindValue(':province', str(client[5]))
-        query.bindValue(':sex', str(client[6]))
-        query.bindValue(':waytopay', str(client[7]))
+                      "VALUES ( :dni, :lastname, :name, :higthdate, :address, :province, :sex, :waytopay)")
+        Conection.loadData(query, client)
         if query.exec_():
             print("Insercion correcta")
             Conection.showCustomers(self)
@@ -41,26 +34,28 @@ class Conection:
     def showCustomers(self):
         index = 0
         query = QtSql.QSqlQuery()
-        query.prepare('SELECT dni, lastname, name, higthdate, address, province, sex, waytopay FROM customer')
+        query.prepare('SELECT codigo, dni, lastname, name, higthdate, address, province, sex, waytopay FROM customer')
         if query.exec_():
             while query.next():
-                dni = query.value(0)
-                lastname = query.value(1)
-                name = query.value(2)
-                higthdate = query.value(3)
-                address = query.value(4)
-                province = query.value(5)
-                sex = query.value(6)
-                waytopay = query.value(7)
+                codigo = query.value(0)
+                dni = query.value(1)
+                lastname = query.value(2)
+                name = query.value(3)
+                higthdate = query.value(4)
+                address = query.value(5)
+                province = query.value(6)
+                sex = query.value(7)
+                waytopay = query.value(8)
                 var.ui.cliTable.setRowCount(index + 1)
-                var.ui.cliTable.setItem(index, 0, QtWidgets.QTableWidgetItem(dni))
-                var.ui.cliTable.setItem(index, 1, QtWidgets.QTableWidgetItem(lastname))
-                var.ui.cliTable.setItem(index, 2, QtWidgets.QTableWidgetItem(name))
-                var.ui.cliTable.setItem(index, 3, QtWidgets.QTableWidgetItem(higthdate))
-                var.ui.cliTable.setItem(index, 4, QtWidgets.QTableWidgetItem(address))
-                var.ui.cliTable.setItem(index, 5, QtWidgets.QTableWidgetItem(province))
-                var.ui.cliTable.setItem(index, 6, QtWidgets.QTableWidgetItem(sex))
-                var.ui.cliTable.setItem(index, 7, QtWidgets.QTableWidgetItem(waytopay))
+                var.ui.cliTable.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codigo)))
+                var.ui.cliTable.setItem(index, 1, QtWidgets.QTableWidgetItem(dni))
+                var.ui.cliTable.setItem(index, 2, QtWidgets.QTableWidgetItem(lastname))
+                var.ui.cliTable.setItem(index, 3, QtWidgets.QTableWidgetItem(name))
+                var.ui.cliTable.setItem(index, 4, QtWidgets.QTableWidgetItem(higthdate))
+                var.ui.cliTable.setItem(index, 5, QtWidgets.QTableWidgetItem(address))
+                var.ui.cliTable.setItem(index, 6, QtWidgets.QTableWidgetItem(province))
+                var.ui.cliTable.setItem(index, 7, QtWidgets.QTableWidgetItem(sex))
+                var.ui.cliTable.setItem(index, 8, QtWidgets.QTableWidgetItem(waytopay))
                 index += 1
         else:
             print("Error show customer: ", query.lastError().text())
@@ -75,6 +70,27 @@ class Conection:
         else:
             print("Error displaying customers: ", query.lastError().text())
 
-    # def updateCli(code, newData):
-    #     query = QtSql.QSqlQuery()
-    #     code =int(code)
+    def updateCli(code, newData):
+        query = QtSql.QSqlQuery()
+        code =int(code)
+        query.prepare('UPDATE CUSTOMER SET  dni=:dni, lastname=:lastname, name=:name, higthdate=:highdate,'
+                      'address=:address, province=:province, sex=:sex, waytopay=:waytopay WHERE codigo=:codigo')
+        query.bindValue(':codigo', int(code))
+        Conection.loadData(query, newData)
+        if query.exec_():
+            print('Customer modify')
+            var.ui.lblStatus.setText('Customer with dni ' + str(newData[0]) + 'updated')
+        else:
+            print('Error updating customers: ', query.lastError().text())
+
+    def loadData(query, newData):
+        query.bindValue(':dni', str(newData[0]))
+        query.bindValue(':lastname', str(newData[1]))
+        query.bindValue(':name', str(newData[2]))
+        query.bindValue(':higthdate', str(newData[3]))
+        query.bindValue(':address', str(newData[4]))
+        query.bindValue(':province', str(newData[5]))
+        query.bindValue(':sex', str(newData[6]))
+        query.bindValue(':waytopay', str(newData[7]))
+
+

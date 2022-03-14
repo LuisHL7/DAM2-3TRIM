@@ -20,7 +20,7 @@ class Main(QtWidgets.QMainWindow):
         var.dlgCalendar = DialogCalendar()
         var.avisoSalir = DialogClose()
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
-        var.ui.BtnSalir.clicked.connect(events.Eventos.Salir)
+        var.ui.BtnClose.clicked.connect(events.Eventos.Salir)
         var.ui.TxtDni.editingFinished.connect(Customer.Customer.verifyDni)
         var.ui.BtnCalendar.clicked.connect(Customer.Customer.abrirCalendar)
         var.ui.RbtGroupSex.buttonClicked.connect(Customer.Customer.selSexo)
@@ -34,7 +34,8 @@ class Main(QtWidgets.QMainWindow):
         Conection.Conection.dbConnect(var.filebd)
         Conection.Conection.showCustomers(self)
         var.ui.CmbProvincia.activated[str].connect(Customer.Customer.selProv)
-        var.ui.BtnAceptar.clicked.connect(Customer.Customer.highClients)
+        var.ui.BtnSave.clicked.connect(Customer.Customer.highClients)
+        var.ui.BtnSearch.clicked.connect(Customer.Customer.searchCustomer)
 
 class DialogClose(QtWidgets.QDialog):
     def __init__(self):

@@ -126,7 +126,7 @@ class Customer():
         except Exception as error:
             print('Error alta cliente: %s ' % str(error))
 
-    def deleteClients(self):
+    def deleteClient(self):
         try:
             dni = var.ui.TxtDni.text()
             Conection.Conection.deleteCus(dni)
@@ -135,5 +135,22 @@ class Customer():
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
 
+    def updateClient(self):
+        try:
+            newData = []
+            client = [var.ui.TxtDni, var.ui.TxtApellidos, var.ui.TxtNombre, var.ui.TxtFecha, var.ui.TxtDireccion]
+            for i in client:
+                newData.append(i.text())
+            newData.append(var.ui.CmbProvincia.currentText())
+            newData.append(var.sex)
+            var.pay = Customer.selPago()
+            print(var.pay)
+            newData.append(var.pay)
+            cod = var.ui.TxtCodigo.text()
+            Conection.Conection.updateCli(cod, newData)
+            Conection.Conection.showCustomers(self)
+        except Exception as error:
+            print('Error load customer:  %s ' %str(error))
 
+    def searchCustomer(self):
 
