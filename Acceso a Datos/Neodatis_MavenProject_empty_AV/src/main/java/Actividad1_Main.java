@@ -103,7 +103,7 @@ public class Actividad1_Main {//CREACIÓN Y LLENADO DE BD
         if (valores.size() == 0) {
             System.out.println("No hay ningún resultado");
         } else {
-            
+
         }
 //        Values valores = odb.getValues(new ValuesCriteriaQuery(Jugadores.class, Where.isNotNull("pais.nombrePais")).field("pais.nombrePais").count("nombre").max("edad").sum("edad").groupBy("pais.nombrePais"));
 //        if (valores.size() == 0) {
