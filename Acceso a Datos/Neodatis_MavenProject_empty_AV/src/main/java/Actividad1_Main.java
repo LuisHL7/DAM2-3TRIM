@@ -20,6 +20,9 @@ import org.neodatis.odb.core.query.criteria.Where;
 import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
 import org.neodatis.odb.impl.core.query.values.ValuesCriteriaQuery;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 //Principal 
 public class Actividad1_Main {//CREACIÓN Y LLENADO DE BD
 
@@ -80,7 +83,12 @@ public class Actividad1_Main {//CREACIÓN Y LLENADO DE BD
             // Imprimo las propiedades que me interesan de ese objeto
             System.out.println((j++) + " - " + "ID: " + pais.getId() + ", Pais: " + pais.getNombrePais());
         }
-
+        agruparOperations(odb);
+        ageMaxPlayers(odb);
+        ageMinPlayers(odb);
+        avgAgePlayers(odb);
+        countPlayers(odb);
+        sumAges(odb);
         queryCountryTennis(odb);
         queryAge14(odb);
         queryEUTennis(odb);
@@ -88,6 +96,70 @@ public class Actividad1_Main {//CREACIÓN Y LLENADO DE BD
         query15Italy(odb);
         odb.close(); //Cerrar BD
     }
+
+    private static void agruparOperations(ODB odb) {
+        Values values = odb.getValues(new ValuesCriteriaQuery(Jugadores.class, Where.isNotNull("pais.nombrePais"))
+                        .field("pais.nombrePais").count("nombre").max("edad").sum("edad").groupBy("pais.nombrePais"));
+        if (valores.size() == 0) {
+            System.out.println("No hay ningún resultado");
+        } else {
+            
+        }
+//        Values valores = odb.getValues(new ValuesCriteriaQuery(Jugadores.class, Where.isNotNull("pais.nombrePais")).field("pais.nombrePais").count("nombre").max("edad").sum("edad").groupBy("pais.nombrePais"));
+//        if (valores.size() == 0) {
+//            System.out.println("No hay ningún resultado");
+//        } else {
+//            while (valores.hasNext()) {
+//                ObjectValues ov = valores.next();
+//                BigDecimal sumaEdades = (BigDecimal) ov.getByIndex(3);
+//                BigInteger cuentaJugadores = (BigInteger) ov.getByIndex(1);
+//                float media = sumaEdades.floatValue() / cuentaJugadores.floatValue();
+//                System.out.println("El pais " + ov.getByIndex(0) + " tiene " + ov.getByIndex(1) + " jugadores y la media de edad es " + media + ", en total suman " + sumaEdades + " años, y el de mayor edad tiene " + ov.getByIndex(2));
+//            }
+//        }
+
+    }
+
+    private static void ageMaxPlayers(ODB odb) {
+        Values values = odb.getValues(new ValuesCriteriaQuery(Jugadores.class).max("edad"));
+        ObjectValues ov = values.nextValues();
+        System.out.println("======================================================");
+        System.out.println("La edad máxima de los jugadores es: " + ov.getByAlias("edad"));
+    }
+
+    private static void ageMinPlayers(ODB odb) {
+        Values values = odb.getValues(new ValuesCriteriaQuery(Jugadores.class).min("edad"));
+        ObjectValues ov = values.nextValues();
+        System.out.println("======================================================");
+        System.out.println("La edad mínima de los jugadores es: " + ov.getByAlias("edad"));
+    }
+
+    private static void avgAgePlayers(ODB odb) {
+        Values values = odb.getValues(new ValuesCriteriaQuery(Jugadores.class).avg("edad"));
+        ObjectValues ov = values.nextValues();
+        System.out.println("======================================================");
+        System.out.println("La media de la edad de los jugadores es: " + ov.getByAlias("edad"));
+    }
+
+    private static void countPlayers(ODB odb) {
+        Values values = odb.getValues(new ValuesCriteriaQuery(Jugadores.class).count("nombre"));
+        ObjectValues ov = values.nextValues();
+        System.out.println("======================================================");
+        System.out.println("El número de jugadores es: " + ov.getByAlias("nombre"));
+    }
+
+    private static void sumAges(ODB odb) {
+//        // Suma de edades
+//        Values val = odb.getValues(new ValuesCriteriaQuery(Jugadores.class).sum("edad"));
+//        ObjectValues ov= val.nextValues();
+//        BigDecimal value = (BigDecimal)ov.getByAlias("edad");
+//// también valdría BigDecimal value = (BigDecimal)ov.getByIndex(0);
+        Values values = odb.getValues(new ValuesCriteriaQuery(Jugadores.class).sum("edad"));
+        ObjectValues ov = values.nextValues();
+        System.out.println("======================================================");
+        System.out.println("La suma de las edades es: " + ov.getByAlias("edad"));
+    }
+
 
     private static void query15Italy(ODB odb) {
         Values values = odb.getValues(new ValuesCriteriaQuery(Jugadores.class, new
