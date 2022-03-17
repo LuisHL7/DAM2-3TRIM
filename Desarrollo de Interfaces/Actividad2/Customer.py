@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtSql
 
 import Conection
 import var
@@ -109,8 +109,8 @@ class Customer():
             newCli.append(sex)
             newCli.append(var.pay2[0])
             if client:
-            # Comprobamos que no esté vacía la principal
-            # Aquí empieza como trabajar con la TableWidget
+                # Comprobamos que no esté vacía la principal
+                # Aquí empieza como trabajar con la TableWidget
                 row = 0  # posicion de la fila, problema: coloca al último como primero en cada click
                 column = 0  # posición de la columna
                 var.ui.cliTable.insertRow(row)
@@ -122,7 +122,7 @@ class Customer():
                 Conection.Conection.loadCustomer(newCli)
             else:
                 print('Faltan datos')
-            #Customer.cleanCli(client, var.rbtSex, var.chkPago)
+            # Customer.cleanCli(client, var.rbtSex, var.chkPago)
         except Exception as error:
             print('Error alta cliente: %s ' % str(error))
 
@@ -150,7 +150,26 @@ class Customer():
             Conection.Conection.updateCli(cod, newData)
             Conection.Conection.showCustomers(self)
         except Exception as error:
-            print('Error load customer:  %s ' %str(error))
+            print('Error load customer:  %s ' % str(error))
 
     def searchCustomer(self):
 
+        print("Hola")
+        var.ui.TxtFecha.setText(str("hola"))
+        print(var.ui.TxtFecha.text())
+        var.ui.TxtApellidos.setText(var.ui.TxtApellidos.text())
+        query = QtSql.QSqlQuery()
+        query.prepare('SELECT codigo, dni, lastname, name, higthdate, address, province, sex, waytopay FROM customer WHERE dni =:dni')
+        query.bindValue(':dni', str(var.ui.TxtDni.text()))
+        if query.exec_():
+            var.ui.TxtCodigo.setText(str(query.value(0)))
+            var.ui.TxtDni.setText(query.value(1))
+            var.ui.TxtApellidos.setText(str(query.value(2)))
+            var.ui.TxtNombre.setText(str(query.value(3)))
+            var.ui.TxtFecha.setText(str(query.value(4)))
+            var.ui.TxtDireccion.setText(str(query.value(5)))
+            # var.ui.CmbProvincia.setText(query.value(6))
+            # var.ui.RbtGroupSex.setText(query.value(7))
+            # var.ui.ChkPago.setText(query.value(8))
+        else:
+            print("Error search customer: ", query.lastError().text())
