@@ -142,7 +142,7 @@ class Customer():
             for i in client:
                 newData.append(i.text())
             newData.append(var.ui.CmbProvincia.currentText())
-            newData.append(var.sex)
+            newData.append(sex)
             var.pay = Customer.selPago()
             print(var.pay)
             newData.append(var.pay)

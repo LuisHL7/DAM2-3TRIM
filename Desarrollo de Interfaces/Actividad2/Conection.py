@@ -73,7 +73,7 @@ class Conection:
     def updateCli(code, newData):
         query = QtSql.QSqlQuery()
         code =int(code)
-        query.prepare('UPDATE CUSTOMER SET  dni=:dni, lastname=:lastname, name=:name, higthdate=:highdate,'
+        query.prepare('UPDATE CUSTOMER SET  dni=:dni, lastname=:lastname, name=:name, higthdate=:higthdate,'
                       'address=:address, province=:province, sex=:sex, waytopay=:waytopay WHERE codigo=:codigo')
         query.bindValue(':codigo', int(code))
         Conection.loadData(query, newData)

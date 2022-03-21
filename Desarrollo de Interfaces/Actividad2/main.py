@@ -36,6 +36,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.CmbProvincia.activated[str].connect(Customer.Customer.selProv)
         var.ui.BtnSave.clicked.connect(Customer.Customer.highClients)
         var.ui.BtnSearch.clicked.connect(Customer.Customer.searchCustomer)
+        var.ui.BtnUpdate.clicked.connect(Customer.Customer.updateClient)
 
 class DialogClose(QtWidgets.QDialog):
     def __init__(self):
