@@ -152,24 +152,28 @@ class Customer():
         except Exception as error:
             print('Error load customer:  %s ' % str(error))
 
-    def searchCustomer(self):
-
-        print("Hola")
-        var.ui.TxtFecha.setText(str("hola"))
-        print(var.ui.TxtFecha.text())
-        var.ui.TxtApellidos.setText(var.ui.TxtApellidos.text())
+    def searchCustomer():
         query = QtSql.QSqlQuery()
         query.prepare('SELECT codigo, dni, lastname, name, higthdate, address, province, sex, waytopay FROM customer WHERE dni =:dni')
-        query.bindValue(':dni', str(var.ui.TxtDni.text()))
+        query.bindValue(':dni', var.ui.TxtDni.text())
         if query.exec_():
-            var.ui.TxtCodigo.setText(str(query.value(0)))
-            var.ui.TxtDni.setText(query.value(1))
-            var.ui.TxtApellidos.setText(str(query.value(2)))
-            var.ui.TxtNombre.setText(str(query.value(3)))
-            var.ui.TxtFecha.setText(str(query.value(4)))
-            var.ui.TxtDireccion.setText(str(query.value(5)))
-            # var.ui.CmbProvincia.setText(query.value(6))
-            # var.ui.RbtGroupSex.setText(query.value(7))
-            # var.ui.ChkPago.setText(query.value(8))
+            while query.next():
+                var.ui.TxtCodigo.setText(str(query.value(0)))
+                var.ui.TxtDni.setText(query.value(1))
+                var.ui.TxtApellidos.setText(str(query.value(2)))
+                var.ui.TxtNombre.setText(str(query.value(3)))
+                var.ui.TxtFecha.setText(str(query.value(4)))
+                var.ui.TxtDireccion.setText(str(query.value(5)))
+                var.ui.CmbProvincia.setCurrentText(str(query.value(6)))
+                if str(query.value(7)) == 'Hombre':
+                    var.ui.RbtMasculino.setChecked(True)
+                else:
+                    var.ui.RbtFemenino.setChecked(True)
+                if str(query.value(8)) == 'Efectivo':
+                    var.ui.ChkEfectivo.setChecked(True)
+                elif str(query.value(8)) == 'Transferencia':
+                    var.ui.ChkTransferencia.setChecked(True)
+                else:
+                    var.ui.ChkTarjeta.setChecked(True)
         else:
             print("Error search customer: ", query.lastError().text())

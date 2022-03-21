@@ -62,7 +62,7 @@ class Conection:
 
     def deleteCli(dni):
         query = QtSql.QSqlQuery()
-        query.prepare('delete from clientes where dni =:dni')
+        query.prepare('delete from customer where dni =:dni')
         query.bindValue(':dni', dni)
         if query.exec_():
             print('Customer delete')
