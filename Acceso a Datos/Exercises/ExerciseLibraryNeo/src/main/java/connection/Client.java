@@ -5,6 +5,10 @@ import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 import org.neodatis.odb.Objects;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 public class Client {
     public static void main(String[] args) {
         ODB odb = null;
@@ -25,6 +29,9 @@ public class Client {
                 odb.close();
 
         }
+        LocalDate localDate = new LocalDate(new Date(localDate.getTime()));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        localDate.format(formatter);
 
     }
 }

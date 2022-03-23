@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Books implements Serializable {
@@ -8,16 +9,17 @@ public class Books implements Serializable {
     private String title;
     private String category;
     private float price;
-    private LocalDate datePublished;
+    private Date datePublished;
 
     public Books() {
 
     }
 
-    public Books(String title, float price) {
+    public Books( String title, String category, float price, Date datePublished) {
         this.title = title;
+        this.category = category;
         this.price = price;
-
+        this.datePublished = datePublished;
     }
 
     public int getId() {
@@ -44,12 +46,19 @@ public class Books implements Serializable {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "Books{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", price=" + price +
-                '}';
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public Date getDatePublished() {
+        return datePublished;
+    }
+
+    public void setDatePublished(Date datePublished) {
+        this.datePublished = datePublished;
     }
 }

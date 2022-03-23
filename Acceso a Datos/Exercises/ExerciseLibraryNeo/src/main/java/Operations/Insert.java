@@ -1,13 +1,9 @@
 package Operations;
 
 import model.Authors;
+import model.Books;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
-import org.neodatis.odb.Objects;
-import org.neodatis.odb.Values;
-import org.neodatis.odb.core.query.IQuery;
-import org.neodatis.odb.core.query.criteria.Where;
-import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
 
 public class Insert {
     public static void main(String[] args) {
@@ -16,5 +12,59 @@ public class Insert {
         odb.store(a1);
         odb.close();
 
+    }
+
+    public static void insertAuthor() {
+        Authors a = new Authors();
+        System.out.println("*******INSERT AUTHOR*******");
+        System.out.println("==========================");
+        System.out.print("1.-Insert the dni: ");
+        a.setDni(VerifyData.readDni());
+        System.out.print("2.-Insert the name: ");
+        a.setName(VerifyData.readName());
+        System.out.print("3.-Insert the address: ");
+        a.setAddress(VerifyData.readString());
+        System.out.print("4.-Insert the age: ");
+        a.setAge(VerifyData.readOptionAndAge());
+        System.out.print("5.-Insert the nationality: ");
+        a.setNationality(VerifyData.readName());
+        addObject(a);
+        addBookForAuthor(a);
+    }
+
+    private static void addBookForAuthor(Authors a) {
+        System.out.println("*******INSERT BOOK FOR A AUTHOR*******");
+        System.out.println("==========================");
+        System.out.print("Si desea añadir un libro registrado escriba Y si desea añadir un libro nuevo escriba N. (Y/N)");
+        if (VerifyData.readAnswer().equals("Y")) {
+            int id;
+            System.out.println("==========================");
+            System.out.print("1.-Add the book by the id: ");
+            id = VerifyData.readInt();
+        } else {
+            insertBook();
+        }
+    }
+
+
+    private static void addObject(Object a) {
+        ODB odb = ODBFactory.open("neodatisServer.test");
+        odb.store(a);
+        odb.close();
+    }
+
+    public static void insertBook() {
+        Books b = new Books();
+        System.out.println("*******INSERT BOOK*******");
+        System.out.println("==========================");
+        System.out.print("1.-Insert the title: ");
+        b.setTitle(VerifyData.readName());
+        System.out.print("2.-Insert the category: ");
+        b.setTitle(VerifyData.readName());
+        System.out.print("3.-Insert the price: ");
+        b.setPrice(VerifyData.readFloat());
+        System.out.print("4.-Insert date published: ");
+        b.setDatePublished(VerifyData.readDate());
+        addObject(b);
     }
 }
