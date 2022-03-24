@@ -12,6 +12,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val navController = findNavController(R.id.)
         binding.TxTNumber.text = viewModel.stateCount().toString()
 
         binding.BtnCount.setOnClickListener {

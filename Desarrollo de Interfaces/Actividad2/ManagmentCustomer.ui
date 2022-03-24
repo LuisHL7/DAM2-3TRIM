@@ -522,12 +522,12 @@
       </column>
       <column>
        <property name="text">
-        <string>Name</string>
+        <string>Last Name</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Last Name</string>
+        <string>Name</string>
        </property>
       </column>
       <column>
@@ -717,12 +717,12 @@
      </attribute>
     </widget>
    </widget>
-   <widget class="QLabel" name="LbStatus">
+   <widget class="QLabel" name="LblStatus">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>740</y>
-      <width>51</width>
+      <width>1111</width>
       <height>20</height>
      </rect>
     </property>
@@ -767,7 +767,7 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="ChkPago"/>
   <buttongroup name="RbtGroupSex"/>
+  <buttongroup name="ChkPago"/>
  </buttongroups>
 </ui>

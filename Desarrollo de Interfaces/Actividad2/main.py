@@ -1,6 +1,7 @@
 from datetime import datetime
 
 import Conection
+from windowsSinDatos import *
 from ManagmentCustomer import *
 from windowsAviso import *
 import sys
@@ -32,11 +33,14 @@ class Main(QtWidgets.QMainWindow):
             i.stateChanged.connect(Customer.Customer.selPago)
         Customer.Customer.cargarProv()
         Conection.Conection.dbConnect(var.filebd)
-        Conection.Conection.showCustomers(self)
+        Conection.Conection.showCustomers()
         var.ui.CmbProvincia.activated[str].connect(Customer.Customer.selProv)
         var.ui.BtnSave.clicked.connect(Customer.Customer.highClients)
         var.ui.BtnSearch.clicked.connect(Customer.Customer.searchCustomer)
         var.ui.BtnUpdate.clicked.connect(Customer.Customer.updateClient)
+        var.ui.BtnDelete.clicked.connect(Customer.Customer.deleteClient)
+        var.ui.BtnClean.clicked.connect(Customer.Customer.cleanCustomer)
+        var.ui.BtnRefresh.clicked.connect(Customer.Customer.cleanCustomer)
 
 class DialogClose(QtWidgets.QDialog):
     def __init__(self):

@@ -7,10 +7,9 @@ class Eventos:
         try:
             var.dlgClose.show()
             if var.dlgClose.exec():
-                 sys.exit()
+                sys.exit()
             else:
                 var.dlgClose.hide()
         except Exception as error:
             print('Error en módulo salir', error)
-
 

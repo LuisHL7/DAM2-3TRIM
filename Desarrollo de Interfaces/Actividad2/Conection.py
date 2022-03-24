@@ -27,11 +27,12 @@ class Conection:
         Conection.loadData(query, client)
         if query.exec_():
             print("Insercion correcta")
-            Conection.showCustomers(self)
+            Conection.showCustomers()
+            var.ui.LblStatus.setText('Customer with dni ' + str(client[0]) + ' inserted')
         else:
             print("Error al insertar: ", query.lastError().text())
 
-    def showCustomers(self):
+    def showCustomers():
         index = 0
         query = QtSql.QSqlQuery()
         query.prepare('SELECT codigo, dni, lastname, name, higthdate, address, province, sex, waytopay FROM customer')
@@ -60,16 +61,6 @@ class Conection:
         else:
             print("Error show customer: ", query.lastError().text())
 
-    def deleteCli(dni):
-        query = QtSql.QSqlQuery()
-        query.prepare('delete from customer where dni =:dni')
-        query.bindValue(':dni', dni)
-        if query.exec_():
-            print('Customer delete')
-            var.ui.lblStatus.setText('Customer with dni' + dni + 'has been deleted')
-        else:
-            print("Error displaying customers: ", query.lastError().text())
-
     def updateCli(code, newData):
         query = QtSql.QSqlQuery()
         code =int(code)
@@ -79,9 +70,19 @@ class Conection:
         Conection.loadData(query, newData)
         if query.exec_():
             print('Customer modify')
-            var.ui.lblStatus.setText('Customer with dni ' + str(newData[0]) + 'updated')
+            var.ui.LblStatus.setText('Customer with dni ' + str(newData[0]) + ' updated')
         else:
             print('Error updating customers: ', query.lastError().text())
+
+    def deleteCus(dni):
+        query = QtSql.QSqlQuery()
+        query.prepare('delete from customer where dni =:dni')
+        query.bindValue(':dni', dni)
+        if query.exec_():
+            print('Customer delete')
+            var.ui.LblStatus.setText('Customer with dni' + dni + 'has been deleted')
+        else:
+            print("Error displaying customers: ", query.lastError().text())
 
     def loadData(query, newData):
         query.bindValue(':dni', str(newData[0]))

@@ -1,5 +1,7 @@
 from PyQt5 import QtWidgets, QtSql
-
+from tkinter import *
+from tkinter import messagebox as MessageBox
+import win32api
 import Conection
 import var
 
@@ -31,13 +33,13 @@ class Customer():
         except Exception as error:
             print('ERROR: Method verify DNI', error)
 
-    def selSexo(self):
+    def selSexo():
         try:
-            global sex
             if var.ui.RbtMasculino.isChecked():
-                sex = 'Hombre'
+                var.sex = 'Hombre'
             if var.ui.RbtFemenino.isChecked():
-                sex = 'Mujer'
+                var.sex = 'Mujer'
+            return var.sex
         except Exception as error:
             print('Error en módulo seleccionar sexo:', error)
 
@@ -93,7 +95,6 @@ class Customer():
     def highClients():
         try:
             # Preparamos el registro
-            var.sex = []
             newCli = []
             cliTab = []  # serán los datos que carguemos de la tabla.
             client = [var.ui.TxtDni, var.ui.TxtApellidos, var.ui.TxtNombre, var.ui.TxtFecha, var.ui.TxtDireccion]
@@ -104,10 +105,11 @@ class Customer():
                 if k < 3:
                     cliTab.append(i.text())
                     k += 1
-            newCli.append(vpro)
-            var.pay2 = Customer.selPago()
-            newCli.append(sex)
-            newCli.append(var.pay2[0])
+            newCli.append(var.ui.CmbProvincia.currentText())
+            var.sex = Customer.selSexo()
+            newCli.append(var.sex)
+            var.pay = Customer.selPago()
+            newCli.append(var.pay[0])
             if client:
                 # Comprobamos que no esté vacía la principal
                 # Aquí empieza como trabajar con la TableWidget
@@ -122,39 +124,41 @@ class Customer():
                 Conection.Conection.loadCustomer(newCli)
             else:
                 print('Faltan datos')
-            # Customer.cleanCli(client, var.rbtSex, var.chkPago)
+            Customer.cleanCustomer()
         except Exception as error:
             print('Error alta cliente: %s ' % str(error))
+
+    def updateClient(self):
+        try:
+            new_data = []
+            client = [var.ui.TxtDni, var.ui.TxtApellidos, var.ui.TxtNombre, var.ui.TxtFecha, var.ui.TxtDireccion]
+            for i in client:
+                new_data.append(i.text())
+            new_data.append(var.ui.CmbProvincia.currentText())
+            var.sex = Customer.selSexo()
+            new_data.append(var.sex)
+            new_data.append(var.pay[0])
+            cod = var.ui.TxtCodigo.text()
+            Conection.Conection.updateCli(cod, new_data)
+            Conection.Conection.showCustomers()
+            Customer.cleanCustomer()
+        except Exception as error:
+            print('Error update customer:  %s ' % str(error))
 
     def deleteClient(self):
         try:
             dni = var.ui.TxtDni.text()
             Conection.Conection.deleteCus(dni)
-            Conection.Conection.showCustomers(self)
+            Conection.Conection.showCustomers()
             Customer.cleanCustomer()
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
 
-    def updateClient(self):
-        try:
-            newData = []
-            client = [var.ui.TxtDni, var.ui.TxtApellidos, var.ui.TxtNombre, var.ui.TxtFecha, var.ui.TxtDireccion]
-            for i in client:
-                newData.append(i.text())
-            newData.append(var.ui.CmbProvincia.currentText())
-            newData.append(sex)
-            var.pay = Customer.selPago()
-            print(var.pay)
-            newData.append(var.pay)
-            cod = var.ui.TxtCodigo.text()
-            Conection.Conection.updateCli(cod, newData)
-            Conection.Conection.showCustomers(self)
-        except Exception as error:
-            print('Error load customer:  %s ' % str(error))
-
     def searchCustomer():
+        cont = 0
         query = QtSql.QSqlQuery()
-        query.prepare('SELECT codigo, dni, lastname, name, higthdate, address, province, sex, waytopay FROM customer WHERE dni =:dni')
+        query.prepare(
+            'SELECT codigo, dni, lastname, name, higthdate, address, province, sex, waytopay FROM customer WHERE dni =:dni')
         query.bindValue(':dni', var.ui.TxtDni.text())
         if query.exec_():
             while query.next():
@@ -175,5 +179,19 @@ class Customer():
                     var.ui.ChkTransferencia.setChecked(True)
                 else:
                     var.ui.ChkTarjeta.setChecked(True)
+                cont += 1
+            if cont == 0:
+                win32api.MessageBox(0, "El dni ingresado es incorrecto", "Error")
         else:
             print("Error search customer: ", query.lastError().text())
+
+    def cleanCustomer():
+        var.ui.TxtCodigo.setText("")
+        var.ui.TxtDni.setText("")
+        var.ui.TxtApellidos.setText("")
+        var.ui.TxtNombre.setText("")
+        var.ui.TxtFecha.setText("")
+        var.ui.TxtDireccion.setText("")
+        var.ui.CmbProvincia.setCurrentText("")
+        Conection.Conection.showCustomers()
+
