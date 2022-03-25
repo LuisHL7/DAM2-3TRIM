@@ -37,10 +37,10 @@ public class Insert {
         System.out.println("==========================");
         System.out.print("Si desea añadir un libro registrado escriba Y si desea añadir un libro nuevo escriba N. (Y/N)");
         if (VerifyData.readAnswer().equals("Y")) {
-            int id;
+            String dni;
             System.out.println("==========================");
-            System.out.print("1.-Add the book by the id: ");
-            id = VerifyData.readInt();
+            System.out.print("1.-Enter the dni the author: ");
+            dni = VerifyData.readDni();
         } else {
             insertBook();
         }

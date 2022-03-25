@@ -30,7 +30,7 @@ public class Menu {
         do {
             System.out.println("*******INSERT*******");
             System.out.println("==========================");
-            System.out.println("1.-Altas de un autor con todos sus libros.");
+            System.out.println("1.-A book by an author with all his books.");
             System.out.println("2.-Añadir un libro nuevo a un autor ya existente");
             System.out.println("3.-Back to menu the application");
             System.out.print("Enter the option: ");
