@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 public class Books implements Serializable {
-    private int id;
+    private int id = 1;
     private String title;
     private String category;
     private float price;
@@ -16,6 +16,7 @@ public class Books implements Serializable {
     }
 
     public Books( String title, String category, float price, Date datePublished) {
+        id++;
         this.title = title;
         this.category = category;
         this.price = price;
@@ -60,5 +61,17 @@ public class Books implements Serializable {
 
     public void setDatePublished(Date datePublished) {
         this.datePublished = datePublished;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Books{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", category='" + category + '\'' +
+                ", price=" + price +
+                ", datePublished=" + datePublished +
+                '}';
     }
 }

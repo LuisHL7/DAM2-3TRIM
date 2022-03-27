@@ -1,13 +1,10 @@
 package connection;
 
+import Operations.Menu;
 import model.Authors;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 import org.neodatis.odb.Objects;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class Client {
     public static void main(String[] args) {
@@ -20,18 +17,15 @@ public class Client {
             // visualizar los objetos
             while (objects.hasNext()) {
                 Authors aut = objects.next();
-                System.out.printf("%d: %s, %s, %s, %n ,%s", i++, aut.getDni(), aut.getName(), aut.getAddress(),
-                        aut.getAge(), aut.getNationality());
+                System.out.printf("%d: %s, %s, %s, %s, %s, %s. %n", i++, aut.getDni(), aut.getName(), aut.getAddress(), aut.getAge(), aut.getNationality(), aut.getBook());
             }
-
+            System.out.println();
+            Menu.menuMain(odb);
         } finally {
             if (odb != null)
                 odb.close();
 
         }
-        LocalDate localDate = new LocalDate(new Date(localDate.getTime()));
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        localDate.format(formatter);
 
     }
 }
