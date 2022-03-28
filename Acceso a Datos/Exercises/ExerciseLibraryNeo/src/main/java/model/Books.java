@@ -3,24 +3,18 @@ package model;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Books implements Serializable {
-    private int id = 1;
+    private static final AtomicInteger count = new AtomicInteger(0);
+    private int id;
     private String title;
     private String category;
     private float price;
     private Date datePublished;
 
     public Books() {
-
-    }
-
-    public Books( String title, String category, float price, Date datePublished) {
-        id++;
-        this.title = title;
-        this.category = category;
-        this.price = price;
-        this.datePublished = datePublished;
+        id = count.incrementAndGet();
     }
 
     public int getId() {

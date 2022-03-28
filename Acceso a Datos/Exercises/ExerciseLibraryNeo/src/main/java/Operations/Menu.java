@@ -43,7 +43,7 @@ public class Menu {
             switch (option) {
                 case 1 -> Insert.addAuthor(odb);
                 case 2 -> Insert.addBookForAuthor(odb);
-                case 3 -> System.out.print("Backing to main menu");
+                case 3 -> System.out.println("Backing to main menu");
                 default -> VerifyData.logger.log(Level.SEVERE, "ERROR: Enter the option available");
             }
         } while (option != 3);
@@ -104,6 +104,10 @@ public class Menu {
             System.out.println();
             switch (option) {
                 case 1 -> Query.queryAuthorsItalian(odb);
+                case 3 -> Query.queryAuthorSpanishLessThanSixty(odb);
+                case 4 -> Query.queryNumberOfAuthorsByCountry(odb);
+                case 5 -> Query.queryAuthorBookList(odb);
+                case 6 -> Query.queryDataOfBookAndAuthor(odb);
                 case 7 -> System.out.println("Backing to main menu");
                 default -> VerifyData.logger.log(Level.SEVERE, "ERROR: Enter the option available");
             }

@@ -40,8 +40,9 @@ public class Insert {
     private static void verifyExistingDni(String dni, ODB odb) {
         Objects<Authors> author = QueryBD.queryDni(dni, odb);
         if (author.size() > 0) {
-            Authors a1 = author.next();
-            addAnotherBook(a1);
+            Authors a = author.next();
+            addAnotherBook(a);
+            odb.store(a);
         } else {
             VerifyData.logger.log(Level.SEVERE, "ERROR: The DNI entered not exists.");
         }

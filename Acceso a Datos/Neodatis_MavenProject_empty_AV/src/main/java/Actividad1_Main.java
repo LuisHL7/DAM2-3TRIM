@@ -94,6 +94,7 @@ public class Actividad1_Main {//CREACIÓN Y LLENADO DE BD
         queryEUTennis(odb);
         query14SpaItaFra(odb);
         query15Italy(odb);
+        consultasConGroupBy(odb);
         odb.close(); //Cerrar BD
     }
 
@@ -117,6 +118,23 @@ public class Actividad1_Main {//CREACIÓN Y LLENADO DE BD
 //                System.out.println("El pais " + ov.getByIndex(0) + " tiene " + ov.getByIndex(1) + " jugadores y la media de edad es " + media + ", en total suman " + sumaEdades + " años, y el de mayor edad tiene " + ov.getByIndex(2));
 //            }
 //        }
+
+    }
+
+    private static void consultasConGroupBy(ODB odb) {
+        Values valores = odb.getValues(new ValuesCriteriaQuery(Jugadores.class, Where.isNotNull("pais.nombrePais")).field("pais.nombrePais").count("nombre").max("edad").sum("edad").groupBy("pais.nombrePais"));
+        if (valores.size() == 0) {
+            System.out.println("No hay ningún resultado");
+        } else {
+            while (valores.hasNext()) {
+                ObjectValues ov = valores.next();
+                BigDecimal sumaEdades = (BigDecimal) ov.getByIndex(3);
+                BigInteger cuentaJugadores = (BigInteger) ov.getByIndex(1);
+                float media = sumaEdades.floatValue() / cuentaJugadores.floatValue();
+                System.out.println("El pais " + ov.getByIndex(0) + " tiene " + ov.getByIndex(1) + " jugadores y la media de edad es " + media + ", en total suman " + sumaEdades + " años, y el de mayor edad tiene " + ov.getByIndex(2));
+            }
+        }
+        odb.close();
 
     }
 

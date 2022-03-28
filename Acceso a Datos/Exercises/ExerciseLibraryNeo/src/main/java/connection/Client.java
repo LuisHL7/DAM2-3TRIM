@@ -17,7 +17,7 @@ public class Client {
             // visualizar los objetos
             while (objects.hasNext()) {
                 Authors aut = objects.next();
-                System.out.printf("%d: %s, %s, %s, %s, %s, %s. %n", i++, aut.getDni(), aut.getName(), aut.getAddress(), aut.getAge(), aut.getNationality(), aut.getBook());
+                System.out.printf("%d %s, %s, %s, %s, %s, %s. %n", i++, aut.getDni(), aut.getName(), aut.getAddress(), aut.getAge(), aut.getNationality(), aut.getBook());
             }
             System.out.println();
             Menu.menuMain(odb);
