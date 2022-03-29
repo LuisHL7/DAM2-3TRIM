@@ -63,10 +63,10 @@ public class Query {
         Objects<Authors> author = QueryBD.queryAuthorSpanish(odb);
         if (author.size() > 0) {
             int i = 1;
+            System.out.println("Nº\t\tName\t\tAge\t\tBook");
+            System.out.println("--\t\t----\t\t---\t\t----");
             while (author.hasNext()) {
                 Authors aut = author.next();
-                System.out.println("Nº\t\tName\t\tAge\t\tBook");
-                System.out.println("--\t\t----\t\t---\t\t----");
                 System.out.println(i++ + "\t" + aut.getName() + "\t" + aut.getAge() + "\t" + aut.getBook());
             }
             System.out.println();
@@ -83,7 +83,7 @@ public class Query {
             System.out.println("--\t\t-------\t\t-----");
             while (values.hasNext()) {
                 ObjectValues ov = values.next();
-                System.out.println(i++ + "\t\t" + ov.getByIndex(0) + "\t" + ov.getByIndex(1));
+                System.out.println(i++ + "\t\t" + ov.getByIndex(0) + "\t\t" + ov.getByIndex(1));
             }
             System.out.println();
         } else {
@@ -109,19 +109,25 @@ public class Query {
         }
     }
 
-    private static void showDataOfBookAndAuthor(ODB odb, String name) {
-        Objects<Authors> author = QueryBD.queryDataOfBookAndAuthor(odb, name);
+    private static void showDataOfBookAndAuthor(ODB odb, String title) {
+        Objects<Authors> author = QueryBD.queryDataAuthors(odb);
         if (author.size() > 0) {
             int i = 1;
+            System.out.println("Nº\t\t\tTitle\t\t\t\tCategory\t\t\t\tPrice\t\t\t\tDate Published\t\t\t\tAuthor");
+            System.out.println("--\t\t\t-----\t\t\t\t--------\t\t\t\t-----\t\t\t\t--------------\t\t\t\t------");
             while (author.hasNext()) {
                 Authors aut = author.next();
-                System.out.println("Nº\t\t\tTitle\t\t\t\tPrice");
-                System.out.println("--\t\t\t-----\t\t\t\t-----");
-                System.out.println(i++ + "\t\t" + aut.getBook().get(i-2).getTitle() + "\t\t" + aut.getBook().get(i-2).getPrice());
+                for (int j = 0; j < aut.getBook().size() ;j++) {
+                    if( aut.getBook().get(j).getTitle().equalsIgnoreCase(title)){
+                        System.out.println(i++ + "\t\t" + aut.getBook().get(j).getTitle() + "\t\t" + aut.getBook().get(j).getCategory() +
+                                "\t\t\t\t" + aut.getBook().get(j).getPrice() + "\t\t\t\t" + aut.getBook().get(j).getDatePublished() + "\t\t\t\t" + aut.getName());
+                    }
+                }
             }
             System.out.println();
         } else {
             VerifyData.logger.log(Level.SEVERE, "ERROR: There is no registered book.");
         }
+
     }
 }

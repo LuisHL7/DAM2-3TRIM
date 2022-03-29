@@ -11,14 +11,14 @@ public class Update {
         System.out.println("*******UPDATE THE ADDRESS OF AN AUTHOR BY HIS DNI*******");
         System.out.println("==========================");
         System.out.print("1.-Enter the dni the author: ");
-        verifyDni(VerifyData.readDni(),odb);
+        verifyDni(VerifyData.readDni(), odb);
     }
 
     private static void verifyDni(String dni, ODB odb) {
-        Objects<Authors> author = QueryBD.queryDni(dni,odb);
+        Objects<Authors> author = QueryBD.queryDni(dni, odb);
         if (author.size() > 0) {
             Authors a1 = author.next();
-            changeDirection(a1,odb);
+            changeDirection(a1, odb);
         } else {
             VerifyData.logger.log(Level.SEVERE, "ERROR: The DNI entered not exists.");
         }
@@ -30,6 +30,7 @@ public class Update {
 //        System.out.print("1.-Enter the new nationality: ");
 //        a.setNationality(VerifyData.readName());
         odb.store(a);
+        System.out.println("-->Updated correctly");
     }
 
 
@@ -41,22 +42,26 @@ public class Update {
         name = VerifyData.readName();
         System.out.print("2.-Enter the title the book: ");
         title = VerifyData.readName();
-        verifyTitleAndNameAuthor(title,name,odb);
+        changePrice(title, name, odb);
     }
 
-    private static void verifyTitleAndNameAuthor(String title, String name, ODB odb) {
-        Objects<Authors> author = QueryBD.queryTitleAndAuthor(title,name, odb);
+    private static void changePrice(String title, String name, ODB odb) {
+        Objects<Authors> author = QueryBD.queryDataAuthors(odb);
         if (author.size() > 0) {
-            Authors a1 = author.next();
-            changePrice(a1, odb);
+            while (author.hasNext()) {
+                Authors aut = author.next();
+                for (int j = 0; j < aut.getBook().size(); j++) {
+                    if (aut.getBook().get(j).getTitle().equalsIgnoreCase(title) && aut.getName().equalsIgnoreCase(name)) {
+                        System.out.print("3.-Enter the new price: ");
+                        aut.getBook().get(j).setPrice(VerifyData.readFloat());
+                        odb.store(aut);
+                        System.out.println("-->Updated correctly");
+                    }
+                }
+            }
         } else {
             VerifyData.logger.log(Level.SEVERE, "ERROR: The book title or author name entered does not exist.");
         }
     }
-
-    private static void changePrice(Authors a, ODB odb) {
-        System.out.print("2.-Enter the new price: ");
-        a.getBook().get(0).setPrice(VerifyData.readFloat());
-        odb.store(a);
-    }
 }
+

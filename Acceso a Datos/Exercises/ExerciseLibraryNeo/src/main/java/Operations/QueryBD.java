@@ -38,7 +38,7 @@ public class QueryBD {
         return odb.getObjects(new CriteriaQuery(Authors.class, Where.iequal("name", name)));
     }
 
-    public static Objects<Authors> queryDataOfBookAndAuthor(ODB odb, String name) {
+    public static Objects<Authors> queryDataAuthors(ODB odb) {
         return odb.getObjects(Authors.class);
     }
 
