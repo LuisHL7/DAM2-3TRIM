@@ -1,5 +1,6 @@
 package Operations;
 
+import connection.Client;
 import model.Authors;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.Objects;
@@ -7,7 +8,8 @@ import org.neodatis.odb.Objects;
 import java.util.logging.Level;
 
 public class Update {
-    public static void updateAuthorAddress(ODB odb) {
+    public static void updateAuthorAddress() {
+        ODB odb = Client.connection();
         System.out.println("*******UPDATE THE ADDRESS OF AN AUTHOR BY HIS DNI*******");
         System.out.println("==========================");
         System.out.print("1.-Enter the dni the author: ");
@@ -27,14 +29,13 @@ public class Update {
     private static void changeDirection(Authors a, ODB odb) {
         System.out.print("1.-Enter the new address: ");
         a.setAddress(VerifyData.readString());
-//        System.out.print("1.-Enter the new nationality: ");
-//        a.setNationality(VerifyData.readName());
         odb.store(a);
-        System.out.println("-->Updated correctly");
+        odb.close();
+        System.out.println("--> Updated correctly");
     }
 
-
-    public static void updateBookPrice(ODB odb) {
+    public static void updateBookPrice() {
+        ODB odb = Client.connection();
         String name, title;
         System.out.println("*******UPDATING THE PRICE OF THE BOOK*******");
         System.out.println("==========================");
@@ -55,7 +56,8 @@ public class Update {
                         System.out.print("3.-Enter the new price: ");
                         aut.getBook().get(j).setPrice(VerifyData.readFloat());
                         odb.store(aut);
-                        System.out.println("-->Updated correctly");
+                        odb.close();
+                        System.out.println("--> Updated correctly");
                     }
                 }
             }

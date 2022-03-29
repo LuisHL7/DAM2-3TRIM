@@ -1,11 +1,10 @@
 package Operations;
 
-import org.neodatis.odb.ODB;
 
 import java.util.logging.Level;
 
 public class Menu {
-    public static void menuMain(ODB odb) {
+    public static void menuMain() {
         byte option;
         do {
             System.out.println("*******MENU LIBRARY*******");
@@ -19,17 +18,17 @@ public class Menu {
             option = VerifyData.readOptionAndAge();
             System.out.println();
             switch (option) {
-                case 1 -> insert(odb);
-                case 2 -> modify(odb);
-                case 3 -> delete(odb);
-                case 4 -> query(odb);
+                case 1 -> insert();
+                case 2 -> modify();
+                case 3 -> delete();
+                case 4 -> query();
                 case 5 -> System.out.println("Closing the application");
                 default -> VerifyData.logger.log(Level.SEVERE, "ERROR: Enter the option available");
             }
         } while (option != 5);
     }
 
-    public static void insert(ODB odb) {
+    public static void insert() {
         byte option;
         do {
             System.out.println("*******INSERT*******");
@@ -41,15 +40,15 @@ public class Menu {
             option = VerifyData.readOptionAndAge();
             System.out.println();
             switch (option) {
-                case 1 -> Insert.addAuthor(odb);
-                case 2 -> Insert.addBookForAuthor(odb);
+                case 1 -> Insert.addAuthor();
+                case 2 -> Insert.addBookForAuthor();
                 case 3 -> System.out.println("Backing to main menu");
                 default -> VerifyData.logger.log(Level.SEVERE, "ERROR: Enter the option available");
             }
         } while (option != 3);
     }
 
-    private static void modify(ODB odb) {
+    private static void modify() {
         byte option;
         do {
             System.out.println("*******MODIFY*******");
@@ -61,15 +60,15 @@ public class Menu {
             option = VerifyData.readOptionAndAge();
             System.out.println();
             switch (option) {
-                case 1 -> Update.updateAuthorAddress(odb);
-                case 2 -> Update.updateBookPrice(odb);
+                case 1 -> Update.updateAuthorAddress();
+                case 2 -> Update.updateBookPrice();
                 case 3 -> System.out.println("Backing to main menu");
                 default -> VerifyData.logger.log(Level.SEVERE, "ERROR: Enter the option available");
             }
         } while (option != 3);
     }
 
-    private static void delete(ODB odb) {
+    private static void delete() {
         byte option;
         do {
             System.out.println("*******DELETE*******");
@@ -80,14 +79,14 @@ public class Menu {
             option = VerifyData.readOptionAndAge();
             System.out.println();
             switch (option) {
-                case 1 -> Delete.deleteBookByIdAndAuthorName(odb);
+                case 1 -> Delete.deleteBookByIdAndAuthorName();
                 case 2 -> System.out.println("Backing to main menu");
                 default -> VerifyData.logger.log(Level.SEVERE, "ERROR: Enter the option available");
             }
         } while (option != 2);
     }
 
-    private static void query(ODB odb) {
+    private static void query() {
         byte option;
         do {
             System.out.println("*******QUERY*******");
@@ -103,11 +102,12 @@ public class Menu {
             option = VerifyData.readOptionAndAge();
             System.out.println();
             switch (option) {
-                case 1 -> Query.queryAuthorsItalian(odb);
-                case 3 -> Query.queryAuthorSpanishLessThanSixty(odb);
-                case 4 -> Query.queryNumberOfAuthorsByCountry(odb);
-                case 5 -> Query.queryAuthorBookList(odb);
-                case 6 -> Query.queryDataOfBookAndAuthor(odb);
+                case 1 -> Query.queryAuthorsItalian();
+                case 2 -> Query.queryBookBetweenDate();
+                case 3 -> Query.queryAuthorSpanishLessThanSixty();
+                case 4 -> Query.queryNumberOfAuthorsByCountry();
+                case 5 -> Query.queryAuthorBookList();
+                case 6 -> Query.queryDataOfBookAndAuthor();
                 case 7 -> System.out.println("Backing to main menu");
                 default -> VerifyData.logger.log(Level.SEVERE, "ERROR: Enter the option available");
             }

@@ -133,7 +133,7 @@ public class VerifyData {
     }
 
     protected static Date convertDate(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");date = "16/08/2016";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return Date.valueOf(LocalDate.parse(date, formatter));
     }
 

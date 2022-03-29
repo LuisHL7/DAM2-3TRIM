@@ -1,5 +1,6 @@
 package Operations;
 
+import connection.Client;
 import model.Authors;
 import model.Books;
 import org.neodatis.odb.*;
@@ -8,7 +9,8 @@ import java.util.logging.Level;
 
 public class Insert {
 
-    public static void addAuthor(ODB odb) {
+    public static void addAuthor() {
+        ODB odb = Client.connection();
         Authors a = new Authors();
         System.out.println("*******INSERT AUTHOR*******");
         System.out.println("==========================");
@@ -28,9 +30,20 @@ public class Insert {
         a.setNationality(VerifyData.readName());
         addAnotherBook(a);
         odb.store(a);
+        odb.close();
     }
 
-    public static void addBookForAuthor(ODB odb) {
+    private static boolean verifyDniRepeat(String dni, ODB odb) {
+        boolean verify = false;
+        if (QueryBD.queryDni(dni, odb).size() > 0) {
+            VerifyData.logger.log(Level.SEVERE, "ERROR: The DNI entered exists.");
+            verify = true;
+        }
+        return verify;
+    }
+
+    public static void addBookForAuthor() {
+        ODB odb = Client.connection();
         System.out.println("*******INSERT BOOK FOR A AUTHOR*******");
         System.out.println("==========================");
         System.out.print("1.-Enter the dni the author: ");
@@ -43,18 +56,10 @@ public class Insert {
             Authors a = author.next();
             addAnotherBook(a);
             odb.store(a);
+            odb.close();
         } else {
             VerifyData.logger.log(Level.SEVERE, "ERROR: The DNI entered not exists.");
         }
-    }
-
-    private static boolean verifyDniRepeat(String dni, ODB odb) {
-        boolean verify = false;
-        if (QueryBD.queryDni(dni, odb).size() > 0) {
-            VerifyData.logger.log(Level.SEVERE, "ERROR: The DNI entered exists.");
-            verify = true;
-        }
-        return verify;
     }
 
     private static void addAnotherBook(Authors a) {
