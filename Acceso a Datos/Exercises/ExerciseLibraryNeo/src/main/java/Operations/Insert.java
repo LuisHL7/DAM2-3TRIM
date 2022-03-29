@@ -2,24 +2,22 @@ package Operations;
 
 import model.Authors;
 import model.Books;
-import org.neodatis.odb.ODB;
-import org.neodatis.odb.ODBFactory;
+import org.neodatis.odb.*;
+
+import java.util.logging.Level;
 
 public class Insert {
-    public static void main(String[] args) {
-        ODB odb = ODBFactory.open("neodatisServer.test");
-        Authors a1 = new Authors("Y6912269R","Luis Huapaya", "Rua Roris 79", 27,"peruana");
-        odb.store(a1);
-        odb.close();
 
-    }
-
-    public static void insertAuthor() {
+    public static void addAuthor(ODB odb) {
         Authors a = new Authors();
         System.out.println("*******INSERT AUTHOR*******");
         System.out.println("==========================");
-        System.out.print("1.-Insert the dni: ");
-        a.setDni(VerifyData.readDni());
+        String dni;
+        do {
+            System.out.print("1.-Insert the dni: ");
+            dni = VerifyData.readDni();
+        } while (verifyDniRepeat(dni,odb));
+        a.setDni(dni);
         System.out.print("2.-Insert the name: ");
         a.setName(VerifyData.readName());
         System.out.print("3.-Insert the address: ");
@@ -28,43 +26,58 @@ public class Insert {
         a.setAge(VerifyData.readOptionAndAge());
         System.out.print("5.-Insert the nationality: ");
         a.setNationality(VerifyData.readName());
-        addObject(a);
-        addBookForAuthor(a);
+        addAnotherBook(a);
+        odb.store(a);
     }
 
-    private static void addBookForAuthor(Authors a) {
+    public static void addBookForAuthor(ODB odb) {
         System.out.println("*******INSERT BOOK FOR A AUTHOR*******");
         System.out.println("==========================");
-        System.out.print("Si desea añadir un libro registrado escriba Y si desea añadir un libro nuevo escriba N. (Y/N)");
-        if (VerifyData.readAnswer().equals("Y")) {
-            int id;
-            System.out.println("==========================");
-            System.out.print("1.-Add the book by the id: ");
-            id = VerifyData.readInt();
+        System.out.print("1.-Enter the dni the author: ");
+        verifyExistingDni(VerifyData.readDni(),odb);
+    }
+
+    private static void verifyExistingDni(String dni, ODB odb) {
+        Objects<Authors> author = QueryBD.queryDni(dni, odb);
+        if (author.size() > 0) {
+            Authors a = author.next();
+            addAnotherBook(a);
+            odb.store(a);
         } else {
-            insertBook();
+            VerifyData.logger.log(Level.SEVERE, "ERROR: The DNI entered not exists.");
         }
     }
 
-
-    private static void addObject(Object a) {
-        ODB odb = ODBFactory.open("neodatisServer.test");
-        odb.store(a);
-        odb.close();
+    private static boolean verifyDniRepeat(String dni, ODB odb) {
+        boolean verify = false;
+        if (QueryBD.queryDni(dni, odb).size() > 0) {
+            VerifyData.logger.log(Level.SEVERE, "ERROR: The DNI entered exists.");
+            verify = true;
+        }
+        return verify;
     }
 
-    public static void insertBook() {
+    private static void addAnotherBook(Authors a) {
+        String answer;
+        do {
+            a.getBook().add(insertBook());
+            System.out.print("Would you like to add another book? Y/N: ");
+            answer = VerifyData.readAnswer();
+        } while (answer.equalsIgnoreCase("Y"));
+    }
+
+    public static Books insertBook() {
         Books b = new Books();
         System.out.println("*******INSERT BOOK*******");
         System.out.println("==========================");
         System.out.print("1.-Insert the title: ");
         b.setTitle(VerifyData.readName());
         System.out.print("2.-Insert the category: ");
-        b.setTitle(VerifyData.readName());
+        b.setCategory(VerifyData.readName());
         System.out.print("3.-Insert the price: ");
         b.setPrice(VerifyData.readFloat());
         System.out.print("4.-Insert date published: ");
         b.setDatePublished(VerifyData.readDate());
-        addObject(b);
+        return b;
     }
 }

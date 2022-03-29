@@ -9,18 +9,11 @@ public class Authors implements Serializable {
     private String address;
     private int age;
     private String nationality;
-    private List<Books> booksList = new ArrayList<Books>();
+    private List<Books> book = new ArrayList<>();
 
     public Authors() {
     }
 
-    public Authors(String dni, String name, String address, int age, String nationality) {
-        this.dni = dni;
-        this.name = name;
-        this.address = address;
-        this.age = age;
-        this.nationality = nationality;
-    }
 
     public String getDni() {
         return dni;
@@ -61,12 +54,12 @@ public class Authors implements Serializable {
         this.nationality = nationality;
     }
 
-    public List<Books> getBooksList() {
-        return booksList;
+    public List<Books> getBook() {
+        return book;
     }
 
-    public void setBooksList(List<Books> booksList) {
-        this.booksList = booksList;
+    public void setBook(List<Books> book) {
+        this.book = book;
     }
 
     @Override
@@ -77,7 +70,7 @@ public class Authors implements Serializable {
                 ", address='" + address + '\'' +
                 ", age=" + age +
                 ", nationality='" + nationality + '\'' +
-                ", booksList=" + booksList +
+                ", booksList=" + book +
                 '}';
     }
 }
