@@ -10,6 +10,7 @@ import events
 import Customer
 from windowsCalendar import Ui_Dialog
 
+
 #Clase Principal
 
 class Main(QtWidgets.QMainWindow):
@@ -41,6 +42,10 @@ class Main(QtWidgets.QMainWindow):
         var.ui.BtnDelete.clicked.connect(Customer.Customer.deleteClient)
         var.ui.BtnClean.clicked.connect(Customer.Customer.cleanCustomer)
         var.ui.BtnRefresh.clicked.connect(Customer.Customer.cleanCustomer)
+        events.Eventos.datetime_now()
+        var.ui.actionAbrir.triggered.connect(events.Eventos.open_exlorer)
+        var.ui.actionImportar_Datos.triggered.connect(events.Eventos.import_data)
+
 
 class DialogClose(QtWidgets.QDialog):
     def __init__(self):

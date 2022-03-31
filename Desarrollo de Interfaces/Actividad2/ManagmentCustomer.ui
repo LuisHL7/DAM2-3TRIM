@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>894</width>
-    <height>799</height>
+    <width>1138</width>
+    <height>817</height>
    </rect>
   </property>
   <property name="font">
@@ -736,7 +736,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>894</width>
+     <width>1138</width>
      <height>21</height>
     </rect>
    </property>
@@ -744,9 +744,18 @@
     <property name="title">
      <string>Archivo</string>
     </property>
+    <addaction name="actionAbrir"/>
+    <addaction name="separator"/>
     <addaction name="actionSalir"/>
    </widget>
+   <widget class="QMenu" name="menuHerramientas">
+    <property name="title">
+     <string>Herramientas</string>
+    </property>
+    <addaction name="actionImportar_Datos"/>
+   </widget>
    <addaction name="menuArchivo"/>
+   <addaction name="menuHerramientas"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSalir">
@@ -763,11 +772,24 @@
     <bool>true</bool>
    </property>
   </action>
+  <action name="actionAbrir">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Abrir</string>
+   </property>
+  </action>
+  <action name="actionImportar_Datos">
+   <property name="text">
+    <string>Importar Datos</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="RbtGroupSex"/>
   <buttongroup name="ChkPago"/>
+  <buttongroup name="RbtGroupSex"/>
  </buttongroups>
 </ui>
