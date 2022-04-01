@@ -11,18 +11,19 @@ public class Client {
         Person person = new Person();
         person.setName("Luis");
         person.setAge(25);
+        System.out.println();
 
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ObjectOutputStream output = new ObjectOutputStream(baos);
-        output.writeObject(person);
-        output.close();
-        byte[] bytes = baos.toByteArray();
+//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//        ObjectOutputStream output = new ObjectOutputStream(baos);
+//        output.writeObject(person);
+//        output.close();
+//        byte[] bytes = baos.toByteArray();
 
-//        ByteArrayInputStream bais = new ByteArrayInputStream(dataRecieved);
-//        ObjectInputStream input = new ObjectInputStream(bais);
-//        Person personRead = (Person) input.readObject();
-//        System.out.println("Persona recebida del server: " + personRead.toString());
-//        input.close();
+        ByteArrayInputStream bais = new ByteArrayInputStream(dataRecieved);
+        ObjectInputStream input = new ObjectInputStream(bais);
+        Person personRead = (Person) input.readObject();
+        System.out.println("Persona recebida del server: " + personRead.toString());
+        input.close();
     }
 }
 

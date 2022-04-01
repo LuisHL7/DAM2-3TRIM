@@ -12,6 +12,7 @@ public class Server {
         System.out.println("Waiting the client");
         Socket client = server.accept();
         byte[] dataRecieved = new byte[1024];
+        System.out.println("llega");
         DatagramPacket packageRecieved = new DatagramPacket(dataRecieved,dataRecieved.length);
         MulticastSocket socket = new MulticastSocket(6000);
         socket.receive(packageRecieved);
@@ -22,12 +23,12 @@ public class Server {
         person.setName("Juan");
         person.setAge(25);
         input.close();
-//        //Send
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//        ObjectOutputStream output = new ObjectOutputStream(baos);
-//        output.writeObject(person);
-//        output.close();
-//        byte[] bytes = baos.toByteArray();
+        //Send
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream output = new ObjectOutputStream(baos);
+        output.writeObject(person);
+        output.close();
+        byte[] bytes = baos.toByteArray();
 
     }
 
