@@ -1,5 +1,6 @@
 package connection;
 
+import operations.Menu;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 
