@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e5550933-ca8f-416a-abe2-8e886233da8d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/operations/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/connection/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/connection/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/AccountTerms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/AccountTerm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Programacion Movil/NavGraphViewModelProject" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Programacion Movil/NavGraphViewModelProject" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Programacion Movil/android-GuessTheWord" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Programacion Movil/android-GuessTheWord" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Programacion Movil/android-viewModel" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Programacion Movil/android-viewModel" afterDir="false" />
@@ -61,7 +57,8 @@
       <option name="presentableId" value="Default" />
       <updated>1649178037952</updated>
       <workItem from="1649178039316" duration="1204000" />
-      <workItem from="1649179599880" duration="2688000" />
+      <workItem from="1649179599880" duration="2862000" />
+      <workItem from="1649253777580" duration="1590000" />
     </task>
     <servers />
   </component>
