@@ -1,5 +1,9 @@
+import sqlite3
+from datetime import datetime
+
 import self as self
 from PyQt5 import QtWidgets, QtSql
+from numpy import datetime64
 
 import var
 
@@ -32,6 +36,16 @@ class Conection:
         else:
             print("Error al insertar: ", query.lastError().text())
 
+    def importDataFromExcel(file_name, pd):
+        df = pd.read_excel(file_name)
+        if df.size == 0:
+            return print("El archivo está vació.")
+        for row in df.itertuples():
+            newClient = [row.DNI, row.LASTNAME, datetime.date(row.HIGTHDATE), row.ADDRESS, row.PROVINCE, row.SEX, row.WAYTOPAY]
+            # newClient = [row["DNI"], row["LASTNAME"], row["LASTNAME"], row["ADDRESS"], row["PROVINCE"], row["SEX"], row["WAYTOPAY"]]
+            print("first", newClient)
+            # Conection.loadCustomer(newClient)
+
     def showCustomers():
         index = 0
         query = QtSql.QSqlQuery()
@@ -63,7 +77,7 @@ class Conection:
 
     def updateCli(code, newData):
         query = QtSql.QSqlQuery()
-        code =int(code)
+        code = int(code)
         query.prepare('UPDATE CUSTOMER SET  dni=:dni, lastname=:lastname, name=:name, higthdate=:higthdate,'
                       'address=:address, province=:province, sex=:sex, waytopay=:waytopay WHERE codigo=:codigo')
         query.bindValue(':codigo', int(code))
@@ -93,5 +107,3 @@ class Conection:
         query.bindValue(':province', str(newData[5]))
         query.bindValue(':sex', str(newData[6]))
         query.bindValue(':waytopay', str(newData[7]))
-
-

@@ -1,7 +1,11 @@
 import sys
+
+import Conection
 import var
 import easygui
+import Customer
 import pandas as pd
+import xlrd
 from datetime import datetime
 
 
@@ -25,10 +29,9 @@ class Eventos:
         print(file)
 
     def import_data():
-        # file_name = easygui.fileopenbox()
+        file_name = easygui.fileopenbox()
+        Conection.Conection.importDataFromExcel(file_name, pd)
         # route = r+file_name
         # print(route)
-        file = pd.read_excel(
-            r'C:\Users\a19luisjhl\Desktop\DAM\DAM2\DAM2-3TRIM\Desarrollo de Interfaces\Actividad2\customer.xlsx',
-            sheet_name='cliente')
-        print(file)
+        # archivo = pd.ExcelFile(file_name)
+
