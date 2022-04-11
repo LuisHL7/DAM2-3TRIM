@@ -36,9 +36,9 @@ class Customer():
     def selSexo():
         try:
             if var.ui.RbtMasculino.isChecked():
-                var.sex = 'Hombre'
+                var.sex = 'HOMBRE'
             if var.ui.RbtFemenino.isChecked():
-                var.sex = 'Mujer'
+                var.sex = 'MUJER'
             return var.sex
         except Exception as error:
             print('Error en módulo seleccionar sexo:', error)
@@ -60,7 +60,7 @@ class Customer():
     def cargarProv():
         ''' Solución provisional, más adelante lo haremos con una BD'''
         try:
-            prov = ['', 'A Coruña', 'Lugo', 'Ourense', 'Pontevedra']
+            prov = ['', 'A CORUÑA', 'LUGO', 'OURENSE', 'PONTEVEDRA']
             for i in prov:
                 var.ui.CmbProvincia.addItem(i)
         except Exception as error:
@@ -79,7 +79,7 @@ class Customer():
 
     def cargarFecha(qDate):
         try:
-            data = ('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
+            data = ('{0}-{1}-{2}'.format(qDate.day(), qDate.month(), qDate.year()))
             var.ui.TxtFecha.setText(str(data))
             var.dlgCalendar.hide()
         except Exception as error:
@@ -168,8 +168,8 @@ class Customer():
                 var.ui.TxtNombre.setText(str(query.value(3)))
                 var.ui.TxtFecha.setText(str(query.value(4)))
                 var.ui.TxtDireccion.setText(str(query.value(5)))
-                var.ui.CmbProvincia.setCurrentText(str(query.value(6)))
-                if str(query.value(7)) == 'Hombre':
+                var.ui.CmbProvincia.setCurrentText(str(query.value(6)).upper())
+                if str(query.value(7)).upper() == 'HOMBRE':
                     var.ui.RbtMasculino.setChecked(True)
                 else:
                     var.ui.RbtFemenino.setChecked(True)

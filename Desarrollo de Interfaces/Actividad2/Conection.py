@@ -1,9 +1,6 @@
-import sqlite3
 from datetime import datetime
-
-import self as self
 from PyQt5 import QtWidgets, QtSql
-from numpy import datetime64
+
 
 import var
 
@@ -41,10 +38,16 @@ class Conection:
         if df.size == 0:
             return print("El archivo está vació.")
         for row in df.itertuples():
-            newClient = [row.DNI, row.LASTNAME, datetime.date(row.HIGTHDATE), row.ADDRESS, row.PROVINCE, row.SEX, row.WAYTOPAY]
-            # newClient = [row["DNI"], row["LASTNAME"], row["LASTNAME"], row["ADDRESS"], row["PROVINCE"], row["SEX"], row["WAYTOPAY"]]
+            newClient = [row.DNI, row.LASTNAME, row.NAME,  str(datetime.date(row.HIGTHDATE))[:18], row.ADDRESS, row.PROVINCE, row.SEX, row.WAYTOPAY]
             print("first", newClient)
-            # Conection.loadCustomer(newClient)
+            Conection.loadCustomer(newClient)
+
+    def exportBDtoZip(file_name, pd):
+        import zipfile
+        jungle_zip = zipfile.ZipFile(str(file_name)+'.zip', 'w')
+        jungle_zip.write(str(file_name), compress_type=zipfile.ZIP_DEFLATED)
+        var.ui.LblStatus.setText('Information: The file was exported in a zip correctly')
+        jungle_zip.close()
 
     def showCustomers():
         index = 0
@@ -94,7 +97,7 @@ class Conection:
         query.bindValue(':dni', dni)
         if query.exec_():
             print('Customer delete')
-            var.ui.LblStatus.setText('Customer with dni' + dni + 'has been deleted')
+            var.ui.LblStatus.setText('Customer with dni ' + dni + ' has been deleted')
         else:
             print("Error displaying customers: ", query.lastError().text())
 

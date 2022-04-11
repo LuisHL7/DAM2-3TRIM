@@ -31,7 +31,8 @@ class Eventos:
     def import_data():
         file_name = easygui.fileopenbox()
         Conection.Conection.importDataFromExcel(file_name, pd)
-        # route = r+file_name
-        # print(route)
-        # archivo = pd.ExcelFile(file_name)
+
+    def export_bd():
+        file_name = easygui.fileopenbox()
+        Conection.Conection.exportBDtoZip(file_name, pd)
 

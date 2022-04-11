@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1138</width>
-    <height>817</height>
+    <height>843</height>
    </rect>
   </property>
   <property name="font">
@@ -25,7 +25,7 @@
       <x>10</x>
       <y>20</y>
       <width>1121</width>
-      <height>701</height>
+      <height>681</height>
      </rect>
     </property>
     <property name="autoFillBackground">
@@ -38,24 +38,11 @@
      <attribute name="title">
       <string>Clientes</string>
      </attribute>
-     <widget class="Line" name="line_2">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>300</y>
-        <width>841</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
      <widget class="QPushButton" name="BtnClose">
       <property name="geometry">
        <rect>
         <x>690</x>
-        <y>610</y>
+        <y>590</y>
         <width>90</width>
         <height>40</height>
        </rect>
@@ -84,7 +71,7 @@
       <property name="geometry">
        <rect>
         <x>290</x>
-        <y>610</y>
+        <y>590</y>
         <width>90</width>
         <height>40</height>
        </rect>
@@ -498,7 +485,7 @@
         <x>40</x>
         <y>220</y>
         <width>1031</width>
-        <height>371</height>
+        <height>351</height>
        </rect>
       </property>
       <property name="autoFillBackground">
@@ -622,7 +609,7 @@
       <property name="geometry">
        <rect>
         <x>390</x>
-        <y>610</y>
+        <y>590</y>
         <width>90</width>
         <height>40</height>
        </rect>
@@ -651,7 +638,7 @@
       <property name="geometry">
        <rect>
         <x>490</x>
-        <y>610</y>
+        <y>590</y>
         <width>90</width>
         <height>40</height>
        </rect>
@@ -680,7 +667,7 @@
       <property name="geometry">
        <rect>
         <x>590</x>
-        <y>610</y>
+        <y>590</y>
         <width>90</width>
         <height>40</height>
        </rect>
@@ -720,8 +707,8 @@
    <widget class="QLabel" name="LblStatus">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>740</y>
+      <x>20</x>
+      <y>710</y>
       <width>1111</width>
       <height>20</height>
      </rect>
@@ -758,6 +745,28 @@
    <addaction name="menuHerramientas"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>40</width>
+     <height>40</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionOpen"/>
+   <addaction name="actionPrint"/>
+   <addaction name="actionImport"/>
+   <addaction name="actionExport"/>
+   <addaction name="actionCloseTB"/>
+  </widget>
   <action name="actionSalir">
    <property name="checkable">
     <bool>true</bool>
@@ -785,11 +794,56 @@
     <string>Importar Datos</string>
    </property>
   </action>
+  <action name="actionCloseTB">
+   <property name="icon">
+    <iconset>
+     <normaloff>close.png</normaloff>close.png</iconset>
+   </property>
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+  <action name="actionExport">
+   <property name="icon">
+    <iconset>
+     <normaloff>exportar.png</normaloff>exportar.png</iconset>
+   </property>
+   <property name="text">
+    <string>Export</string>
+   </property>
+  </action>
+  <action name="actionImport">
+   <property name="icon">
+    <iconset>
+     <normaloff>importar.png</normaloff>importar.png</iconset>
+   </property>
+   <property name="text">
+    <string>Import</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset>
+     <normaloff>folder.png</normaloff>folder.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionPrint">
+   <property name="icon">
+    <iconset>
+     <normaloff>print.png</normaloff>print.png</iconset>
+   </property>
+   <property name="text">
+    <string>Print</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="ChkPago"/>
   <buttongroup name="RbtGroupSex"/>
+  <buttongroup name="ChkPago"/>
  </buttongroups>
 </ui>
