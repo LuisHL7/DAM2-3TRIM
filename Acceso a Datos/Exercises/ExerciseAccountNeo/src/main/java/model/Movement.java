@@ -1,12 +1,10 @@
 package model;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
 
 public class Movement implements Serializable {
     private Date date;
-    private Time time;
     private Account account;
     private char operation;
     private float amount;
@@ -16,9 +14,8 @@ public class Movement implements Serializable {
     }
 
 
-    public Movement(Date date, Time time, char operation, float amount, float resultingBalance) {
+    public Movement(Date date, char operation, float amount, float resultingBalance) {
         this.date = date;
-        this.time = time;
         this.operation = operation;
         this.amount = amount;
         this.resultingBalance = resultingBalance;
@@ -30,14 +27,6 @@ public class Movement implements Serializable {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public Time getTime() {
-        return time;
-    }
-
-    public void setTime(Time time) {
-        this.time = time;
     }
 
     public Account getAccount() {
@@ -70,5 +59,15 @@ public class Movement implements Serializable {
 
     public void setResultingBalance(float resultingBalance) {
         this.resultingBalance = resultingBalance;
+    }
+
+    @Override
+    public String toString() {
+        return "Movement{" +
+                "date=" + date +
+                ", operation=" + operation +
+                ", amount=" + amount +
+                ", resultingBalance=" + resultingBalance +
+                '}';
     }
 }

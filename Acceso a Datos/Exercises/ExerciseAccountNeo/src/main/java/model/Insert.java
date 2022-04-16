@@ -5,9 +5,7 @@ import operations.VerifyData;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.Objects;
 
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.logging.Level;
 
@@ -141,7 +139,6 @@ public class Insert {
     public static Customer operationAutomaticTeller(ODB odb, Movement movement) {
         Customer customer = askForNumber(odb, "2.-Enter the number the account: ");
         movement.setDate(new Date(new Date().getTime()));
-        movement.setTime(getTime());
         System.out.print("3.-Insert the imported: ");
         movement.setAmount(VerifyData.readFloat());
         if (movement.getOperation() == 'D' || movement.getOperation() == 'd') {
@@ -170,11 +167,10 @@ public class Insert {
         Movement movement2 = new Movement();
         movement.setDate(new Date(new Date().getTime()));
         movement2.setDate(new Date(new Date().getTime()));
-        movement.setTime(getTime());
-        movement2.setTime(getTime());
+        movement2.setOperation(movement.getOperation());
         System.out.print("3.-Insert the imported: ");
         movement.setAmount(VerifyData.readFloat());
-        movement2.setAmount(VerifyData.readFloat());
+        movement2.setAmount(movement.getAmount());
         movement.setResultingBalance(account1.getAccounts().get(0).getCurrentBalance() - movement.getAmount());
         movement2.setResultingBalance(account2.getAccounts().get(0).getCurrentBalance() + movement2.getAmount());
         account1.getAccounts().get(0).setCurrentBalance(movement.getResultingBalance());
@@ -200,27 +196,21 @@ public class Insert {
 
     private static Customer verifyExistingNumber(int number, ODB odb) {
         Objects<Customer> customerList = QueryBD.queryDataCustomer(odb);
-        boolean verify = false;
-        Customer cus = null;
+        Customer customer = null;
         if (customerList.size() > 0) {
-            int i = 1;
             while (customerList.hasNext()) {
-                cus = customerList.next();
+                Customer cus = customerList.next();
                 for (int j = 0; j < cus.getAccounts().size(); j++) {
-                    if (cus.getAccounts().get(j).getNumber() != (number)) {
-                        VerifyData.logger.log(Level.SEVERE, "ERROR: The number entered not exists.");
+                    if (cus.getAccounts().get(j).getNumber() == (number)) {
+                        customer = cus;
                     }
                 }
             }
         }
-        return cus;
+        return customer;
     }
 
-        private static Time getTime () {
-            DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-            Date date = new Date();
-            return Time.valueOf(dateFormat.format(date));
-        }
+
 
 
     }

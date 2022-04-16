@@ -41,6 +41,10 @@ public class QueryBD {
         return odb.getObjects(new CriteriaQuery(Customer.class, Where.iequal("name", name)));
     }
 
+    public static Objects<Customer> queryCustomerNameWithC(ODB odb) {
+        return odb.getObjects(new CriteriaQuery(Customer.class, Where.like("name","C%")));
+    }
+
     public static Objects<Customer> queryDataCustomer(ODB odb) {
         return odb.getObjects(Customer.class);
     }

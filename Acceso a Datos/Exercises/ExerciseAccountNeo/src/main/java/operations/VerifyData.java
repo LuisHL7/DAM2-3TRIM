@@ -200,8 +200,8 @@ public class VerifyData {
                 if (grade < 0) {
                     logger.log(Level.SEVERE, "ERROR: The value enter is negative. Write a positive number:");
                     verify = false;
-                } else if( grade > 10){
-                    logger.log(Level.SEVERE, "ERROR: The value is greater than ten. Write a number (0 to 10):");
+                } else if( grade > 100){
+                    logger.log(Level.SEVERE, "ERROR: The value is greater than hundred. Write a number (0 to 100):");
                     verify = false;
                 }
             } else {
