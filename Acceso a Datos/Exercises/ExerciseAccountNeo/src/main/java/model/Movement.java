@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 
-public class Movement {
+public class Movement implements Serializable {
     private Date date;
     private Time time;
     private Account account;
@@ -15,10 +16,9 @@ public class Movement {
     }
 
 
-    public Movement(Date date, Time time, Account account, char operation, float amount, float resultingBalance) {
+    public Movement(Date date, Time time, char operation, float amount, float resultingBalance) {
         this.date = date;
         this.time = time;
-        this.account = account;
         this.operation = operation;
         this.amount = amount;
         this.resultingBalance = resultingBalance;
