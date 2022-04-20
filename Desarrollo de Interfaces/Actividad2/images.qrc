@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>print.png</file>
+    <file>folder.png</file>
+    <file>close.png</file>
+    <file>exportar.png</file>
+    <file>importar.png</file>
+  </qresource>
+</RCC>

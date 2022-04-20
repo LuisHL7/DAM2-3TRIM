@@ -8,6 +8,7 @@ import sys
 import var
 import events
 import Customer
+import Printer
 from windowsCalendar import Ui_Dialog
 
 
@@ -45,6 +46,12 @@ class Main(QtWidgets.QMainWindow):
         events.Eventos.datetime_now()
         var.ui.actionAbrir.triggered.connect(events.Eventos.open_exlorer)
         var.ui.actionImportar_Datos.triggered.connect(events.Eventos.import_data)
+        var.ui.actionCloseTB.triggered.connect(events.Eventos.Salir)
+        var.ui.actionImport.triggered.connect(events.Eventos.import_data)
+        var.ui.actionOpen.triggered.connect(events.Eventos.open_exlorer)
+        var.ui.actionExport.triggered.connect(events.Eventos.export_bd)
+        var.ui.actionPrint.triggered.connect(Printer.Printer.reportCli)
+
 
 
 class DialogClose(QtWidgets.QDialog):

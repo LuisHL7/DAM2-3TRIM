@@ -1,17 +1,15 @@
 package model;
 
-public class AccountTerm {
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.Set;
+
+public class AccountTerm extends Account implements Serializable {
     private int interested;
-    private String expirationDate;
+    private Date expirationDate;
     private float depositTerm;
 
     public AccountTerm() {
-    }
-
-    public AccountTerm(int interested, String expirationDate, float depositTerm) {
-        this.interested = interested;
-        this.expirationDate = expirationDate;
-        this.depositTerm = depositTerm;
     }
 
     public int getInterested() {
@@ -22,11 +20,11 @@ public class AccountTerm {
         this.interested = interested;
     }
 
-    public String getExpirationDate() {
+    public Date getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(String expirationDate) {
+    public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
     }
 
@@ -36,5 +34,15 @@ public class AccountTerm {
 
     public void setDepositTerm(float depositTerm) {
         this.depositTerm = depositTerm;
+    }
+
+    @Override
+    public String toString() {
+        return "AccountTerm{ " +
+                super.toString() +
+                "interested=" + interested +
+                ", expirationDate=" + expirationDate +
+                ", depositTerm=" + depositTerm +
+                " }" ;
     }
 }

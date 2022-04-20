@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Books implements Serializable {

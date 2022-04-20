@@ -31,7 +31,7 @@ public class VerifyData {
         return option;
     }
 
-    protected static String readName() {
+    public static String readName() {
         String name;
         boolean repeat;
         Scanner entry = new Scanner(System.in);
@@ -46,7 +46,7 @@ public class VerifyData {
         return name;
     }
 
-    protected static String readDni() {
+    public static String readDni() {
         Scanner entry = new Scanner(System.in);
         String dni;
         boolean repeat = true;
@@ -65,13 +65,13 @@ public class VerifyData {
         return dni;
     }
 
-    protected static boolean verifyDni(String dni) {
+    public static boolean verifyDni(String dni) {
         String letterValid = "TRWAGMYFPDXBNJZSQVHLCKE";
         //If else in a single line
         return letterValid.charAt((Integer.parseInt(dni.substring(0, 8)) % 23)) == dni.charAt(8);
     }
 
-    protected static String readString() {
+    public static String readString() {
         String world;
         Scanner entry = new Scanner(System.in);
         do {
@@ -100,7 +100,7 @@ public class VerifyData {
         return value;
     }
 
-    protected static String readCode() {
+    public static String readCode() {
         String code;
         boolean repeat;
         Scanner entry = new Scanner(System.in);
@@ -115,7 +115,7 @@ public class VerifyData {
         return code;
     }
 
-    protected static Date readDate() {
+    public static Date readDate() {
         Scanner entry = new Scanner(System.in);
         String dateText;
         Date date = null;
@@ -132,12 +132,12 @@ public class VerifyData {
         return date;
     }
 
-    protected static Date convertDate(String date) {
+    public static Date convertDate(String date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return Date.valueOf(LocalDate.parse(date, formatter));
     }
 
-    protected static float readFloat() {
+    public static float readFloat() {
         float value = 0;
         boolean repeat = true;
         Scanner entry = new Scanner(System.in);
@@ -156,7 +156,7 @@ public class VerifyData {
         return value;
     }
 
-    protected static boolean isPositive(Double value) {
+    public static boolean isPositive(Double value) {
         boolean positive = true;
         if (value < 0) {
             logger.log(Level.SEVERE, "ERROR: The value entered is less than zero. Enter a positive value:");
@@ -165,7 +165,7 @@ public class VerifyData {
         return positive;
     }
 
-    protected static float readGrade() {
+    public static float readGrade() {
         float grade = 0;
         boolean verify;
         Scanner entry = new Scanner(System.in);
@@ -189,7 +189,7 @@ public class VerifyData {
         return grade;
     }
 
-    protected static int readInt() {
+    public static int readInt() {
         int grade = 0;
         boolean verify;
         Scanner entry = new Scanner(System.in);
@@ -200,8 +200,8 @@ public class VerifyData {
                 if (grade < 0) {
                     logger.log(Level.SEVERE, "ERROR: The value enter is negative. Write a positive number:");
                     verify = false;
-                } else if( grade > 10){
-                    logger.log(Level.SEVERE, "ERROR: The value is greater than ten. Write a number (0 to 10):");
+                } else if( grade > 100){
+                    logger.log(Level.SEVERE, "ERROR: The value is greater than hundred. Write a number (0 to 100):");
                     verify = false;
                 }
             } else {
@@ -223,6 +223,22 @@ public class VerifyData {
             if (!option.toUpperCase().matches("[YN]")) {
                 repeat = true;
                 logger.log(Level.SEVERE, "ERROR: Please, Enter the option correctly [Y o N]: ");
+            }
+        } while (repeat);
+        return option;
+
+    }
+
+    public static String readOperation() {
+        Scanner verify = new Scanner(System.in);
+        String option;
+        boolean repeat;
+        do {
+            repeat = false;
+            option = verify.nextLine();
+            if (!option.toUpperCase().matches("[DWT]")) {
+                repeat = true;
+                logger.log(Level.SEVERE, "ERROR: Please, Enter the operation correctly [D or W or T]: ");
             }
         } while (repeat);
         return option;

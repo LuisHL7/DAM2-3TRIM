@@ -5,6 +5,7 @@ global avisoSalir
 global pay
 global pay2
 global sex
+global rep
 global sex2
 global rbtSex
 global chkPago

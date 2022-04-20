@@ -1,5 +1,6 @@
-import self as self
+from datetime import datetime
 from PyQt5 import QtWidgets, QtSql
+
 
 import var
 
@@ -32,6 +33,22 @@ class Conection:
         else:
             print("Error al insertar: ", query.lastError().text())
 
+    def importDataFromExcel(file_name, pd):
+        df = pd.read_excel(file_name)
+        if df.size == 0:
+            return print("El archivo está vació.")
+        for row in df.itertuples():
+            newClient = [row.DNI, row.LASTNAME, row.NAME,  str(datetime.date(row.HIGTHDATE))[:18], row.ADDRESS, row.PROVINCE, row.SEX, row.WAYTOPAY]
+            print("first", newClient)
+            Conection.loadCustomer(newClient)
+
+    def exportBDtoZip(file_name, pd):
+        import zipfile
+        jungle_zip = zipfile.ZipFile(str(file_name)+'.zip', 'w')
+        jungle_zip.write(str(file_name), compress_type=zipfile.ZIP_DEFLATED)
+        var.ui.LblStatus.setText('Information: The file was exported in a zip correctly')
+        jungle_zip.close()
+
     def showCustomers():
         index = 0
         query = QtSql.QSqlQuery()
@@ -63,7 +80,7 @@ class Conection:
 
     def updateCli(code, newData):
         query = QtSql.QSqlQuery()
-        code =int(code)
+        code = int(code)
         query.prepare('UPDATE CUSTOMER SET  dni=:dni, lastname=:lastname, name=:name, higthdate=:higthdate,'
                       'address=:address, province=:province, sex=:sex, waytopay=:waytopay WHERE codigo=:codigo')
         query.bindValue(':codigo', int(code))
@@ -80,7 +97,7 @@ class Conection:
         query.bindValue(':dni', dni)
         if query.exec_():
             print('Customer delete')
-            var.ui.LblStatus.setText('Customer with dni' + dni + 'has been deleted')
+            var.ui.LblStatus.setText('Customer with dni ' + dni + ' has been deleted')
         else:
             print("Error displaying customers: ", query.lastError().text())
 
@@ -93,5 +110,3 @@ class Conection:
         query.bindValue(':province', str(newData[5]))
         query.bindValue(':sex', str(newData[6]))
         query.bindValue(':waytopay', str(newData[7]))
-
-

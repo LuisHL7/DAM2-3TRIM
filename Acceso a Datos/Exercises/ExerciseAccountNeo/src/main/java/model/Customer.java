@@ -1,14 +1,17 @@
 package model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Customer {
+public class Customer implements Serializable {
     private String dni;
     private String name;
     private String address;
     private List<Account> accounts;
 
     public Customer() {
+        accounts = new ArrayList<Account>();
     }
 
     public Customer(String dni, String name, String address) {
@@ -47,5 +50,15 @@ public class Customer {
 
     public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "dni='" + dni + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", accounts=" + accounts +
+                '}';
     }
 }

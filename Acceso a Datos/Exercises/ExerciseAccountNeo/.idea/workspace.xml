@@ -6,9 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="e5550933-ca8f-416a-abe2-8e886233da8d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Programacion Movil/NavGraphViewModelProject" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Programacion Movil/NavGraphViewModelProject" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Programacion Movil/android-GuessTheWord" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Programacion Movil/android-GuessTheWord" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Programacion Movil/android-viewModel" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Programacion Movil/android-viewModel" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neodatisServer.test" beforeDir="false" afterPath="$PROJECT_DIR$/neodatisServer.test" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Insert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Insert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Movement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Movement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Query.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Query.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/QueryBD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/QueryBD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/operations/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/operations/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/operations/VerifyData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/operations/VerifyData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../connect-history.neodatis" beforeDir="false" afterPath="$PROJECT_DIR$/../../connect-history.neodatis" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,14 +44,50 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="model" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="model" />
       <recent name="operations" />
     </key>
+  </component>
+  <component name="RunManager" selected="Application.Server">
+    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="connection.Client" />
+      <module name="ExerciseAccountNeo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="connection.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="connection.Server" />
+      <module name="ExerciseAccountNeo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="connection.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Client" />
+        <item itemvalue="Application.Server" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -59,6 +100,9 @@
       <workItem from="1649178039316" duration="1204000" />
       <workItem from="1649179599880" duration="2862000" />
       <workItem from="1649253777580" duration="1590000" />
+      <workItem from="1649959953348" duration="29347000" />
+      <workItem from="1649995359740" duration="4136000" />
+      <workItem from="1650127126362" duration="19066000" />
     </task>
     <servers />
   </component>
