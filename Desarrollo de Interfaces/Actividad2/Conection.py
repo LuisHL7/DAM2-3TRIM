@@ -1,7 +1,5 @@
 from datetime import datetime
 from PyQt5 import QtWidgets, QtSql
-
-
 import var
 
 
