@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="e5550933-ca8f-416a-abe2-8e886233da8d" name="Changes" comment="" />
+=======
+    <list default="true" id="e5550933-ca8f-416a-abe2-8e886233da8d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Programacion Movil/NavGraphViewModelProject" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Programacion Movil/NavGraphViewModelProject" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Programacion Movil/android-GuessTheWord" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Programacion Movil/android-GuessTheWord" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Programacion Movil/android-viewModel" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Programacion Movil/android-viewModel" afterDir="false" />
+    </list>
+>>>>>>> cd663d6ef55527ebad6d3d5167710286c1c349f2
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,7 +54,7 @@
       <recent name="operations" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Server">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="connection.Client" />
       <module name="ExerciseAccountNeo" />
@@ -92,7 +101,12 @@
       <workItem from="1649253777580" duration="1590000" />
       <workItem from="1649959953348" duration="29347000" />
       <workItem from="1649995359740" duration="4136000" />
+<<<<<<< HEAD
       <workItem from="1650127126362" duration="19283000" />
+=======
+      <workItem from="1650127126362" duration="19066000" />
+      <workItem from="1650465591491" duration="768000" />
+>>>>>>> cd663d6ef55527ebad6d3d5167710286c1c349f2
     </task>
     <servers />
   </component>

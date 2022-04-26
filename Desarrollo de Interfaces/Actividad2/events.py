@@ -1,11 +1,10 @@
 import sys
-
 import Conection
 import var
 import easygui
-import Customer
+# import Customer
 import pandas as pd
-import xlrd
+# import xlrd
 from datetime import datetime
 
 
