@@ -1,56 +1,54 @@
 package Connection;
+import javax.xml.xquery.XQDataSource;
+import javax.xml.xquery.XQConnection;
+import javax.xml.xquery.XQException;
+import javax.xml.xquery.XQMetaData;
 
 public class Connection {
-    private static Collection obtenColeccion(String nomCol) throws Exception {
-        Database dbDriver;
-        Collection col;
-        dbDriver = (Database) Class.forName("org.exist.xmldb.DatabaseImpl").newInstance();
-        DatabaseManager.registerDatabase(dbDriver);
-        col = DatabaseManager.getCollection(
-                "xmldb:exist://localhost:8080/exist/xmlrpc/db" + nomCol,
-                "admin", "");
-        return col;
+    private static String nomClaseDS = "net.xqj.exist.ExistXQDataSource";
+
+    private static XQConnection obtenConexion() throws ClassNotFoundException, InstantiationException, IllegalAccessException, XQException {
+        XQDataSource xqs = (XQDataSource) Class.forName(nomClaseDS).newInstance();
+
+        xqs.setProperty("serverName", "localhost");
+        xqs.setProperty("port", "8080");
+        xqs.setProperty("user", "admin");
+        xqs.setProperty("password", "");
+
+        return xqs.getConnection();
+    }
+
+    private static void muestraErrorXQuery(XQException e) {
+        System.err.println("XQuery ERROR mensaje: " + e.getMessage());
+        System.err.println("XQuery ERROR causa: " + e.getCause());
+        System.err.println("XQuery ERROR código: " + e.getVendorCode());
     }
 
     public static void main(String[] args) {
-        Collection col = null;
+        XQConnection c = null;
         try {
-            col = obtenColeccion("/apps/shared-resources");
-            System.out.println("Colección actual: " + col.getName());
-
-            int numHijas = col.getChildCollectionCount();
-            System.out.println(numHijas + " colecciones hijas.");
-            if (numHijas > 0) {
-                String nomHijas[] = col.listChildCollections();
-                for (int i = 0; i < numHijas; i++) {
-                    System.out.println("\t" + nomHijas[i]);
-                }
-            }
-            int numDocs = col.getResourceCount();
-            System.out.println(numDocs + " doocumentos.");
-            if (numDocs > 0) {
-                String nomDocs[] = col.listResources();
-                for (int i = 0; i < numDocs; i++) {
-                    System.out.println("\t" + nomDocs[i]);
-                }
-            }
-
-            Service servicios[] = col.getServices();
-            System.out.println("Servicios proporcionados por colección " + col.getName() + ":");
-            for (int i = 0; i < servicios.length; i++) {
-                System.out.println("\t" + servicios[i].getName() + " - Versión: " + servicios[i].getVersion());
-            }
+            c = obtenConexion();
+            XQMetaData xqmd = c.getMetaData();
+            System.out.println("Conexión establecida como: " + xqmd.getUserName());
+            System.out.println(
+                    "Producto: " +xqmd.getProductName()+", "+"versión: " +xqmd.getXQJMajorVersion()+"."+xqmd.getXQJMinorVersion()+".\n"+
+                            "Soporte para transacciones: " + (xqmd.isTransactionSupported() ? "Sí" : "No") + ".\n"
+                            + "Validación con esquemas: "+ (xqmd.isSchemaValidationFeatureSupported() ? "Sí" : "No")+".\n"
+                            + "Serialización: "+ (xqmd.isSerializationFeatureSupported() ? "Sí" : "No")+".\n"
+            );
+        } catch (XQException e) {
+            muestraErrorXQuery(e);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (col != null) {
-                    col.close();
+                if (c != null) {
+                    c.close();
                 }
-            } catch (XMLDBException e) {
-                e.printStackTrace();
+            } catch (XQException xe) {
+                xe.printStackTrace();
             }
         }
     }
 }
-}
+
