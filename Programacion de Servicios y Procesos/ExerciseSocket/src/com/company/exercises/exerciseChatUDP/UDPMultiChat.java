@@ -12,7 +12,7 @@ public class UDPMultiChat extends JFrame implements ActionListener, Runnable {
 	static byte[] buf = new byte[1000];
 	static InetAddress grupo = null;
 	static int Puerto = 12345;// Puerto multicast
-
+	static String global = "";
 	static JTextField mensaje = new JTextField();
 	private JScrollPane scrollpane1;
 	static JTextArea textarea1;
@@ -81,7 +81,8 @@ public class UDPMultiChat extends JFrame implements ActionListener, Runnable {
 				DatagramPacket p = new DatagramPacket(buf, buf.length);
 				ms.receive(p);
 				String texto = new String(p.getData(), 0, p.getLength());
-				textarea1.append(texto + "\n");
+				global += texto;
+				textarea1.append(global + "\n");
 			} catch (SocketException s) {
 				System.out.println(s.getMessage());
 			} catch (IOException e) {
