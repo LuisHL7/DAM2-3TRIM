@@ -1,15 +1,17 @@
 package com.company.exercises.exerciseChat;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ComunHilos {	
 	 int CONEXIONES; //N� DE CONEXIONES TOTALES, OCUPADAS EN EL ARRAY
 	 int ACTUALES;   //N�MERO DE CONEXIONES ACTUALES
 	 int MAXIMO;     //M�XIMO DE CONEXIONES PERMITIDAS	
-	 Socket tabla[] = new Socket[MAXIMO];// SOCKETS CONECTADOS
+	 List<Socket> tabla = new ArrayList<>(MAXIMO);// SOCKETS CONECTADOS
 	 String mensajes; //MENSAJES DEL CHAT
 	
-	public ComunHilos(int maximo, int actuales, int conexiones, 
-                                         Socket[] tabla) {
+	public ComunHilos(int maximo, int actuales, int conexiones,
+					  List<Socket> tabla) {
 		MAXIMO = maximo;	 
 		ACTUALES = actuales; 
 		CONEXIONES = conexiones;	
@@ -39,8 +41,8 @@ public class ComunHilos {
 	}
 
 	public synchronized void addTabla(Socket s, int i) {		
-		tabla[i] = s;
+		tabla.add(s);
 	}	
-	public Socket getElementoTabla(int i) { return tabla[i]; }
+	public Socket getElementoTabla(int i) { return tabla.get(i); }
 		
 }//ComunHilos
