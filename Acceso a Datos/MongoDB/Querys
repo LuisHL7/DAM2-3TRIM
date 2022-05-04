@@ -1,0 +1,11 @@
+Querys:
+Collección: Empleados
+BD: mibasedatos
+1.-Visualiza los empleados del departamento 10.
+2.-Visualiza los empleados del departamento 10 y 20.
+3.-Obtén los empleados del departamento 10 y 20.
+4.-Sube el salario a los analistas eb 100€, a todos los analistas.
+Collección: ColecciónLibros
+BD: mibasedatos
+1.- Visualiza los libros de la editorial Garceta, con pvp entre 20 y 25 incluidos y que
+tengan el tema SOCKET.
