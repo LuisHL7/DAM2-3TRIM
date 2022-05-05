@@ -31,7 +31,7 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QFrame" name="ButClose">
+     <widget class="QFrame" name="FrmLogin">
       <property name="styleSheet">
        <string notr="true">background-color: qlineargradient(spread:reflect, x1:0.543, y1:0, x2:0.541, y2:1, stop:0.300766 rgba(11, 255, 240, 255), stop:1 rgba(68, 0, 127, 255));
 
@@ -64,7 +64,7 @@ border:none</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap>../../Project/images/logo.png</pixmap>
+        <pixmap>../Project/images/logo.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -211,7 +211,7 @@ border-radius:25px;
         <bool>false</bool>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="ButClose">
        <property name="geometry">
         <rect>
          <x>250</x>

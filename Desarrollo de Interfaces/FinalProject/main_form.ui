@@ -146,7 +146,7 @@ border:5px solid #0000f;
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>../../Actividad2/close.png</normaloff>../../Actividad2/close.png</iconset>
+             <normaloff>../Actividad2/close.png</normaloff>../Actividad2/close.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -192,7 +192,7 @@ border:5px solid #0000f;
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>../../Actividad2/delete.png</normaloff>../../Actividad2/delete.png</iconset>
+             <normaloff>../Actividad2/delete.png</normaloff>../Actividad2/delete.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -238,7 +238,7 @@ border:5px solid #0000f;
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>../../Actividad2/papelera.png</normaloff>../../Actividad2/papelera.png</iconset>
+             <normaloff>../Actividad2/papelera.png</normaloff>../Actividad2/papelera.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -284,7 +284,7 @@ border:5px solid #0000f;
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>../../Actividad2/modify.png</normaloff>../../Actividad2/modify.png</iconset>
+             <normaloff>../Actividad2/modify.png</normaloff>../Actividad2/modify.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -330,7 +330,7 @@ border:5px solid #0000f;
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>../../Actividad2/save.png</normaloff>../../Actividad2/save.png</iconset>
+             <normaloff>../Actividad2/save.png</normaloff>../Actividad2/save.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -652,7 +652,7 @@ border:none</string>
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>../../Actividad2/lupa.png</normaloff>../../Actividad2/lupa.png</iconset>
+             <normaloff>../Actividad2/lupa.png</normaloff>../Actividad2/lupa.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -735,13 +735,30 @@ border:none</string>
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>../../Project/images/dateta.png</normaloff>../../Project/images/dateta.png</iconset>
+             <normaloff>../Project/images/dateta.png</normaloff>../Project/images/dateta.png</iconset>
            </property>
            <property name="iconSize">
             <size>
              <width>50</width>
              <height>50</height>
             </size>
+           </property>
+          </widget>
+          <widget class="QLabel" name="LbWelcome">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>480</y>
+             <width>71</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgba(0, 0, 0,0%);
+border:none</string>
+           </property>
+           <property name="text">
+            <string/>
            </property>
           </widget>
          </widget>
@@ -770,7 +787,7 @@ border:none</string>
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>../../Actividad2/lupa.png</normaloff>../../Actividad2/lupa.png</iconset>
+             <normaloff>../Actividad2/lupa.png</normaloff>../Actividad2/lupa.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -977,7 +994,7 @@ border:none</string>
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>../../Actividad2/recarga1.png</normaloff>../../Actividad2/recarga1.png</iconset>
+             <normaloff>../Actividad2/recarga1.png</normaloff>../Actividad2/recarga1.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -1036,7 +1053,7 @@ border:none</string>
   <action name="actionOpen">
    <property name="icon">
     <iconset>
-     <normaloff>../../Project/images/folder.png</normaloff>../../Project/images/folder.png</iconset>
+     <normaloff>../Project/images/folder.png</normaloff>../Project/images/folder.png</iconset>
    </property>
    <property name="text">
     <string>Open</string>
@@ -1045,7 +1062,7 @@ border:none</string>
   <action name="actionExport">
    <property name="icon">
     <iconset>
-     <normaloff>../../Project/images/exportar.png</normaloff>../../Project/images/exportar.png</iconset>
+     <normaloff>../Project/images/exportar.png</normaloff>../Project/images/exportar.png</iconset>
    </property>
    <property name="text">
     <string>Export</string>
@@ -1054,7 +1071,7 @@ border:none</string>
   <action name="actionImport">
    <property name="icon">
     <iconset>
-     <normaloff>../../Project/images/importar.png</normaloff>../../Project/images/importar.png</iconset>
+     <normaloff>../Project/images/importar.png</normaloff>../Project/images/importar.png</iconset>
    </property>
    <property name="text">
     <string>Import</string>
@@ -1063,7 +1080,7 @@ border:none</string>
   <action name="actionCloseTB">
    <property name="icon">
     <iconset>
-     <normaloff>../../Project/images/close.png</normaloff>../../Project/images/close.png</iconset>
+     <normaloff>../Project/images/close.png</normaloff>../Project/images/close.png</iconset>
    </property>
    <property name="text">
     <string>Close</string>
