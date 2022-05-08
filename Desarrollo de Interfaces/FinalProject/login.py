@@ -12,10 +12,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindowLogin(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(485, 586)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+    def setupUi(self, MainWindowLogin):
+        MainWindowLogin.setObjectName("MainWindowLogin")
+        MainWindowLogin.resize(491, 634)
+        self.centralwidget = QtWidgets.QWidget(MainWindowLogin)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -30,45 +30,49 @@ class Ui_MainWindowLogin(object):
         self.FrmLogin.setFrameShadow(QtWidgets.QFrame.Raised)
         self.FrmLogin.setObjectName("FrmLogin")
         self.label = QtWidgets.QLabel(self.FrmLogin)
-        self.label.setGeometry(QtCore.QRect(130, 0, 211, 231))
+        self.label.setGeometry(QtCore.QRect(140, 0, 201, 211))
         self.label.setAutoFillBackground(False)
         self.label.setStyleSheet("background-color: rgba(0, 0, 0,0%);\n"
 "border:none")
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("../Project/images/logo.png"))
+        self.label.setPixmap(QtGui.QPixmap("images/logo.png"))
         self.label.setScaledContents(True)
         self.label.setWordWrap(False)
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.FrmLogin)
-        self.label_2.setGeometry(QtCore.QRect(200, 190, 81, 21))
+        self.label_2.setGeometry(QtCore.QRect(200, 200, 81, 21))
         self.label_2.setStyleSheet("background-color: rgba(0, 0, 0,0%);\n"
 "font: 75 16pt \"Arial\";\n"
 "border:none")
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(self.FrmLogin)
-        self.label_3.setGeometry(QtCore.QRect(190, 280, 111, 31))
+        self.label_3.setGeometry(QtCore.QRect(190, 290, 111, 31))
         self.label_3.setStyleSheet("background-color: rgba(0, 0, 0,0%);\n"
 "font: 75 16pt \"Arial\";\n"
 "border:none")
         self.label_3.setAlignment(QtCore.Qt.AlignCenter)
         self.label_3.setObjectName("label_3")
         self.TxtUser = QtWidgets.QLineEdit(self.FrmLogin)
-        self.TxtUser.setGeometry(QtCore.QRect(152, 230, 191, 31))
+        self.TxtUser.setGeometry(QtCore.QRect(152, 240, 191, 31))
         self.TxtUser.setStyleSheet("background-color: rgb(255, 255, 255,255);\n"
+"font: 75 10pt \"MS Shell Dlg 2\";\n"
 "border-radius:10px;\n"
 "border:none")
         self.TxtUser.setAlignment(QtCore.Qt.AlignCenter)
         self.TxtUser.setObjectName("TxtUser")
         self.TxtPassword = QtWidgets.QLineEdit(self.FrmLogin)
-        self.TxtPassword.setGeometry(QtCore.QRect(150, 320, 191, 31))
+        self.TxtPassword.setEnabled(True)
+        self.TxtPassword.setGeometry(QtCore.QRect(150, 330, 191, 31))
         self.TxtPassword.setStyleSheet("background-color: rgb(255, 255, 255,255);\n"
+"font: 75 10pt \"MS Shell Dlg 2\";\n"
 "border-radius:10px;\n"
 "border:none")
+        self.TxtPassword.setEchoMode(QtWidgets.QLineEdit.Password)
         self.TxtPassword.setAlignment(QtCore.Qt.AlignCenter)
         self.TxtPassword.setObjectName("TxtPassword")
         self.ButLogin = QtWidgets.QPushButton(self.FrmLogin)
-        self.ButLogin.setGeometry(QtCore.QRect(90, 390, 141, 41))
+        self.ButLogin.setGeometry(QtCore.QRect(170, 390, 161, 41))
         self.ButLogin.setStyleSheet("QPushButton{\n"
 "background-color: rgb(0, 255, 0);\n"
 "font: 75 12pt \"MS Shell Dlg 2\";\n"
@@ -82,7 +86,7 @@ class Ui_MainWindowLogin(object):
 "}")
         self.ButLogin.setObjectName("ButLogin")
         self.LineProgress = QtWidgets.QProgressBar(self.FrmLogin)
-        self.LineProgress.setGeometry(QtCore.QRect(70, 470, 361, 21))
+        self.LineProgress.setGeometry(QtCore.QRect(70, 460, 361, 21))
         self.LineProgress.setStyleSheet("QProgressBar{\n"
 "background-color: rgba(0, 0,0, 0%);\n"
 "border-radius:25px;\n"
@@ -97,38 +101,52 @@ class Ui_MainWindowLogin(object):
         self.LineProgress.setTextVisible(False)
         self.LineProgress.setObjectName("LineProgress")
         self.ButClose = QtWidgets.QPushButton(self.FrmLogin)
-        self.ButClose.setGeometry(QtCore.QRect(250, 390, 141, 41))
+        self.ButClose.setGeometry(QtCore.QRect(210, 540, 91, 31))
         self.ButClose.setStyleSheet("QPushButton{\n"
-"background-color: rgb(0, 255, 0);\n"
+"background-color: rgb(0, 0, 0, 0%);\n"
 "font: 75 12pt \"MS Shell Dlg 2\";\n"
-"border:5px solid #ffffff;\n"
+"border:0px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"background-color: rgb(255, 255, 0);\n"
 "font: 75 12pt \"MS Shell Dlg 2\";\n"
-"border:5px solid #0000f;\n"
+"    background-color: qlineargradient(spread:reflect, x1:0.543, y1:0, x2:0.541, y2:1, stop:0.300766 rgba(11, 255, 240, 255), stop:1 rgba(68, 0, 127, 255));\n"
+"border:0px ;\n"
 "}")
         self.ButClose.setObjectName("ButClose")
+        self.LbLoad = QtWidgets.QLabel(self.FrmLogin)
+        self.LbLoad.setGeometry(QtCore.QRect(220, 510, 81, 20))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(11)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(9)
+        self.LbLoad.setFont(font)
+        self.LbLoad.setStyleSheet("background-color: rgba(0, 0, 0,0%);\n"
+"font: 75 11pt \"Arial\";\n"
+"border:none")
+        self.LbLoad.setText("")
+        self.LbLoad.setObjectName("LbLoad")
         self.verticalLayout.addWidget(self.FrmLogin)
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 485, 21))
+        MainWindowLogin.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindowLogin)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 491, 21))
         self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        MainWindowLogin.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindowLogin)
         self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        MainWindowLogin.setStatusBar(self.statusbar)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(MainWindowLogin)
+        QtCore.QMetaObject.connectSlotsByName(MainWindowLogin)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, MainWindowLogin):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label_2.setText(_translate("MainWindow", "Usuario"))
-        self.label_3.setText(_translate("MainWindow", "Contraseña"))
-        self.TxtUser.setPlaceholderText(_translate("MainWindow", "Ingrese su usuario"))
-        self.TxtPassword.setPlaceholderText(_translate("MainWindow", "Ingrese su contraseña"))
-        self.ButLogin.setText(_translate("MainWindow", "Iniciar Sesión"))
-        self.ButClose.setText(_translate("MainWindow", "Salir"))
+        MainWindowLogin.setWindowTitle(_translate("MainWindowLogin", "MainWindow"))
+        self.label_2.setText(_translate("MainWindowLogin", "Usuario"))
+        self.label_3.setText(_translate("MainWindowLogin", "Contraseña"))
+        self.TxtUser.setPlaceholderText(_translate("MainWindowLogin", "Ingrese su usuario"))
+        self.TxtPassword.setPlaceholderText(_translate("MainWindowLogin", "Ingrese su contraseña"))
+        self.ButLogin.setText(_translate("MainWindowLogin", "Iniciar Sesión"))
+        self.ButClose.setText(_translate("MainWindowLogin", "Salir"))

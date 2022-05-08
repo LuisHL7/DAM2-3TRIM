@@ -1,1 +1,3 @@
 global ventana_login
+global ventana_principal
+global dialogo_salir

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>MainWindowLogin</class>
+ <widget class="QMainWindow" name="MainWindowLogin">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>485</width>
-    <height>586</height>
+    <width>491</width>
+    <height>634</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -47,10 +47,10 @@ border:1px solid #00007f;</string>
       <widget class="QLabel" name="label">
        <property name="geometry">
         <rect>
-         <x>130</x>
+         <x>140</x>
          <y>0</y>
-         <width>211</width>
-         <height>231</height>
+         <width>201</width>
+         <height>211</height>
         </rect>
        </property>
        <property name="autoFillBackground">
@@ -64,7 +64,7 @@ border:none</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap>../Project/images/logo.png</pixmap>
+        <pixmap>images/logo.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -77,7 +77,7 @@ border:none</string>
        <property name="geometry">
         <rect>
          <x>200</x>
-         <y>190</y>
+         <y>200</y>
          <width>81</width>
          <height>21</height>
         </rect>
@@ -98,7 +98,7 @@ border:none</string>
        <property name="geometry">
         <rect>
          <x>190</x>
-         <y>280</y>
+         <y>290</y>
          <width>111</width>
          <height>31</height>
         </rect>
@@ -119,13 +119,14 @@ border:none</string>
        <property name="geometry">
         <rect>
          <x>152</x>
-         <y>230</y>
+         <y>240</y>
          <width>191</width>
          <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 255, 255,255);
+font: 75 10pt &quot;MS Shell Dlg 2&quot;;
 border-radius:10px;
 border:none</string>
        </property>
@@ -137,18 +138,25 @@ border:none</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="TxtPassword">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>150</x>
-         <y>320</y>
+         <y>330</y>
          <width>191</width>
          <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 255, 255,255);
+font: 75 10pt &quot;MS Shell Dlg 2&quot;;
 border-radius:10px;
 border:none</string>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -160,9 +168,9 @@ border:none</string>
       <widget class="QPushButton" name="ButLogin">
        <property name="geometry">
         <rect>
-         <x>90</x>
+         <x>170</x>
          <y>390</y>
-         <width>141</width>
+         <width>161</width>
          <height>41</height>
         </rect>
        </property>
@@ -187,7 +195,7 @@ border:5px solid #0000f;
        <property name="geometry">
         <rect>
          <x>70</x>
-         <y>470</y>
+         <y>460</y>
          <width>361</width>
          <height>21</height>
         </rect>
@@ -214,27 +222,54 @@ border-radius:25px;
       <widget class="QPushButton" name="ButClose">
        <property name="geometry">
         <rect>
-         <x>250</x>
-         <y>390</y>
-         <width>141</width>
-         <height>41</height>
+         <x>210</x>
+         <y>540</y>
+         <width>91</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-background-color: rgb(0, 255, 0);
+background-color: rgb(0, 0, 0, 0%);
 font: 75 12pt &quot;MS Shell Dlg 2&quot;;
-border:5px solid #ffffff;
+border:0px;
 }
 
 QPushButton:hover{
-background-color: rgb(255, 255, 0);
 font: 75 12pt &quot;MS Shell Dlg 2&quot;;
-border:5px solid #0000f;
+	background-color: qlineargradient(spread:reflect, x1:0.543, y1:0, x2:0.541, y2:1, stop:0.300766 rgba(11, 255, 240, 255), stop:1 rgba(68, 0, 127, 255));
+border:0px ;
 }</string>
        </property>
        <property name="text">
         <string>Salir</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="LbLoad">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>510</y>
+         <width>81</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(0, 0, 0,0%);
+font: 75 11pt &quot;Arial&quot;;
+border:none</string>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </widget>
@@ -246,7 +281,7 @@ border:5px solid #0000f;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>485</width>
+     <width>491</width>
      <height>21</height>
     </rect>
    </property>
