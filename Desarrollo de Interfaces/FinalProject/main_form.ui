@@ -33,7 +33,7 @@ border:1px solid #00007f;</string>
        <item>
         <widget class="QTabWidget" name="tabWidget">
          <property name="currentIndex">
-          <number>2</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="tab_2">
           <attribute name="title">
@@ -829,7 +829,7 @@ border:none</string>
             </size>
            </property>
           </widget>
-          <widget class="QTableWidget" name="cliTable_2">
+          <widget class="QTableWidget" name="cliTable">
            <property name="geometry">
             <rect>
              <x>30</x>
@@ -922,6 +922,21 @@ border:none</string>
            </column>
            <column>
             <property name="text">
+             <string>Fecha Ingreso</string>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="textAlignment">
+             <set>AlignCenter</set>
+            </property>
+           </column>
+           <column>
+            <property name="text">
              <string>Cantidad</string>
             </property>
             <property name="font">
@@ -967,6 +982,21 @@ border:none</string>
            </column>
            <column>
             <property name="text">
+             <string>Estado</string>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="textAlignment">
+             <set>AlignCenter</set>
+            </property>
+           </column>
+           <column>
+            <property name="text">
              <string>Proveedor</string>
             </property>
             <property name="font">
@@ -981,7 +1011,7 @@ border:none</string>
             </property>
            </column>
           </widget>
-          <widget class="QLineEdit" name="TxtUser">
+          <widget class="QLineEdit" name="TxtCode">
            <property name="geometry">
             <rect>
              <x>30</x>
