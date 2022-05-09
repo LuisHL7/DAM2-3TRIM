@@ -34,9 +34,9 @@ class MiApp(QtWidgets.QMainWindow):
     # de mensaje, solicitando que introduzca datos válidos.
     def iniciar_sesion(self):
         query = QtSql.QSqlQuery()
-        query.prepare('SELECT nombre, apellidoS FROM empleados WHERE usuario =:usuario and password =:password')
-        query.bindValue(':usuario', self.ventana_login.TxtUser.text())
-        query.bindValue(':password', self.ventana_login.TxtPassword.text())
+        query.prepare('SELECT nombre, apellidos FROM empleados WHERE usuario =:usuario and password =:password')
+        query.bindValue(':usuario', self.ventana_login.TxtUser.text().upper())
+        query.bindValue(':password', self.ventana_login.TxtPassword.text().upper())
         if query.exec_():
             if query.next():
                 nombre = str(query.value(0))

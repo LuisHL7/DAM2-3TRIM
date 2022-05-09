@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindowMain(object):
     def setupUi(self, MainWindowMain):
         MainWindowMain.setObjectName("MainWindowMain")
-        MainWindowMain.resize(1042, 555)
+        MainWindowMain.resize(1072, 663)
         self.centralwidget = QtWidgets.QWidget(MainWindowMain)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -384,7 +384,7 @@ class Ui_MainWindowMain(object):
         self.BtnSearch.setIconSize(QtCore.QSize(25, 25))
         self.BtnSearch.setObjectName("BtnSearch")
         self.cliTable = QtWidgets.QTableWidget(self.tab)
-        self.cliTable.setGeometry(QtCore.QRect(30, 140, 931, 251))
+        self.cliTable.setGeometry(QtCore.QRect(30, 140, 931, 351))
         self.cliTable.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.cliTable.setAutoFillBackground(False)
         self.cliTable.setStyleSheet("background-color: rgba(0, 0, 0,0%);\n"
@@ -544,7 +544,7 @@ class Ui_MainWindowMain(object):
         self.verticalLayout.addWidget(self.frame)
         MainWindowMain.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindowMain)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1042, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1072, 21))
         self.menubar.setObjectName("menubar")
         self.menuAbrir = QtWidgets.QMenu(self.menubar)
         self.menuAbrir.setObjectName("menuAbrir")
@@ -588,7 +588,7 @@ class Ui_MainWindowMain(object):
         self.toolBar.addAction(self.actionCloseTB)
 
         self.retranslateUi(MainWindowMain)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindowMain)
 
     def retranslateUi(self, MainWindowMain):

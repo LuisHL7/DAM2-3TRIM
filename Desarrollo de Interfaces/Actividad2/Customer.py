@@ -195,4 +195,3 @@ class Customer():
         var.ui.TxtDireccion.setText("")
         var.ui.CmbProvincia.setCurrentText("")
         Conection.Conection.showCustomers()
-
