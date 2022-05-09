@@ -337,16 +337,16 @@ class Ui_MainWindowMain(object):
 "border:none")
         self.TxtDate.setAlignment(QtCore.Qt.AlignCenter)
         self.TxtDate.setObjectName("TxtDate")
-        self.pushButton = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton.setGeometry(QtCore.QRect(470, 175, 40, 40))
-        self.pushButton.setStyleSheet("background-color: rgba(0, 0, 0,0%);\n"
+        self.BtnCalendar = QtWidgets.QPushButton(self.tab_2)
+        self.BtnCalendar.setGeometry(QtCore.QRect(470, 175, 40, 40))
+        self.BtnCalendar.setStyleSheet("background-color: rgba(0, 0, 0,0%);\n"
 "border:none")
-        self.pushButton.setText("")
+        self.BtnCalendar.setText("")
         icon6 = QtGui.QIcon()
         icon6.addPixmap(QtGui.QPixmap("images/dateta.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton.setIcon(icon6)
-        self.pushButton.setIconSize(QtCore.QSize(50, 50))
-        self.pushButton.setObjectName("pushButton")
+        self.BtnCalendar.setIcon(icon6)
+        self.BtnCalendar.setIconSize(QtCore.QSize(50, 50))
+        self.BtnCalendar.setObjectName("BtnCalendar")
         self.LbStatus = QtWidgets.QLabel(self.tab_2)
         self.LbStatus.setGeometry(QtCore.QRect(20, 490, 991, 20))
         self.LbStatus.setStyleSheet("background-color: rgba(0, 0, 0,0%);\n"

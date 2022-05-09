@@ -1,11 +1,17 @@
 # Paquetes Importados
 import win32api
-from PyQt5 import QtWidgets, QtSql
+from PyQt5 import QtWidgets, QtSql, QtCore
+from PyQt5.QtCore import Qt
+
 import Eventos
+import var
+from datetime import datetime
 from main_form import Ui_MainWindowMain
 
-
 # Clase que inicializa la ventana principal a la cual se accede después de introducir el usuario y contraseña correctos.
+from windowsCalendarL import Ui_Dialog
+
+
 class Iniciar(QtWidgets.QMainWindow):
     def __init__(self, nombre):
         super().__init__()
@@ -15,14 +21,17 @@ class Iniciar(QtWidgets.QMainWindow):
         self.ventana_principal.LbWelcome.setText('Bienvenido, ' + nombre)
         self.ventana_principal.LbWelcome2.setText('Bienvenido, ' + nombre)
         self.ventana_principal.LbWelcome3.setText('Bienvenido, ' + nombre)
-        self.cargarCampos()
+        self.cargarCampos()  # Cargando el QcomboBox
         Eventos.horaActual(self)  # Muestra la hora actual en la barra de estado
         self.mostrarProductos()  # Muestra los datos de la BD en el QTableWidget
+        var.dialogo_fecha = Fecha()  # Asignando la clase Fecha a la variable global dialogo_fecha
         # Botones
         self.ventana_principal.CbSearch.currentTextChanged.connect(self.campoDeBusqueda)
         self.ventana_principal.BtnSearch.clicked.connect(self.campoDeConsulta)
         self.ventana_principal.BtnClean.clicked.connect(self.limpiarValores)
         self.ventana_principal.BtnClose.clicked.connect(Eventos.salir)
+        self.ventana_principal.BtnCalendar.clicked.connect(Eventos.abrirCalendario)
+        # self.ventana_principal.TxtDate.setText(var.fecha)
 
     # Función que de acuerdo a la opción que elijas en el QComboBox te mostrará un texto dentro del LineEdit.
     def campoDeBusqueda(self):
@@ -166,3 +175,25 @@ class Iniciar(QtWidgets.QMainWindow):
         self.ventana_principal.TxtPriceV.setText('')
         self.ventana_principal.CbCategory.setCurrentIndex(-1)
         self.ventana_principal.CbSupplier.setCurrentIndex(-1)
+
+
+class Fecha(QtWidgets.QDialog):
+    def __init__(self):
+        super(Fecha, self).__init__()
+        var.dialogo_fecha = Ui_Dialog()
+        var.dialogo_fecha.setupUi(self)
+        diaActual = datetime.now().day
+        mesActual = datetime.now().month
+        anoActual = datetime.now().year
+        self.setWindowFlag(Qt.FramelessWindowHint)  # elimina la barra
+        self.setAttribute(Qt.WA_TranslucentBackground)  # transparente
+        var.dialogo_fecha.venCalendar.setSelectedDate((QtCore.QDate(anoActual, mesActual, diaActual)))
+        var.dialogo_fecha.venCalendar.clicked.connect(self.cargarFecha)
+
+    def cargarFecha(qDate):
+        try:
+            data = ('{0}-{1}-{2}'.format(qDate.day(), qDate.month(), qDate.year()))
+            var.fecha = (str(data))
+            var.dialogo_fecha.hide()
+        except Exception as error:
+            print('Error cargar fecha: %s' % str(error))

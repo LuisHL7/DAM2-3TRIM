@@ -77,9 +77,9 @@ class Customer():
         # Este módulo se ejecuta cuando clickeamos es un día del calendar, es decir,
         # cliclekd.connect de calendar.
 
-    def cargarFecha(qDate):
+    def cargarFecha(self):
         try:
-            data = ('{0}-{1}-{2}'.format(qDate.day(), qDate.month(), qDate.year()))
+            data = ('{0}-{1}-{2}'.format(self.day(), self.month(), self.year()))
             var.ui.TxtFecha.setText(str(data))
             var.dlgCalendar.hide()
         except Exception as error:

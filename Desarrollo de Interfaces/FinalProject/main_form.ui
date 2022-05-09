@@ -720,7 +720,7 @@ border:none</string>
             <string>Seleccione la fecha --&gt;</string>
            </property>
           </widget>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="BtnCalendar">
            <property name="geometry">
             <rect>
              <x>470</x>

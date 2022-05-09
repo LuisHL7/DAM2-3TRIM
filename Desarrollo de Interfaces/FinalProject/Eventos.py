@@ -20,3 +20,13 @@ def salir():
 def horaActual(self):
     now = datetime.now()
     self.ventana_principal.statusBar.showMessage(str(now.strftime("%d/%m/%Y, %H:%M:%S")))
+
+
+def abrirCalendario():
+    try:
+        var.dialogo_fecha.show()
+    except Exception as error:
+        print('Error al abrir el calendario: %s ' % str(error))
+
+
+

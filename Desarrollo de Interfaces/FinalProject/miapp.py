@@ -1,18 +1,14 @@
 # Paquetes Importados
 import sys
-
-import self as self
 import win32api
 from PyQt5 import QtWidgets, QtSql
 from PyQt5.QtCore import Qt
-
 import Productos
 import Eventos
 import var
 import Conexion
 from windowsAviso import Ui_Aviso
 from login import Ui_MainWindowLogin
-from main_form import Ui_MainWindowMain
 import time
 
 
