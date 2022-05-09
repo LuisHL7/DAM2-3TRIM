@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindowMain(object):
     def setupUi(self, MainWindowMain):
         MainWindowMain.setObjectName("MainWindowMain")
-        MainWindowMain.resize(1108, 697)
+        MainWindowMain.resize(980, 483)
         self.centralwidget = QtWidgets.QWidget(MainWindowMain)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -387,6 +387,9 @@ class Ui_MainWindowMain(object):
         self.cliTable.setAutoFillBackground(False)
         self.cliTable.setStyleSheet("background-color: rgba(0, 0, 0,0%);\n"
 "border:none")
+        self.cliTable.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.cliTable.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.cliTable.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
         self.cliTable.setDragEnabled(False)
         self.cliTable.setAlternatingRowColors(False)
         self.cliTable.setGridStyle(QtCore.Qt.SolidLine)
@@ -534,7 +537,7 @@ class Ui_MainWindowMain(object):
         self.verticalLayout.addWidget(self.frame)
         MainWindowMain.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindowMain)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1108, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 980, 21))
         self.menubar.setObjectName("menubar")
         self.menuAbrir = QtWidgets.QMenu(self.menubar)
         self.menuAbrir.setObjectName("menuAbrir")

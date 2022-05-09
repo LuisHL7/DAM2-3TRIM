@@ -1,5 +1,8 @@
 # Paquetes Importados
 import sys
+
+import self as self
+import win32api
 from PyQt5 import QtWidgets, QtSql
 from PyQt5.QtCore import Qt
 
@@ -43,7 +46,7 @@ class MiApp(QtWidgets.QMainWindow):
                     self.ventana_login.LineProgress.setValue(i)
                     self.ventana_login.LbLoad.setText('Cargando...')
                 self.hide()
-                var.ventana_principal = Iniciar(nombre)
+                var.ventana_principal = Productos.Iniciar(nombre)
                 var.ventana_principal.show()
             else:
                 win32api.MessageBox(0, "El usuario o contraseña ingresada es incorrecto", "Error")
@@ -65,16 +68,9 @@ class Salir(QtWidgets.QDialog):
 
 
 #   Clase que muestra la ventana principal a la cual se accede después de iniciar sesión.
-class Iniciar(QtWidgets.QMainWindow):
-    def __init__(self, nombre):
-        super().__init__()
-        self.ventana_principal = Ui_MainWindowMain()
-        self.ventana_principal.setupUi(self)
-        self.ventana_principal.LbWelcome.setText('Bienvenido, ' + nombre)
-        self.ventana_principal.LbWelcome2.setText('Bienvenido, ' + nombre)
-        self.ventana_principal.LbWelcome3.setText('Bienvenido, ' + nombre)
-        Eventos.hora_actual(self)
-        Productos.mostrarProductos(self)
+
+
+
 
 
 # Función que ejecuta la clase MiApp

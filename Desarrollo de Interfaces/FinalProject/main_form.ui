@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1108</width>
-    <height>697</height>
+    <width>980</width>
+    <height>483</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -845,6 +845,15 @@ border:none</string>
             <string notr="true">background-color: rgba(0, 0, 0,0%);
 border:none</string>
            </property>
+           <property name="verticalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOn</enum>
+           </property>
+           <property name="horizontalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOn</enum>
+           </property>
+           <property name="sizeAdjustPolicy">
+            <enum>QAbstractScrollArea::AdjustToContents</enum>
+           </property>
            <property name="dragEnabled">
             <bool>false</bool>
            </property>
@@ -1146,7 +1155,7 @@ border:none</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1108</width>
+     <width>980</width>
      <height>21</height>
     </rect>
    </property>

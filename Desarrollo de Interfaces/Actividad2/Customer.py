@@ -158,7 +158,8 @@ class Customer():
         cont = 0
         query = QtSql.QSqlQuery()
         query.prepare(
-            'SELECT codigo, dni, lastname, name, higthdate, address, province, sex, waytopay FROM customer WHERE dni =:dni')
+            'SELECT codigo, dni, lastname, name, higthdate, address, province, sex, waytopay FROM customer WHERE dni '
+            '=:dni')
         query.bindValue(':dni', var.ui.TxtDni.text())
         if query.exec_():
             while query.next():

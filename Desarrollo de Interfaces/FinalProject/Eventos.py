@@ -14,6 +14,7 @@ def salir():
     except Exception as error:
         print('Error al intentar salir de la ventana', error)
 
-def hora_actual(self):
+
+def horaActual(self):
     now = datetime.now()
     self.ventana_principal.statusBar.showMessage(str(now.strftime("%d/%m/%Y, %H:%M:%S")))
