@@ -4,6 +4,7 @@ import sys
 from datetime import datetime
 
 
+# Función salir que muestra una ventana de diálogo al usuario con dos botones, preguntando si está seguro de salir de la aplicación o no.
 def salir():
     try:
         var.dialogo_salir.show()
@@ -15,6 +16,7 @@ def salir():
         print('Error al intentar salir de la ventana', error)
 
 
+# Función que muestra la fecha y la hora actual en la barra de estado.
 def horaActual(self):
     now = datetime.now()
     self.ventana_principal.statusBar.showMessage(str(now.strftime("%d/%m/%Y, %H:%M:%S")))

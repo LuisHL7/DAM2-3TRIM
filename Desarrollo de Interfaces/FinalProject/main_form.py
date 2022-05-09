@@ -325,18 +325,18 @@ class Ui_MainWindowMain(object):
 "border:none")
         self.TxtId.setAlignment(QtCore.Qt.AlignCenter)
         self.TxtId.setObjectName("TxtId")
-        self.TxtName_2 = QtWidgets.QLineEdit(self.tab_2)
-        self.TxtName_2.setGeometry(QtCore.QRect(220, 180, 241, 31))
+        self.TxtDate = QtWidgets.QLineEdit(self.tab_2)
+        self.TxtDate.setGeometry(QtCore.QRect(220, 180, 241, 31))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
         font.setWeight(75)
-        self.TxtName_2.setFont(font)
-        self.TxtName_2.setStyleSheet("background-color: rgb(255, 255, 255,255);\n"
+        self.TxtDate.setFont(font)
+        self.TxtDate.setStyleSheet("background-color: rgb(255, 255, 255,255);\n"
 "border-radius:10px;\n"
 "border:none")
-        self.TxtName_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.TxtName_2.setObjectName("TxtName_2")
+        self.TxtDate.setAlignment(QtCore.Qt.AlignCenter)
+        self.TxtDate.setObjectName("TxtDate")
         self.pushButton = QtWidgets.QPushButton(self.tab_2)
         self.pushButton.setGeometry(QtCore.QRect(470, 175, 40, 40))
         self.pushButton.setStyleSheet("background-color: rgba(0, 0, 0,0%);\n"
@@ -614,7 +614,7 @@ class Ui_MainWindowMain(object):
         self.radioButton.setText(_translate("MainWindowMain", "Disponible"))
         self.RbGroupStatus.setText(_translate("MainWindowMain", "No Disponible"))
         self.TxtId.setPlaceholderText(_translate("MainWindowMain", "Ingrese el código"))
-        self.TxtName_2.setPlaceholderText(_translate("MainWindowMain", "Seleccione la fecha -->"))
+        self.TxtDate.setPlaceholderText(_translate("MainWindowMain", "Seleccione la fecha -->"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindowMain", "Registro de Productos"))
         item = self.cliTable.horizontalHeaderItem(0)
         item.setText(_translate("MainWindowMain", "Código"))

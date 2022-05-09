@@ -26,13 +26,13 @@ class MiApp(QtWidgets.QMainWindow):
         self.setWindowFlag(Qt.FramelessWindowHint)  # elimina barra
         self.setAttribute(Qt.WA_TranslucentBackground)  # transparente
         Conexion.Conexion.dbConnect('BDProductos.db')  # Conexión
-        self.ventana_login.ButLogin.clicked.connect(self.iniciar_sesion)
+        self.ventana_login.ButLogin.clicked.connect(self.iniciarSesion)
         self.ventana_login.ButClose.clicked.connect(Eventos.salir)
 
     # Función que comprueba que el usuario y contraseña ingresado sean correctos.
     # Si son correctos acceden a toda la información si no se mostrará una caja
     # de mensaje, solicitando que introduzca datos válidos.
-    def iniciar_sesion(self):
+    def iniciarSesion(self):
         query = QtSql.QSqlQuery()
         query.prepare('SELECT nombre, apellidos FROM empleados WHERE usuario =:usuario and password =:password')
         query.bindValue(':usuario', self.ventana_login.TxtUser.text().upper())
@@ -65,12 +65,6 @@ class Salir(QtWidgets.QDialog):
         var.dialogo_salir.BtnBoxAvisoNo.clicked.connect(self.reject)
         self.setWindowFlag(Qt.FramelessWindowHint)  # elimina la barra
         self.setAttribute(Qt.WA_TranslucentBackground)  # transparente
-
-
-#   Clase que muestra la ventana principal a la cual se accede después de iniciar sesión.
-
-
-
 
 
 # Función que ejecuta la clase MiApp

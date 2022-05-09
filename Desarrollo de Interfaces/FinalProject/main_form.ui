@@ -692,7 +692,7 @@ border:none</string>
             <string>Ingrese el código</string>
            </property>
           </widget>
-          <widget class="QLineEdit" name="TxtName_2">
+          <widget class="QLineEdit" name="TxtDate">
            <property name="geometry">
             <rect>
              <x>220</x>

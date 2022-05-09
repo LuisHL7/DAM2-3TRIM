@@ -5,6 +5,7 @@ import Eventos
 from main_form import Ui_MainWindowMain
 
 
+# Clase que inicializa la ventana principal a la cual se accede después de introducir el usuario y contraseña correctos.
 class Iniciar(QtWidgets.QMainWindow):
     def __init__(self, nombre):
         super().__init__()
@@ -17,15 +18,13 @@ class Iniciar(QtWidgets.QMainWindow):
         self.cargarCampos()
         Eventos.horaActual(self)  # Muestra la hora actual en la barra de estado
         self.mostrarProductos()  # Muestra los datos de la BD en el QTableWidget
+        # Botones
         self.ventana_principal.CbSearch.currentTextChanged.connect(self.campoDeBusqueda)
         self.ventana_principal.BtnSearch.clicked.connect(self.campoDeConsulta)
-        # self.llenarEspacioTabla()
+        self.ventana_principal.BtnClean.clicked.connect(self.limpiarValores)
+        self.ventana_principal.BtnClose.clicked.connect(Eventos.salir)
 
-    def llenarEspacioTabla(self):
-        for i in range(self.ventana_principal.cliTable.horizontalHeader().count()):
-            self.ventana_principal.cliTable.horizontalHeader().setSectionResizeMode(i, QtWidgets.QHeaderView.Stretch)
-            self.ventana_principal.cliTable.show()
-
+    # Función que de acuerdo a la opción que elijas en el QComboBox te mostrará un texto dentro del LineEdit.
     def campoDeBusqueda(self):
         self.ventana_principal.TxtCode.setText('')
         if self.ventana_principal.CbSearch.currentText() == "CODIGO":
@@ -39,6 +38,7 @@ class Iniciar(QtWidgets.QMainWindow):
         elif self.ventana_principal.CbSearch.currentText() == "PROVEEDOR":
             self.ventana_principal.TxtCode.setPlaceholderText("Ingrese el proveedor")
 
+    # Función que de acuerdo a la opción que elijas en el QComboBox te mostrará los datos obtenidos en el QTableWidget.
     def campoDeConsulta(self):
         if self.ventana_principal.CbSearch.currentText() == "CODIGO":
             self.buscarProductosPorCodigo()
@@ -51,15 +51,18 @@ class Iniciar(QtWidgets.QMainWindow):
         elif self.ventana_principal.CbSearch.currentText() == "PROVEEDOR":
             self.buscarProductosPorProveedor()
 
+    # Función que carga valores dentro del QComboBox
     def cargarCampos(self):
         try:
             campos = ['CODIGO', 'NOMBRE', 'CATEGORIA', 'ESTADO', 'PROVEEDOR']
             for i in campos:
                 self.ventana_principal.CbSearch.addItem(i)
-            self.ventana_principal.CbSearch.setCurrentIndex(-1)
+            self.ventana_principal.CbSearch.setCurrentIndex(-1)  # No muestra ningún valor inicial.
         except Exception as error:
             print('Error al cargar el combo box de los campos de búsqueda: %s ' % str(error))
 
+    # Consultas
+    # Función que muestra en el QTableWidget todos los productos que hay en la BD.
     def mostrarProductos(self):
         query = QtSql.QSqlQuery()
         query.prepare(
@@ -70,6 +73,7 @@ class Iniciar(QtWidgets.QMainWindow):
         else:
             print("Error al mostrar los productos: ", query.lastError().text())
 
+    # Función que busca por un código un determinado registro.
     def buscarProductosPorCodigo(self):
         query = QtSql.QSqlQuery()
         query.prepare(
@@ -82,54 +86,59 @@ class Iniciar(QtWidgets.QMainWindow):
         else:
             print("Error al mostrar los productos por código: ", query.lastError().text())
 
+    # Función que consulta por como comienza el nombre o la totalidad del mismo y que devuelve el registro o los registro que coincidan.
     def buscarProductosPorNombre(self):
         query = QtSql.QSqlQuery()
         query.prepare(
             'SELECT codigo, nombre, categoria, fecha_ingreso, cantidad, precio_costo, precio_venta, estado, proveedor '
             'FROM productos WHERE nombre LIKE :nombre')
-        query.bindValue(':nombre', self.ventana_principal.TxtCode.text()+"%")
+        query.bindValue(':nombre', self.ventana_principal.TxtCode.text() + "%")
         if query.exec_():
             self.ventana_principal.cliTable.clearContents()
             self.mostrarEnTabla(query)
         else:
             print("Error al mostrar los productos por nombre: ", query.lastError().text())
 
+    # Función que consulta por como comienza la categoría o la totalidad del mismo y que devuelve el registro o los registro que coincidan.
     def buscarProductosPorCategoria(self):
         query = QtSql.QSqlQuery()
         query.prepare(
             'SELECT codigo, nombre, categoria, fecha_ingreso, cantidad, precio_costo, precio_venta, estado, proveedor '
             'FROM productos WHERE categoria LIKE :categoria')
-        query.bindValue(':categoria', self.ventana_principal.TxtCode.text()+"%")
+        query.bindValue(':categoria', self.ventana_principal.TxtCode.text() + "%")
         if query.exec_():
             self.ventana_principal.cliTable.clearContents()
             self.mostrarEnTabla(query)
         else:
             print("Error al mostrar los productos por categoría: ", query.lastError().text())
 
+    # Función que consulta por como comienza el estado o la totalidad del mismo y que devuelve el registro o los registro que coincidan.
     def buscarProductosPorEstado(self):
         query = QtSql.QSqlQuery()
         query.prepare(
             'SELECT codigo, nombre, categoria, fecha_ingreso, cantidad, precio_costo, precio_venta, estado, proveedor '
             'FROM productos WHERE estado LIKE :estado')
-        query.bindValue(':estado', self.ventana_principal.TxtCode.text()+"%")
+        query.bindValue(':estado', self.ventana_principal.TxtCode.text() + "%")
         if query.exec_():
             self.ventana_principal.cliTable.clearContents()
             self.mostrarEnTabla(query)
         else:
             print("Error al mostrar los productos por categoría: ", query.lastError().text())
 
+    # Función que consulta por como comienza el nombre del proveedor o la totalidad del mismo y que devuelve el registro o los registro que coincidan.
     def buscarProductosPorProveedor(self):
         query = QtSql.QSqlQuery()
         query.prepare(
             'SELECT codigo, nombre, categoria, fecha_ingreso, cantidad, precio_costo, precio_venta, estado, proveedor '
             'FROM productos WHERE proveedor LIKE :proveedor')
-        query.bindValue(':proveedor', self.ventana_principal.TxtCode.text()+"%")
+        query.bindValue(':proveedor', self.ventana_principal.TxtCode.text() + "%")
         if query.exec_():
             self.ventana_principal.cliTable.clearContents()
             self.mostrarEnTabla(query)
         else:
             print("Error al mostrar los productos por categoría: ", query.lastError().text())
 
+    # Función que se encarga de llenar el QTableWidget con los valores que se obtienen de la BD.
     def mostrarEnTabla(self, query):
         index = 0
         cont = 0
@@ -148,3 +157,12 @@ class Iniciar(QtWidgets.QMainWindow):
             cont += 1
         if cont == 0:
             win32api.MessageBox(0, "El valor ingresado no existe. Por favor, ingrese un valor existente.", "Error")
+
+    def limpiarValores(self):
+        self.ventana_principal.TxtId.setText('')
+        self.ventana_principal.TxtName.setText('')
+        self.ventana_principal.TxtDate.setText('')
+        self.ventana_principal.TxtPriceC.setText('')
+        self.ventana_principal.TxtPriceV.setText('')
+        self.ventana_principal.CbCategory.setCurrentIndex(-1)
+        self.ventana_principal.CbSupplier.setCurrentIndex(-1)
