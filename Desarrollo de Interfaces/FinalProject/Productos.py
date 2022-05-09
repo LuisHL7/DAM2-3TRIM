@@ -19,6 +19,12 @@ class Iniciar(QtWidgets.QMainWindow):
         self.mostrarProductos()  # Muestra los datos de la BD en el QTableWidget
         self.ventana_principal.CbSearch.currentTextChanged.connect(self.campoDeBusqueda)
         self.ventana_principal.BtnSearch.clicked.connect(self.campoDeConsulta)
+        # self.llenarEspacioTabla()
+
+    def llenarEspacioTabla(self):
+        for i in range(self.ventana_principal.cliTable.horizontalHeader().count()):
+            self.ventana_principal.cliTable.horizontalHeader().setSectionResizeMode(i, QtWidgets.QHeaderView.Stretch)
+            self.ventana_principal.cliTable.show()
 
     def campoDeBusqueda(self):
         self.ventana_principal.TxtCode.setText('')
