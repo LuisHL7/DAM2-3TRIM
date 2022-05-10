@@ -270,12 +270,26 @@ class Ui_MainWindowMain(object):
         self.label_10.setObjectName("label_10")
         self.CbCategory = QtWidgets.QComboBox(self.tab_2)
         self.CbCategory.setGeometry(QtCore.QRect(700, 110, 291, 31))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.CbCategory.setFont(font)
+        self.CbCategory.setToolTipDuration(-3)
+        self.CbCategory.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.CbCategory.setStyleSheet("background-color: rgb(255, 255, 255,255);\n"
 "border-radius:10px;\n"
 "border:none")
+        self.CbCategory.setCurrentText("")
         self.CbCategory.setObjectName("CbCategory")
         self.CbSupplier = QtWidgets.QComboBox(self.tab_2)
         self.CbSupplier.setGeometry(QtCore.QRect(710, 310, 281, 31))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.CbSupplier.setFont(font)
+        self.CbSupplier.setToolTipDuration(1)
         self.CbSupplier.setStyleSheet("background-color: rgb(255, 255, 255,255);\n"
 "border-radius:10px;\n"
 "border:none")

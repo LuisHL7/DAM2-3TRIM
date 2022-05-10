@@ -561,10 +561,29 @@ border:none</string>
              <height>31</height>
             </rect>
            </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="toolTipDuration">
+            <number>-3</number>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255,255);
 border-radius:10px;
 border:none</string>
+           </property>
+           <property name="editable">
+            <bool>true</bool>
+           </property>
+           <property name="currentText">
+            <string/>
            </property>
           </widget>
           <widget class="QComboBox" name="CbSupplier">
@@ -575,6 +594,16 @@ border:none</string>
              <width>281</width>
              <height>31</height>
             </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="toolTipDuration">
+            <number>1</number>
            </property>
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255,255);
