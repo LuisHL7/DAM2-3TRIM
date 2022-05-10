@@ -31,7 +31,6 @@ class Iniciar(QtWidgets.QMainWindow):
         self.ventana_principal.BtnClean.clicked.connect(self.limpiarValores)
         self.ventana_principal.BtnClose.clicked.connect(Eventos.salir)
         self.ventana_principal.BtnCalendar.clicked.connect(Eventos.abrirCalendario)
-        # self.ventana_principal.TxtDate.setText(var.fecha)
 
     # Función que de acuerdo a la opción que elijas en el QComboBox te mostrará un texto dentro del LineEdit.
     def campoDeBusqueda(self):
@@ -95,7 +94,8 @@ class Iniciar(QtWidgets.QMainWindow):
         else:
             print("Error al mostrar los productos por código: ", query.lastError().text())
 
-    # Función que consulta por como comienza el nombre o la totalidad del mismo y que devuelve el registro o los registro que coincidan.
+    # Función que consulta por como comienza el nombre o la totalidad del mismo y que devuelve el registro o los
+    # registro que coincidan.
     def buscarProductosPorNombre(self):
         query = QtSql.QSqlQuery()
         query.prepare(
@@ -175,6 +175,9 @@ class Iniciar(QtWidgets.QMainWindow):
         self.ventana_principal.TxtPriceV.setText('')
         self.ventana_principal.CbCategory.setCurrentIndex(-1)
         self.ventana_principal.CbSupplier.setCurrentIndex(-1)
+        self.ventana_principal.ButGroupStatus.setExclusive(False)
+        self.ventana_principal.RbAvailable.setChecked(False)
+        self.ventana_principal.RbNotAvailable.setChecked(False)
 
 
 class Fecha(QtWidgets.QDialog):
@@ -182,18 +185,9 @@ class Fecha(QtWidgets.QDialog):
         super(Fecha, self).__init__()
         var.dialogo_fecha = Ui_Dialog()
         var.dialogo_fecha.setupUi(self)
-        diaActual = datetime.now().day
-        mesActual = datetime.now().month
-        anoActual = datetime.now().year
         self.setWindowFlag(Qt.FramelessWindowHint)  # elimina la barra
         self.setAttribute(Qt.WA_TranslucentBackground)  # transparente
-        var.dialogo_fecha.venCalendar.setSelectedDate((QtCore.QDate(anoActual, mesActual, diaActual)))
-        var.dialogo_fecha.venCalendar.clicked.connect(self.cargarFecha)
+        var.dialogo_fecha.venCalendar.setSelectedDate(QtCore.QDate(datetime.now().year, datetime.now().month, datetime.now().day))
+        var.dialogo_fecha.venCalendar.clicked.connect(Eventos.cargarFecha)
 
-    def cargarFecha(qDate):
-        try:
-            data = ('{0}-{1}-{2}'.format(qDate.day(), qDate.month(), qDate.year()))
-            var.fecha = (str(data))
-            var.dialogo_fecha.hide()
-        except Exception as error:
-            print('Error cargar fecha: %s' % str(error))
+

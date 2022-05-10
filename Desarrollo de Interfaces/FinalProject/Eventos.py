@@ -1,10 +1,16 @@
 # Paquetes Importados
+import Productos
 import var
 import sys
 from datetime import datetime
 
 
-# Función salir que muestra una ventana de diálogo al usuario con dos botones, preguntando si está seguro de salir de la aplicación o no.
+# Función salir que muestra una ventana de diálogo al usuario con dos botones, preguntando si está seguro de salir de
+# la aplicación o no.
+from main_form import Ui_MainWindowMain
+from windowsCalendarL import Ui_Dialog
+
+
 def salir():
     try:
         var.dialogo_salir.show()
@@ -29,4 +35,10 @@ def abrirCalendario():
         print('Error al abrir el calendario: %s ' % str(error))
 
 
-
+def cargarFecha(self):
+    try:
+        data = ('{0}-{1}-{2}'.format(self.day(), self.month(), self.year()))
+        var.fecha.setText(str(data))
+        var.dialogo_fecha.hide()
+    except Exception as error:
+        print('Error cargar fecha: %s' % str(error))

@@ -582,7 +582,7 @@ border-radius:10px;
 border:none</string>
            </property>
           </widget>
-          <widget class="QRadioButton" name="radioButton">
+          <widget class="QRadioButton" name="RbAvailable">
            <property name="geometry">
             <rect>
              <x>190</x>
@@ -606,32 +606,7 @@ border:none</string>
             <string>Disponible</string>
            </property>
            <attribute name="buttonGroup">
-            <string notr="true">buttonGroup</string>
-           </attribute>
-          </widget>
-          <widget class="QRadioButton" name="RbGroupStatus">
-           <property name="geometry">
-            <rect>
-             <x>320</x>
-             <y>330</y>
-             <width>131</width>
-             <height>17</height>
-            </rect>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgba(0, 0, 0,0%);
-border:none</string>
-           </property>
-           <property name="text">
-            <string>No Disponible</string>
-           </property>
-           <attribute name="buttonGroup">
-            <string notr="true">buttonGroup</string>
+            <string notr="true">ButGroupStatus</string>
            </attribute>
           </widget>
           <widget class="QPushButton" name="BtnSearch_2">
@@ -796,6 +771,33 @@ border:none</string>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
+          </widget>
+          <widget class="QRadioButton" name="RbNotAvailable">
+           <property name="geometry">
+            <rect>
+             <x>320</x>
+             <y>330</y>
+             <width>131</width>
+             <height>17</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgba(0, 0, 0,0%);
+border:none</string>
+           </property>
+           <property name="text">
+            <string>No Disponible</string>
+           </property>
+           <attribute name="buttonGroup">
+            <string notr="true">ButGroupStatus</string>
+           </attribute>
           </widget>
          </widget>
          <widget class="QWidget" name="tab">
@@ -1260,6 +1262,6 @@ border:none</string>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup"/>
+  <buttongroup name="ButGroupStatus"/>
  </buttongroups>
 </ui>

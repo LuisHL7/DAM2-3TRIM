@@ -43,6 +43,7 @@ class MiApp(QtWidgets.QMainWindow):
                     self.ventana_login.LbLoad.setText('Cargando...')
                 self.hide()
                 var.ventana_principal = Productos.Iniciar(nombre)
+                var.fecha = var.ventana_principal.ventana_principal.TxtDate
                 var.ventana_principal.show()
             else:
                 win32api.MessageBox(0, "El usuario o contraseña ingresada es incorrecto", "Error")
