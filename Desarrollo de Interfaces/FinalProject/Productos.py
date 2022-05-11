@@ -85,7 +85,8 @@ class Iniciar(QtWidgets.QMainWindow):
 
     def cargarProveedor(self):
         try:
-            campos = ['ALTEZA', 'GLORIA', 'LA HACIENDA', 'GALLO', 'NUTRIBÉN', 'COLA-CAO', 'NESTLE', 'GULLÓN', 'HACENDADO']
+            campos = ['ALTEZA', 'GLORIA', 'LA HACIENDA', 'GALLO', 'NUTRIBÉN', 'COLA-CAO', 'NESTLE', 'GULLÓN',
+                      'HACENDADO']
             for i in campos:
                 self.ventana_principal.CbSupplier.addItem(i)
             self.ventana_principal.CbSupplier.setCurrentIndex(-1)  # No muestra ningún valor inicial.
@@ -174,6 +175,26 @@ class Iniciar(QtWidgets.QMainWindow):
         else:
             print("Error al mostrar los productos por categoría: ", query.lastError().text())
 
+    # Función que se encarga de llenar el QTableWidget con los valores que se obtienen de la BD.
+    def mostrarEnTabla(self, query):
+        index = 0
+        cont = 0
+        while query.next():
+            self.ventana_principal.cliTable.setRowCount(index + 1)
+            self.ventana_principal.cliTable.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query.value(0))))
+            self.ventana_principal.cliTable.setItem(index, 1, QtWidgets.QTableWidgetItem(query.value(1)))
+            self.ventana_principal.cliTable.setItem(index, 2, QtWidgets.QTableWidgetItem(query.value(2)))
+            self.ventana_principal.cliTable.setItem(index, 3, QtWidgets.QTableWidgetItem(query.value(3)))
+            self.ventana_principal.cliTable.setItem(index, 4, QtWidgets.QTableWidgetItem(str(query.value(4))))
+            self.ventana_principal.cliTable.setItem(index, 5, QtWidgets.QTableWidgetItem(str(query.value(5))))
+            self.ventana_principal.cliTable.setItem(index, 6, QtWidgets.QTableWidgetItem(str(query.value(6))))
+            self.ventana_principal.cliTable.setItem(index, 7, QtWidgets.QTableWidgetItem(query.value(7)))
+            self.ventana_principal.cliTable.setItem(index, 8, QtWidgets.QTableWidgetItem(query.value(8)))
+            index += 1
+            cont += 1
+        if cont == 0:
+            win32api.MessageBox(0, "El valor ingresado no existe. Por favor, ingrese un valor existente.", "Error")
+
     # Función que busca un producto por su id y carga las cajas de texto con sus datos.
     def buscarProducto(self):
         cont = 0
@@ -204,25 +225,28 @@ class Iniciar(QtWidgets.QMainWindow):
         else:
             print("Error al buscar un producto: ", query.lastError().text())
 
-    # Función que se encarga de llenar el QTableWidget con los valores que se obtienen de la BD.
-    def mostrarEnTabla(self, query):
-        index = 0
-        cont = 0
-        while query.next():
-            self.ventana_principal.cliTable.setRowCount(index + 1)
-            self.ventana_principal.cliTable.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query.value(0))))
-            self.ventana_principal.cliTable.setItem(index, 1, QtWidgets.QTableWidgetItem(query.value(1)))
-            self.ventana_principal.cliTable.setItem(index, 2, QtWidgets.QTableWidgetItem(query.value(2)))
-            self.ventana_principal.cliTable.setItem(index, 3, QtWidgets.QTableWidgetItem(query.value(3)))
-            self.ventana_principal.cliTable.setItem(index, 4, QtWidgets.QTableWidgetItem(str(query.value(4))))
-            self.ventana_principal.cliTable.setItem(index, 5, QtWidgets.QTableWidgetItem(str(query.value(5))))
-            self.ventana_principal.cliTable.setItem(index, 6, QtWidgets.QTableWidgetItem(str(query.value(6))))
-            self.ventana_principal.cliTable.setItem(index, 7, QtWidgets.QTableWidgetItem(query.value(7)))
-            self.ventana_principal.cliTable.setItem(index, 8, QtWidgets.QTableWidgetItem(query.value(8)))
-            index += 1
-            cont += 1
-        if cont == 0:
-            win32api.MessageBox(0, "El valor ingresado no existe. Por favor, ingrese un valor existente.", "Error")
+    # INSERTAR
+    def insertarProducto(self):
+        query = QtSql.QSqlQuery()
+        query.prepare("INSERT INTO productos (nombre, categoria, fecha_ingreso, cantidad, precio_costo, precio_venta, estado, proveedor) "
+                      "VALUES ( :nombre, :categoria, :fecha_ingreso, :cantidad, :precio_costo, :precio_venta, :estado, :proveedor)")
+        self.loadData(self)
+        if query.exec_():
+            print("Registro insertado correctamente")
+            self.mostrarProductos()
+            self.ventana_principal.LbStatus.setText('Producto con nombre ' + str(self[0]) + ' ha sido insertado.')
+        else:
+            print("Error al insertar: ", query.lastError().text())
+
+    def loadData(self, query):
+        query.bindValue(':nombre', str(self[0]))
+        query.bindValue(':categoria', str(self[1]))
+        query.bindValue(':fecha_ingreso', str(self[2]))
+        query.bindValue(':cantidad', self[3])
+        query.bindValue(':precio_costo', self[4])
+        query.bindValue(':precio_venta', self[5])
+        query.bindValue(':estado', self[6])
+        query.bindValue(':proveedor', self[7])
 
     def limpiarValores(self):
         self.ventana_principal.TxtId.setText('')
