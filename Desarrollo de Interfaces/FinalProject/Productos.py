@@ -1,4 +1,5 @@
 # Paquetes Importados
+import self as self
 import win32api
 from PyQt5 import QtWidgets, QtSql, QtCore
 from PyQt5.QtCore import Qt
@@ -62,6 +63,17 @@ class Iniciar(QtWidgets.QMainWindow):
             self.buscarProductosPorEstado()
         elif self.ventana_principal.CbSearch.currentText() == "PROVEEDOR":
             self.buscarProductosPorProveedor()
+
+    def eligeEstado(self):
+        estado = ""
+        try:
+            if self.ventana_principal.RbAvailable.isChecked():
+                estado = 'DISPONIBLE'
+            if self.ventana_principal.RbNotAvailable.isChecked():
+                estado = 'NO DISPONIBLE'
+            return estado
+        except Exception as error:
+            print('Error al seleccionar el estado:', error)
 
     # Cargar Datos
     # Función que carga valores dentro del QComboBox
@@ -226,27 +238,42 @@ class Iniciar(QtWidgets.QMainWindow):
             print("Error al buscar un producto: ", query.lastError().text())
 
     # INSERTAR
-    def insertarProducto(self):
+
+    def altaProductos(self):
+        try:
+            # Preparamos el registro
+            var.estado = self.eligeEstado()
+            nuevoProducto = [self.ventana_principal.TxtName.text(), self.ventana_principal.CbCategory.currentText(),
+                             self.ventana_principal.TxtDate.text(), self.ventana_principal.TxtStock.text(),
+                             self.ventana_principal.TxtPriceC.text(), self.ventana_principal.TxtPriceV.text(),
+                             var.estado, self.ventana_principal.CbSupplier.currentText()]
+            self.insertarProducto(nuevoProducto)
+            self.limpiarValores()
+        except Exception as error:
+            print('Error alta cliente: %s ' % str(error))
+
+    def insertarProducto(self, nuevoProducto):
         query = QtSql.QSqlQuery()
-        query.prepare("INSERT INTO productos (nombre, categoria, fecha_ingreso, cantidad, precio_costo, precio_venta, estado, proveedor) "
-                      "VALUES ( :nombre, :categoria, :fecha_ingreso, :cantidad, :precio_costo, :precio_venta, :estado, :proveedor)")
-        self.loadData(self)
+        query.prepare(
+            "INSERT INTO productos (nombre, categoria, fecha_ingreso, cantidad, precio_costo, precio_venta, estado, proveedor) "
+            "VALUES ( :nombre, :categoria, :fecha_ingreso, :cantidad, :precio_costo, :precio_venta, :estado, :proveedor)")
+        self.loadData(nuevoProducto, query)
         if query.exec_():
             print("Registro insertado correctamente")
             self.mostrarProductos()
-            self.ventana_principal.LbStatus.setText('Producto con nombre ' + str(self[0]) + ' ha sido insertado.')
+            self.ventana_principal.LbStatus.setText('Producto con nombre ' + str(nuevoProducto[0]) + ' ha sido insertado.')
         else:
             print("Error al insertar: ", query.lastError().text())
 
-    def loadData(self, query):
-        query.bindValue(':nombre', str(self[0]))
-        query.bindValue(':categoria', str(self[1]))
-        query.bindValue(':fecha_ingreso', str(self[2]))
-        query.bindValue(':cantidad', self[3])
-        query.bindValue(':precio_costo', self[4])
-        query.bindValue(':precio_venta', self[5])
-        query.bindValue(':estado', self[6])
-        query.bindValue(':proveedor', self[7])
+    def loadData(self, nuevoProducto, query):
+        query.bindValue(':nombre', str(nuevoProducto[0]))
+        query.bindValue(':categoria', str(nuevoProducto[1]))
+        query.bindValue(':fecha_ingreso', str(nuevoProducto[2]))
+        query.bindValue(':cantidad', str(nuevoProducto[3]))
+        query.bindValue(':precio_costo', str(nuevoProducto[4]))
+        query.bindValue(':precio_venta', str(nuevoProducto[5]))
+        query.bindValue(':estado', str(nuevoProducto[6]))
+        query.bindValue(':proveedor', str(nuevoProducto[7]))
 
     def limpiarValores(self):
         self.ventana_principal.TxtId.setText('')
