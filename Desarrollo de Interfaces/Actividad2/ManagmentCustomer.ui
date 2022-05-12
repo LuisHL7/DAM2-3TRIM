@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1138</width>
-    <height>843</height>
+    <width>1107</width>
+    <height>815</height>
    </rect>
   </property>
   <property name="font">
@@ -22,8 +22,8 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>20</y>
+      <x>-10</x>
+      <y>10</y>
       <width>1121</width>
       <height>681</height>
      </rect>
@@ -42,7 +42,7 @@
       <property name="geometry">
        <rect>
         <x>690</x>
-        <y>590</y>
+        <y>440</y>
         <width>90</width>
         <height>40</height>
        </rect>
@@ -71,7 +71,7 @@
       <property name="geometry">
        <rect>
         <x>290</x>
-        <y>590</y>
+        <y>440</y>
         <width>90</width>
         <height>40</height>
        </rect>
@@ -484,12 +484,15 @@
        <rect>
         <x>40</x>
         <y>220</y>
-        <width>1031</width>
-        <height>351</height>
+        <width>811</width>
+        <height>151</height>
        </rect>
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
       </property>
       <property name="dragEnabled">
        <bool>false</bool>
@@ -609,7 +612,7 @@
       <property name="geometry">
        <rect>
         <x>390</x>
-        <y>590</y>
+        <y>440</y>
         <width>90</width>
         <height>40</height>
        </rect>
@@ -638,7 +641,7 @@
       <property name="geometry">
        <rect>
         <x>490</x>
-        <y>590</y>
+        <y>440</y>
         <width>90</width>
         <height>40</height>
        </rect>
@@ -667,7 +670,7 @@
       <property name="geometry">
        <rect>
         <x>590</x>
-        <y>590</y>
+        <y>440</y>
         <width>90</width>
         <height>40</height>
        </rect>
@@ -716,6 +719,9 @@
     <property name="text">
      <string/>
     </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -723,7 +729,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1138</width>
+     <width>1107</width>
      <height>21</height>
     </rect>
    </property>

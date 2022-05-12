@@ -1,9 +1,11 @@
 # Paquetes Importados
+import easygui
+
+import Eventos
 import Productos
 import var
 import sys
 from datetime import datetime
-
 
 # Función salir que muestra una ventana de diálogo al usuario con dos botones, preguntando si está seguro de salir de
 # la aplicación o no.
@@ -42,3 +44,11 @@ def cargarFecha(self):
         var.dialogo_fecha.hide()
     except Exception as error:
         print('Error cargar fecha: %s' % str(error))
+
+
+def abrirExplorador():
+    file = easygui.fileopenbox()
+
+
+
+

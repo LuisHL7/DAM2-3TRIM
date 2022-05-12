@@ -1,12 +1,14 @@
 # Paquetes Importados
+import zipfile
+import easygui
 import win32api
 from PyQt5 import QtWidgets, QtSql, QtCore
 from PyQt5.QtCore import Qt
-
 import Eventos
 import var
 from datetime import datetime
 from main_form import Ui_MainWindowMain
+import pandas as pd
 
 # Clase que inicializa la ventana principal a la cual se accede después de introducir el usuario y contraseña correctos.
 from windowsCalendarL import Ui_Dialog
@@ -20,7 +22,6 @@ class Iniciar(QtWidgets.QMainWindow):
         # Mensaje de Bienvenida con el nombre del usuario que ingresó.
         self.ventana_principal.LbWelcome.setText('Bienvenido, ' + nombre)
         self.ventana_principal.LbWelcome2.setText('Bienvenido, ' + nombre)
-        self.ventana_principal.LbWelcome3.setText('Bienvenido, ' + nombre)
         # Cargar Datos
         self.cargarCampos()  # Cargando el QcomboBox
         self.cargarCategoria()
@@ -38,6 +39,12 @@ class Iniciar(QtWidgets.QMainWindow):
         self.ventana_principal.BtnSave.clicked.connect(self.altaProductos)
         self.ventana_principal.BtnUpdate.clicked.connect(self.modificaProductos)
         self.ventana_principal.BtnDelete.clicked.connect(self.borrarProducto)
+        # Barra de estado
+        self.ventana_principal.actionOpen.triggered.connect(Eventos.abrirExplorador)
+        # self.ventana_principal.actionPrint.triggered.connect(Printer.Printer.reportCli)
+        self.ventana_principal.actionImport.triggered.connect(self.importarDatos)
+        self.ventana_principal.actionExport.triggered.connect(self.exportarBD)
+        self.ventana_principal.actionCloseTB.triggered.connect(Eventos.salir)
 
     # Función que de acuerdo a la opción que elijas en el QComboBox te mostrará un texto dentro del LineEdit.
     def campoDeBusqueda(self):
@@ -341,6 +348,31 @@ class Iniciar(QtWidgets.QMainWindow):
         self.ventana_principal.ButGroupStatus.setExclusive(False)
         self.ventana_principal.RbAvailable.setChecked(False)
         self.ventana_principal.RbNotAvailable.setChecked(False)
+
+    #  Importar
+    def importarDatos(self):
+        archivoExcel = easygui.fileopenbox()
+        self.importarDatosDeExcel(archivoExcel)
+
+    # Instalar openpyxl sino o va a importar
+    def importarDatosDeExcel(self, nombreArchivo):
+        df = pd.read_excel(nombreArchivo)
+        if df.size == 0:
+            return print("El archivo está vació.")
+        for row in df.itertuples():
+            productoNuevo = [row.NOMBRE, row.CATEGORIA, str(datetime.date(row.FECHA_INGRESO))[:18], str(row.CANTIDAD),
+                             str(row.PRECIO_COSTO), str(row.PRECIO_VENTA), row.ESTADO, row.PROVEEDOR]
+            self.insertarProducto(productoNuevo)
+
+    def exportarBD(self):
+        archivoBD = easygui.fileopenbox()
+        self.exportarBDEnZip(archivoBD)
+
+    def exportarBDEnZip(self, archivoBD):
+        jungle_zip = zipfile.ZipFile(str(archivoBD) + '.zip', 'w')
+        jungle_zip.write(str(archivoBD), compress_type=zipfile.ZIP_DEFLATED)
+        self.ventana_principal.LbStatus.setText('Información: El archivo fue exportado en zip correctamente.')
+        jungle_zip.close()
 
 
 class Fecha(QtWidgets.QDialog):
