@@ -1,5 +1,4 @@
 # Paquetes Importados
-import self as self
 import win32api
 from PyQt5 import QtWidgets, QtSql, QtCore
 from PyQt5.QtCore import Qt
@@ -36,6 +35,9 @@ class Iniciar(QtWidgets.QMainWindow):
         self.ventana_principal.BtnClean.clicked.connect(self.limpiarValores)
         self.ventana_principal.BtnClose.clicked.connect(Eventos.salir)
         self.ventana_principal.BtnCalendar.clicked.connect(Eventos.abrirCalendario)
+        self.ventana_principal.BtnSave.clicked.connect(self.altaProductos)
+        self.ventana_principal.BtnUpdate.clicked.connect(self.modificaProductos)
+        self.ventana_principal.BtnDelete.clicked.connect(self.borrarProducto)
 
     # Función que de acuerdo a la opción que elijas en el QComboBox te mostrará un texto dentro del LineEdit.
     def campoDeBusqueda(self):
@@ -238,34 +240,67 @@ class Iniciar(QtWidgets.QMainWindow):
             print("Error al buscar un producto: ", query.lastError().text())
 
     # INSERTAR
-
+    # Función que inserta los datos en la BD
     def altaProductos(self):
         try:
-            # Preparamos el registro
-            var.estado = self.eligeEstado()
-            nuevoProducto = [self.ventana_principal.TxtName.text(), self.ventana_principal.CbCategory.currentText(),
-                             self.ventana_principal.TxtDate.text(), self.ventana_principal.TxtStock.text(),
-                             self.ventana_principal.TxtPriceC.text(), self.ventana_principal.TxtPriceV.text(),
-                             var.estado, self.ventana_principal.CbSupplier.currentText()]
-            self.insertarProducto(nuevoProducto)
+            self.insertarProducto(self.leerDatos())
             self.limpiarValores()
         except Exception as error:
-            print('Error alta cliente: %s ' % str(error))
+            print('Error al insertar un producto: %s ' % str(error))
 
+    # Función que ejecuta la sentencia en la BD para el registro un producto
     def insertarProducto(self, nuevoProducto):
         query = QtSql.QSqlQuery()
         query.prepare(
-            "INSERT INTO productos (nombre, categoria, fecha_ingreso, cantidad, precio_costo, precio_venta, estado, proveedor) "
-            "VALUES ( :nombre, :categoria, :fecha_ingreso, :cantidad, :precio_costo, :precio_venta, :estado, :proveedor)")
-        self.loadData(nuevoProducto, query)
+            "INSERT INTO productos (nombre, categoria, fecha_ingreso, cantidad, precio_costo, precio_venta, "
+            "estado, proveedor) VALUES ( :nombre, :categoria, :fecha_ingreso, :cantidad, :precio_costo, "
+            ":precio_venta, :estado, :proveedor)")
+        self.cargarDatos(nuevoProducto, query)
         if query.exec_():
-            print("Registro insertado correctamente")
             self.mostrarProductos()
-            self.ventana_principal.LbStatus.setText('Producto con nombre ' + str(nuevoProducto[0]) + ' ha sido insertado.')
+            self.ventana_principal.LbStatus.setText(
+                'Producto con nombre ' + str(nuevoProducto[0]).lower() + ' ha sido insertado.')
         else:
             print("Error al insertar: ", query.lastError().text())
 
-    def loadData(self, nuevoProducto, query):
+    # ACTUALIZAR
+    # Función que actualiza los datos en la BD
+    def modificaProductos(self):
+        try:
+            self.actualizaProductos(self.leerDatos())
+            self.limpiarValores()
+        except Exception as error:
+            print('Error al actualizar un producto: %s ' % str(error))
+
+    # Función que ejecuta la sentencia en la BD para actualizar un producto
+    def actualizaProductos(self, productoModificado):
+        query = QtSql.QSqlQuery()
+        id = self.ventana_principal.TxtId.text()
+        query.prepare(
+            'UPDATE productos SET  nombre=:nombre, categoria=:categoria, fecha_ingreso=:fecha_ingreso,'
+            ' cantidad=:cantidad, precio_costo=:precio_costo, precio_venta=:precio_venta, estado=:estado,'
+            ' proveedor=:proveedor WHERE codigo=:codigo')
+        query.bindValue(':codigo', int(id))
+        self.cargarDatos(productoModificado, query)
+        if query.exec_():
+            self.mostrarProductos()
+            self.ventana_principal.LbStatus.setText('Producto con nombre ' + str(productoModificado[0]).lower() +
+                                                    ' ha sido actualizado.')
+        else:
+            print('Error al actualizar el producto ', query.lastError().text())
+
+    # Función que recoge los valores de la caja de texto y los almacena en un array, para luego insertarlos en la BD
+    def leerDatos(self):
+        # Preparamos el registro
+        var.estado = self.eligeEstado()
+        nuevoProducto = [self.ventana_principal.TxtName.text().upper(), self.ventana_principal.CbCategory.currentText(),
+                         self.ventana_principal.TxtDate.text(), self.ventana_principal.TxtStock.text(),
+                         self.ventana_principal.TxtPriceC.text(), self.ventana_principal.TxtPriceV.text(),
+                         var.estado, self.ventana_principal.CbSupplier.currentText()]
+        return nuevoProducto
+
+    # Función que guarda los datos que están almacenados en el array.
+    def cargarDatos(self, nuevoProducto, query):
         query.bindValue(':nombre', str(nuevoProducto[0]))
         query.bindValue(':categoria', str(nuevoProducto[1]))
         query.bindValue(':fecha_ingreso', str(nuevoProducto[2]))
@@ -275,6 +310,25 @@ class Iniciar(QtWidgets.QMainWindow):
         query.bindValue(':estado', str(nuevoProducto[6]))
         query.bindValue(':proveedor', str(nuevoProducto[7]))
 
+    # Eliminar
+    def borrarProducto(self):
+        try:
+            self.eliminarProducto(self.ventana_principal.TxtId.text())
+            self.limpiarValores()
+        except Exception as error:
+            print('Error cargar clientes: %s ' % str(error))
+
+    def eliminarProducto(self, codigo):
+        query = QtSql.QSqlQuery()
+        query.prepare('delete from productos where codigo =:codigo')
+        query.bindValue(':codigo', codigo)
+        if query.exec_():
+            self.mostrarProductos()
+            self.ventana_principal.LbStatus.setText('Producto con código ' + codigo + ' ha sido eliminado.')
+        else:
+            print("Error al eliminar el producto: ", query.lastError().text())
+
+    # Función que limpia las cajas de texto.
     def limpiarValores(self):
         self.ventana_principal.TxtId.setText('')
         self.ventana_principal.TxtName.setText('')
