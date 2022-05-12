@@ -32,4 +32,9 @@ class BlueFragment : Fragment() {
         _binding = null
     }
 
+    /* Los fragments duran más que sus views, por eso deben limpiarse las referencias a su binding class
+        * Es también por esto por lo que no se deben declarar como lateinit. Ya que esto llevaría a no poder
+        * reasignarlos a null cuando la vista se destruye, llevando a fugas de memoria (memory leaks)
+        * https://stackoverflow.com/questions/70065804/why-not-use-lateinit-modifier-in-andrioid-fragment-data-binding */
+
 }
