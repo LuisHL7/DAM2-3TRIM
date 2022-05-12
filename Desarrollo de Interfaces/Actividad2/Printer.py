@@ -16,7 +16,7 @@ class Printer:
             Printer.cabecera()
             var.rep.setFont('Helvetica-Bold', size=9)
             textListado = 'List Clients'
-            var.rep.drawString(255, 735, textListado )
+            var.rep.drawString(255, 735, textListado)
             var.rep.line(45, 730, 525, 730)
             itemCli = ['CODIGO', 'DNI', 'LASTNAME', 'NAME', 'HIGTHDATE']
             var.rep.drawString(45, 710, itemCli[0])
@@ -33,11 +33,11 @@ class Printer:
                 j = 690
                 while query.next():
                     var.rep.drawString(i, j, str(query.value(0)))
-                    var.rep.drawString(i+30, j, str(query.value(1)))
-                    var.rep.drawString(i+130, j, str(query.value(2)))
-                    var.rep.drawString(i+280, j, str(query.value(3)))
-                    var.rep.drawRightString(i+470, j, str(query.value(4)))
-                    j=j-30
+                    var.rep.drawString(i + 30, j, str(query.value(1)))
+                    var.rep.drawString(i + 130, j, str(query.value(2)))
+                    var.rep.drawString(i + 280, j, str(query.value(3)))
+                    var.rep.drawRightString(i + 470, j, str(query.value(4)))
+                    j = j - 30
             Printer.pie(textListado)
             var.rep.save()
             rootPath = ".\\informes"

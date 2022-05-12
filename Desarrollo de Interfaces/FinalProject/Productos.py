@@ -5,6 +5,7 @@ import win32api
 from PyQt5 import QtWidgets, QtSql, QtCore
 from PyQt5.QtCore import Qt
 import Eventos
+import Printer
 import var
 from datetime import datetime
 from main_form import Ui_MainWindowMain
@@ -41,7 +42,7 @@ class Iniciar(QtWidgets.QMainWindow):
         self.ventana_principal.BtnDelete.clicked.connect(self.borrarProducto)
         # Barra de estado
         self.ventana_principal.actionOpen.triggered.connect(Eventos.abrirExplorador)
-        # self.ventana_principal.actionPrint.triggered.connect(Printer.Printer.reportCli)
+        self.ventana_principal.actionPrint.triggered.connect(Printer.reporteProducto)
         self.ventana_principal.actionImport.triggered.connect(self.importarDatos)
         self.ventana_principal.actionExport.triggered.connect(self.exportarBD)
         self.ventana_principal.actionCloseTB.triggered.connect(Eventos.salir)
