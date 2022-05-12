@@ -1,6 +1,9 @@
 # Paquetes Importados
 import zipfile
+from _ast import Import
+
 import easygui
+import openpyxl
 import win32api
 from PyQt5 import QtWidgets, QtSql, QtCore
 from PyQt5.QtCore import Qt
@@ -74,6 +77,7 @@ class Iniciar(QtWidgets.QMainWindow):
         elif self.ventana_principal.CbSearch.currentText() == "PROVEEDOR":
             self.buscarProductosPorProveedor()
 
+    # Función que selecciona el estado y retorna el texto del radio button.
     def eligeEstado(self):
         estado = ""
         try:
@@ -86,7 +90,7 @@ class Iniciar(QtWidgets.QMainWindow):
             print('Error al seleccionar el estado:', error)
 
     # Cargar Datos
-    # Función que carga valores dentro del QComboBox
+    # Función que carga los posibles campos dentro del QComboBox que se usarán para consultar la información
     def cargarCampos(self):
         try:
             campos = ['CODIGO', 'NOMBRE', 'CATEGORIA', 'ESTADO', 'PROVEEDOR']
@@ -96,6 +100,7 @@ class Iniciar(QtWidgets.QMainWindow):
         except Exception as error:
             print('Error al cargar el QComboBox de los campos de búsqueda: %s ' % str(error))
 
+    # Función que carga las categorías dentro del QComboBox.
     def cargarCategoria(self):
         try:
             campos = ['CEREALES', 'LEGUMBRES', 'VERDURAS', 'LECHE', 'PATATAS', 'DULCES', 'GALLETAS', 'LECHE']
@@ -105,6 +110,7 @@ class Iniciar(QtWidgets.QMainWindow):
         except Exception as error:
             print('Error al cargar el QComboBox de las categorías: %s ' % str(error))
 
+    # Función que carga los proveedores dentro del QComboBox.
     def cargarProveedor(self):
         try:
             campos = ['ALTEZA', 'GLORIA', 'LA HACIENDA', 'GALLO', 'NUTRIBÉN', 'COLA-CAO', 'NESTLE', 'GULLÓN',
@@ -319,13 +325,16 @@ class Iniciar(QtWidgets.QMainWindow):
         query.bindValue(':proveedor', str(nuevoProducto[7]))
 
     # Eliminar
+    # Función que recoge el código del producto y llama a la función eliminar producto
+    # y después de ejecutarse se limpian los campos.
     def borrarProducto(self):
         try:
             self.eliminarProducto(self.ventana_principal.TxtId.text())
             self.limpiarValores()
         except Exception as error:
-            print('Error cargar clientes: %s ' % str(error))
+            print('Error al borrar un producto: %s ' % str(error))
 
+    # Función que realiza la sentencia de eliminar un determinado producto.
     def eliminarProducto(self, codigo):
         query = QtSql.QSqlQuery()
         query.prepare('delete from productos where codigo =:codigo')
@@ -351,11 +360,14 @@ class Iniciar(QtWidgets.QMainWindow):
         self.ventana_principal.RbNotAvailable.setChecked(False)
 
     #  Importar
+    # Función que abre el explorador de archivos y seleccionando el archivo excel,
+    # y llama a la función importarDatosDeExcel()
     def importarDatos(self):
         archivoExcel = easygui.fileopenbox()
         self.importarDatosDeExcel(archivoExcel)
 
-    # Instalar openpyxl sino o va a importar
+    # Función que importa los datos del exel.
+    # Nota: Se necesita instalar manualmente el openpyxl para funcionar.
     def importarDatosDeExcel(self, nombreArchivo):
         df = pd.read_excel(nombreArchivo)
         if df.size == 0:
@@ -365,10 +377,13 @@ class Iniciar(QtWidgets.QMainWindow):
                              str(row.PRECIO_COSTO), str(row.PRECIO_VENTA), row.ESTADO, row.PROVEEDOR]
             self.insertarProducto(productoNuevo)
 
+    # Exportar
+    # Función que abre el explorador de archivos y llama a la función exportarBDEnZip().
     def exportarBD(self):
         archivoBD = easygui.fileopenbox()
         self.exportarBDEnZip(archivoBD)
 
+    # Función que exporta la bd en zip.
     def exportarBDEnZip(self, archivoBD):
         jungle_zip = zipfile.ZipFile(str(archivoBD) + '.zip', 'w')
         jungle_zip.write(str(archivoBD), compress_type=zipfile.ZIP_DEFLATED)

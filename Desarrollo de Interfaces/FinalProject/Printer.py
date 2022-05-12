@@ -1,13 +1,13 @@
+# Paquetes Importados
 from datetime import datetime
-
 from PyQt5 import QtSql
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 import os
-
 import var
 
 
+# Función que muestra todos los datos del reporte.
 def reporteProducto():
     try:
         var.rep = canvas.Canvas('informes/listadoProductos.pdf', pagesize=A4)
@@ -48,6 +48,7 @@ def reporteProducto():
         print('Error al crear el reporte %s' % str(error))
 
 
+# Función que muestra la cabecera del reporte
 def cabecera():
     try:
         logo = 'images/logote.png'
@@ -65,6 +66,7 @@ def cabecera():
         print('Error en la cabecera del informe %s' % str(error))
 
 
+# Función que muestra el pie de página del reporte.
 def pie(textListado):
     try:
         var.rep.line(50, 50, 525, 50)
