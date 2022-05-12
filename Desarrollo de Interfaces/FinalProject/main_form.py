@@ -592,7 +592,7 @@ class Ui_MainWindowMain(object):
         self.toolBar.addAction(self.actionCloseTB)
 
         self.retranslateUi(MainWindowMain)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindowMain)
 
     def retranslateUi(self, MainWindowMain):

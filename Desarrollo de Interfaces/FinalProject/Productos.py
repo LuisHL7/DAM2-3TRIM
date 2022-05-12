@@ -1,7 +1,5 @@
 # Paquetes Importados
 import zipfile
-from _ast import Import
-
 import easygui
 import openpyxl
 import win32api
@@ -49,6 +47,9 @@ class Iniciar(QtWidgets.QMainWindow):
         self.ventana_principal.actionImport.triggered.connect(self.importarDatos)
         self.ventana_principal.actionExport.triggered.connect(self.exportarBD)
         self.ventana_principal.actionCloseTB.triggered.connect(Eventos.salir)
+        # Barra de menú
+        self.ventana_principal.actionAbrir.triggered.connect(Eventos.abrirExplorador)
+        self.ventana_principal.actionSalir.triggered.connect(Eventos.salir)
 
     # Función que de acuerdo a la opción que elijas en el QComboBox te mostrará un texto dentro del LineEdit.
     def campoDeBusqueda(self):
