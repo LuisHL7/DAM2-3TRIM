@@ -1,7 +1,7 @@
 # Paquetes Importados
 import zipfile
 import easygui
-import openpyxl
+# import openpyxl
 import win32api
 from PyQt5 import QtWidgets, QtSql, QtCore
 from PyQt5.QtCore import Qt
