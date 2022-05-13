@@ -19,7 +19,7 @@ class Ej02DynamicFragmentsActivity : AppCompatActivity() {
         val blueFragment = BlueFragment()
 
         fragment = redFragment
-        
+
         binding.BtnCambiar.setOnClickListener { fragment = if(fragment == redFragment) blueFragment else redFragment }
 
 
