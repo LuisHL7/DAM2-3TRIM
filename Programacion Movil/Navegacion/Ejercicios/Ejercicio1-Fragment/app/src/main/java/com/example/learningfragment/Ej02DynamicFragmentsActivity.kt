@@ -3,6 +3,7 @@ package com.example.learningfragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import com.example.learningfragment.databinding.ActivityEj02DynamicFragmentsBinding
 
 
@@ -20,7 +21,14 @@ class Ej02DynamicFragmentsActivity : AppCompatActivity() {
 
         fragment = redFragment
 
-        binding.BtnCambiar.setOnClickListener { fragment = if(fragment == redFragment) blueFragment else redFragment }
+        binding.BtnCambiar.setOnClickListener { fragment = if(fragment == redFragment) blueFragment else redFragment
+
+//            Método tradicional de cambiar un fragment.
+//        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, fragment).commit()
+//            Añadiendo la dependecia : implementation "androidx.fragment:fragment-ktx:1.4.1"
+        supportFragmentManager.commit{addToBackStack(null)
+            replace(R.id.fragmentContainerView, fragment)}
+        }
 
 
     }
