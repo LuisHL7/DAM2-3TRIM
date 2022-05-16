@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ExerNavegacionArgumentos</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cambiar_fragment">Cambiar Fragment</string>
+    <string name="enviar_numero">Enviar Número</string>
+    <string name="ingrese_numero">Ingrese número</string>
+</resources>
