@@ -1,0 +1,2 @@
+1.- Porque se retorna el binding.root cuando creamos la vista del fragment.
+2.- Porque se cuando se destruye la vista se tiene que poner a null el binding del fragment.
