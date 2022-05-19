@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Huapaya_Luis_examen2t</string>
+    <string name="title_activity_botton_navigation">BottonNavigation</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="this_is_dashboard_fragment">This is dashboard Fragment</string>
+    <string name="this_is_a_home_fragment">This is a home fragment</string>
+    <string name="this_is_a_notifications_fragment">This is a notifications fragment</string>
+    <string name="navigation_drawer">Navigation Drawer</string>
+    <string name="bottom_navigation">Bottom Navigation</string>
+    <string name="mensaje">Mensaje</string>
 </resources>
