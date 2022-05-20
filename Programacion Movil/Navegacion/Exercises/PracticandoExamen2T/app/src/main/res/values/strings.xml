@@ -24,4 +24,5 @@
     <string name="ganador">Ganador</string>
     <string name="tres_en_raya">Tres en Raya</string>
     <string name="inicio">Inicio</string>
+    <string name="pulsa_para_empezar">Pulsa para Empezar</string>
 </resources>

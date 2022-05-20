@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.example.huapaya_luis_examen2t.databinding.FragmentTresenrayaBinding
 
 class TresEnRayaFragment : Fragment() {
@@ -19,6 +20,14 @@ class TresEnRayaFragment : Fragment() {
     ): View {
         _binding = FragmentTresenrayaBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.BtnEmpezar.setOnClickListener {
+            Navigation.findNavController(view).navigate(TresEnRayaFragmentDirections.actionNavTresenrayaToNavGanador())
+        }
     }
 
     override fun onDestroyView() {
