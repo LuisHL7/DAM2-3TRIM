@@ -39,7 +39,7 @@ class BottonNavigation : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.navigation_drawer, menu)
+        menuInflater.inflate(R.menu.navigation_bottom_options, menu)
         return true
     }
 

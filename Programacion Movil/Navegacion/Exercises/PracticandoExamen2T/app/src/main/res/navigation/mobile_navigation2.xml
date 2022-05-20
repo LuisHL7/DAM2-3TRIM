@@ -3,23 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation2"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_inicio">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.huapaya_luis_examen2t.drawerNav.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_inicio"
+        android:name="com.example.huapaya_luis_examen2t.drawerNav.ui.inicio.InicioFragment"
+        android:label="@string/inicio"
+        tools:layout="@layout/fragment_inicio" >
+        <action
+            android:id="@+id/action_nav_inicio_to_nav_tresenraya"
+            app:destination="@id/nav_tresenraya" />
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.huapaya_luis_examen2t.drawerNav.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_tresenraya"
+        android:name="com.example.huapaya_luis_examen2t.drawerNav.ui.tresenraya.TresEnRayaFragment"
+        android:label="@string/tres_en_raya"
+        tools:layout="@layout/fragment_tresenraya" >
+        <action
+            android:id="@+id/action_nav_tresenraya_to_nav_ganador"
+            app:destination="@id/nav_ganador" />
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.huapaya_luis_examen2t.drawerNav.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_ganador"
+        android:name="com.example.huapaya_luis_examen2t.drawerNav.ui.ganador.GanadorFragment"
+        android:label="@string/ganador"
+        tools:layout="@layout/fragment_ganador" />
 </navigation>

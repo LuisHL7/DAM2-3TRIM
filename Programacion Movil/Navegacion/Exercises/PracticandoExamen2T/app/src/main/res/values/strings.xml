@@ -21,4 +21,7 @@
     <string name="navigation_drawer">Navigation Drawer</string>
     <string name="bottom_navigation">Bottom Navigation</string>
     <string name="mensaje">Mensaje</string>
+    <string name="ganador">Ganador</string>
+    <string name="tres_en_raya">Tres en Raya</string>
+    <string name="inicio">Inicio</string>
 </resources>

@@ -1,15 +1,15 @@
-package com.example.huapaya_luis_examen2t.drawerNav.ui.gallery
+package com.example.huapaya_luis_examen2t.drawerNav.ui.tresenraya
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.huapaya_luis_examen2t.databinding.FragmentGalleryBinding
+import com.example.huapaya_luis_examen2t.databinding.FragmentTresenrayaBinding
 
-class GalleryFragment : Fragment() {
+class TresEnRayaFragment : Fragment() {
 
-    private var _binding: FragmentGalleryBinding? = null
+    private var _binding: FragmentTresenrayaBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -17,7 +17,7 @@ class GalleryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentGalleryBinding.inflate(inflater, container, false)
+        _binding = FragmentTresenrayaBinding.inflate(inflater, container, false)
         return binding.root
     }
 

@@ -1,15 +1,15 @@
-package com.example.huapaya_luis_examen2t.drawerNav.ui.slideshow
+package com.example.huapaya_luis_examen2t.drawerNav.ui.inicio
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.huapaya_luis_examen2t.databinding.FragmentSlideshowBinding
+import com.example.huapaya_luis_examen2t.databinding.FragmentInicioBinding
 
-class SlideshowFragment : Fragment() {
+class InicioFragment : Fragment() {
 
-    private var _binding: FragmentSlideshowBinding? = null
+    private var _binding: FragmentInicioBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -17,7 +17,7 @@ class SlideshowFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
+        _binding = FragmentInicioBinding.inflate(inflater, container, false)
         return binding.root
     }
 
