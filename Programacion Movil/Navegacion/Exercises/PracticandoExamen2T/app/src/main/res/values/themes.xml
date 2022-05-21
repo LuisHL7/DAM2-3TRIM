@@ -22,4 +22,10 @@
     <style name="Theme.Huapaya_Luis_examen2t.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Huapaya_Luis_examen2t.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="tictactoebutton">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:textSize">30sp</item>
+    </style>
 </resources>

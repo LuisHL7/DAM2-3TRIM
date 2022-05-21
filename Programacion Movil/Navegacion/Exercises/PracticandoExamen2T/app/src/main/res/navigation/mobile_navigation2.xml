@@ -29,5 +29,10 @@
         android:id="@+id/nav_ganador"
         android:name="com.example.huapaya_luis_examen2t.drawerNav.ui.ganador.GanadorFragment"
         android:label="@string/ganador"
-        tools:layout="@layout/fragment_ganador" />
+        tools:layout="@layout/fragment_ganador">
+        <argument
+            android:name="jugador"
+            app:argType="string"
+            android:defaultValue="null" />
+    </fragment>
 </navigation>

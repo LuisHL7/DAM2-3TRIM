@@ -25,4 +25,6 @@
     <string name="tres_en_raya">Tres en Raya</string>
     <string name="inicio">Inicio</string>
     <string name="pulsa_para_empezar">Pulsa para Empezar</string>
+    <string name="reiniciar">Reiniciar</string>
+    <string name="ganador_text">GANADOR:</string>
 </resources>
