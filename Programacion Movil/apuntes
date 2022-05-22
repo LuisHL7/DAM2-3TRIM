@@ -2,5 +2,14 @@
  Para recuperar el navControler de un NavHostFragment(FragmentContainerView) desde la activity que lo contiene: 
  val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
  val navController = navHostFragment.navController
-2.- Para usar directions y safeArgs:
-'androidx.navigation.safeargs.kotlin'	
+
+ Dependencias que se añaden cuando lo creas a travez del ide.
+ implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
+ implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
+
+Nota: Actualizar las dependecias de navigation es muy importante
+
+ Dependencias para el safeargs: En el segundo build.gradle
+ En el segundo build.gradle: id 'androidx.navigation.safeargs.kotlin'
+ En el primer build.gradle: id 'androidx.navigation.safeargs.kotlin' version '2.4.1' apply false
+

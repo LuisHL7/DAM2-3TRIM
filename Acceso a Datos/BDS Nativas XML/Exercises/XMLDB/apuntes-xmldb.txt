@@ -1,0 +1,7 @@
+1.- Conecta sin problemas el xmldb, lo mejor para llamar a un xml es usar collection en vez de doc.
+Ejm:
+
+-String consultaXQuery = "for $libro in collection('/db/ColeccionesXML/ColeccionPruebas')/bib/libro return $libro/titulo";
+                
+-String consultaXQuery = "for $book in collection('/db/ColeccionesXML/ColeccionPruebas')/bib/libro order by $book/@año return <libro> {$book/@año} {$book/titulo }</libro>";
+                

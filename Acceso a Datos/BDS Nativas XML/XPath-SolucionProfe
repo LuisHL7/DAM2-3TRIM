@@ -1,0 +1,187 @@
+1. Nombre de la Universidad
+/universidad/nombre/text()
+
+2. País de la Universidad
+/universidad/pais/text()
+
+3. Nombres de las Carreras
+/universidad/carreras/*/nombre/text()
+//carreras//nombre/text()
+
+4. Años de plan de estudio de las carreras
+/universidad/carreras/*/plan/text()
+/universidad/carreras//plan/text()
+//carreras//plan/text()
+
+/universidad/carreras/carrera/concat(nombre,' - PLAN: ',plan)
+ //carreras/carrera/concat(nombre,'- PLAN: ',plan)
+
+5. Nombres de todos los alumnos.
+/universidad/alumnos/*/nombre/text()
+/universidad/alumnos/alumno/concat(nombre,' ',apellido1,' ',apellido2)
+//alumnos/alumno/concat(nombre,'',apellido1,'',apellido2)
+
+6. Identificadores de todas las carreras.
+/universidad/carreras/carrera/data(@id)
+/universidad//carrera/@id/data()
+//carreras//@id/data()
+pero NO - //carreras//data(@id)
+		/universidad//carrera/data(@id)
+
+7. Datos de la carrera cuyo id es c01.
+/universidad/carreras/carrera[@id="c01"]
+//carreras/carrera[@id="c01"]
+
+8. Centro en que se estudia de la carrera cuyo id es c02.
+/universidad/carreras/carrera[@id="c02"]/centro/text()
+//carreras/carrera[@id="c02"]/centro
+//carreras/carrera[@id="c02"]/centro/data()
+
+9. Nombre de las carreras que tengan subdirector.
+/universidad/carreras/carrera[subdirector]/nombre/text()
+ //carreras/carrera[subdirector]/nombre/data()
+
+10. Nombre de los alumnos que estén haciendo proyecto.
+/universidad/alumnos/alumno[estudios[proyecto]]/nombre/text()
+//alumnos//estudios[proyecto]/../nombre/data()
+
+11. Códigos de las carreras en las que hay algún alumno matriculado
+/universidad/alumnos/alumno//carrera/data(@codigo)
+//alumnos//estudios/carrera/@codigo/data()
+
+12. Apellidos y Nombre de los alumnos con beca.
+/universidad/alumnos/alumno[@beca="si"]/concat(apellido1, " ",apellido2, ", ", nombre)
+
+//alumnos/alumno[@beca="si"]/concat(nombre,' ',apellido1,' ',apellido2)
+
+13. Nombre de las asignaturas de la titulación c04.
+/universidad/asignaturas/asignatura[@titulacion="c04"]/nombre/text()
+//asignaturas/asignatura[@titulacion="c04"]/nombre/data()
+
+14. Nombre de las asignaturas de segundo trimestre.
+/universidad/asignaturas/asignatura[trimestre=2]/nombre/text()
+//asignaturas/asignatura[trimestre=2]/nombre/data()
+
+15. Nombre de las asignaturas que no tienen 4 créditos teóricos.
+/universidad/asignaturas/asignatura[creditos_teoricos!=4]/nombre/text()
+//asignaturas/asignatura[not(creditos_teoricos=4)]/nombre/data()
+
+16. Código de la carrera que estudia el último alumno.
+/universidad/alumnos/alumno[last()]//carrera/data(@codigo)
+//alumnos/alumno[last()]//carrera/@codigo/data()
+
+17. Código de las asignaturas que estudian mujeres.
+/universidad/alumnos/alumno[sexo="Mujer"]//asignatura/data(@codigo)
+--para quitar repetidos:
+distinct-values(//alumnos/alumno[sexo="Mujer"]//asignatura/data(@codigo))
+
+18. Nombre de los alumnos que matriculados en la asignatura a02.
+/universidad/alumnos/alumno[estudios[asignaturas[asignatura[@codigo="a02"]]]]/nombre/text()
+
+//alumnos/alumno/estudios/asignaturas/asignatura[@codigo="a02"]/../../../nombre/data()
+
+19. Códigos de las carreras que estudian los alumnos matriculados en alguna asignatura.
+sin comprobación que tienen asignaturas:
+/universidad/alumnos//carrera/data(@codigo)
+
+con comprobación:
+distinct-values(/universidad/alumnos/alumno[estudios[asignaturas[asignatura]]]//carrera/data(@codigo))
+
+--alumnos matriculados en alguna asignatura
+//alumnos//estudios[asignaturas]/../nombre/data()
+
+
+20. Apellidos de todos los hombres.
+/universidad/alumnos/alumno[sexo="Hombre"]/concat(apellido1, " ", apellido2)
+
+//alumnos/alumno[sexo="Hombre"]/concat(apellido1, ' ', apellido2)
+
+-----Gracias Armando por tu aportación con el siguiente link:
+------------------------------------------------------------------
+
+**** https://www.freeformatter.com/xpath-tester.html#ad-output ****
+
+21. Nombre de la carrera que estudia Víctor Manuel.
+//carrera[@id = //alumno[nombre = "Víctor Manuel"]//carrera/data(@codigo) ]/nombre
+
+//carreras/carrera[@id=data(//alumnos/alumno[nombre="Víctor Manuel"]/estudios/carrera/@codigo)]/nombre 
+
+22. Nombre de las asignaturas que estudia Luisa.
+//asignatura[@id = //alumno[nombre = "Luisa"]//asignatura/data(@codigo) ]/nombre
+
+//asignaturas/asignatura[@id=data(//alumnos/alumno[nombre="Luisa"]/estudios/asignaturas/asignatura/@codigo)]/nombre
+
+23. Primer apellido de los alumnos matriculados en Ingeniería del Software
+//alumno[estudios[asignaturas[asignatura[@codigo= //asignatura[nombre = "Ingeniería del Software"]/data(@id) ]]]]/apellido1/text()
+
+//alumnos/alumno/estudios/asignaturas/asignatura[@codigo=data(//asignaturas/asignatura[nombre="Ingeniería del Software"]/@id)]/../../../apellido1 
+
+24. Nombre de las carreras que estudian los alumnos matriculados en la asignatura Tecnología de los Alimentos.
+
+
+//carrera[@id= //alumno[estudios[asignaturas[asignatura[@codigo= //asignatura[nombre = "Tecnología de los Alimentos"]/data(@id) ]]]]//carrera/data(@codigo)]/nombre/text()
+
+
+//carreras/carrera[@id=data(//alumnos/alumno/estudios/asignaturas/asignatura[@codigo=data(//asignaturas/asignatura[nombre="Tecnología de los Alimentos"]/@id)]/../../carrera/@codigo)]/nombre 
+
+25. Nombre de los alumnos matriculados en carreras que no tienen subdirector.
+//carrera[not (subdirector)]/data(@id)
+//alumno[estudios[carrera[@codigo = //carrera[not (subdirector)]/data(@id)]]]/nombre/text()
+
+//alumnos/alumno/estudios/carrera[@codigo=data(//carreras/carrera[not (subdirector)]/@id)]/../../nombre/text()
+
+26. Nombre de los alumnos matriculados en asignaturas con 0 créditos prácticos y que estudien la carrera de I.T. Informática.
+ //alumno[estudios[carrera[@codigo = //carrera[nombre = "I.T. Informática"]/data(@id)]]][estudios[asignaturas[asignatura[@codigo = //asignatura[creditos_practicos = 0]/data(@id)]]]]/nombre/text()
+
+//alumno[estudios[carrera[@codigo = //carrera[nombre = "I.T. Informática"]/data(@id)]]][estudios[asignaturas[asignatura[@codigo = //asignatura[creditos_practicos = 0]/data(@id)]]]]/nombre/text()
+
+//alumnos/alumno/estudios[carrera[@codigo =data(//carreras/carrera[nombre="I.T. Informática"]/@id)]][asignaturas/asignatura[@codigo=data(//asignatura[creditos_practicos = 0]/@id)]]/../nombre
+
+27. Nombre de los alumnos que estudian carreras cuyos planes son anteriores a 2002.
+//alumno[estudios[carrera[@codigo = //carrera[plan < 2002]/data(@id)]]]/nombre/text()
+
+//alumnos/alumno/estudios/carrera[@codigo =data(//carreras/carrera[plan<2002]/@id)]/../../nombre/data()
+
+Resoluciones de ejercicios 21..27 con XQuery
+---------------------------------------------
+21. Nombre de la carrera que estudia Víctor Manuel.
+for $id in data(//alumnos/alumno[nombre="Víctor Manuel"]/estudios/carrera/@codigo)
+       let$carrera:=//carreras/carrera[@id=$id]/nombre
+       return$carrera
+
+22. Nombre de las asignaturas que estudia Luisa.
+ for $id in data(//alumnos/alumno[nombre="Luisa"]/estudios/asignaturas/asignatura/@codigo)
+       let $asignaturas := //asignaturas/asignatura[@id=$id]/nombre
+       return $asignaturas
+
+23. Primer apellido de los alumnos matriculados en Ingeniería del Software
+for $codigo in data(//asignaturas/asignatura[nombre="Ingeniería del Software"]/@id)
+       let $alumnos := //alumnos/alumno/estudios/asignaturas/asignatura[@codigo=$codigo]/../../../apellido1
+       return  $alumnos
+ 
+24. Nombre de las carreras que estudian los alumnos matriculados en la asignatura Tecnología de los Alimentos.
+ for $codAsignatura in data(//asignaturas/asignatura[nombre="Tecnología de los Alimentos"]/@id)
+        let $codCarreras := data(//alumnos/alumno/estudios/asignaturas/asignatura[@codigo=$codAsignatura]/../../carrera/@codigo), $carreras := //carreras/carrera[@id=$codCarreras]/nombre
+        return  <CARRERAS>{$carreras}</CARRERAS>
+
+25. Nombre de los alumnos matriculados en carreras que no tienen subdirector.
+for $codCarrera in data(//carreras/carrera[not (subdirector)]/@id)
+
+let $codCarrera := data(//carreras/carrera[not (subdirector)]/@id)
+       let $alumnos := //alumnos/alumno/estudios/carrera[@codigo=$codCarrera]/../../nombre
+       return $alumnos
+
+26. Nombre de los alumnos matriculados en asignaturas con 0 créditos prácticos y que estudien la carrera de I.T. Informática.
+ for $codCarrera in data(//carreras/carrera[nombre="I.T. Informática"]/@id)
+ 
+ let $codCarrera := data(//carreras/carrera[nombre="I.T. Informática"]/@id)
+      let $asignaturas0creditos := data(//asignatura[creditos_practicos = 0]/@id)
+      let $alumnos := //alumnos/alumno/estudios[carrera[@codigo =$codCarrera]][asignaturas/asignatura[@codigo=$asignaturas0creditos]]/../nombre
+      return $alumnos
+
+27. Nombre de los alumnos que estudian carreras cuyos planes son anteriores a 2002.
+ for $codCarrera in data(//carreras/carrera[plan<2002]/@id)
+
+ let $codCarrera := data(//carreras/carrera[plan<2002]/@id)
+       let $alumnos := //alumnos/alumno/estudios/carrera[@codigo =$codCarrera]/../../nombre
+       return $alumnos
