@@ -5,6 +5,7 @@ import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQDataSource;
 import javax.xml.xquery.XQException;
 import javax.xml.xquery.XQExpression;
+import javax.xml.xquery.XQMetaData;
 import javax.xml.xquery.XQPreparedExpression;
 import javax.xml.xquery.XQResultSequence;
 import net.xqj.exist.ExistXQDataSource;
@@ -21,6 +22,8 @@ public class Main {
      contabilice cuántos hay.
     */
     public static void main(String[] args) {
+        
+        
  
         XQConnection connection = ConexionXQJ.conectar();
         if (connection == null) {

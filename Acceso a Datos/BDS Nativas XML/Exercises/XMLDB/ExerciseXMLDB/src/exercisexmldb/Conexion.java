@@ -1,4 +1,8 @@
-package testeandoconexion;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package exercisexmldb;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Logger;
@@ -7,13 +11,10 @@ import org.xmldb.api.*;
 import org.xmldb.api.base.*;
 
 /**
- * Realiza la conexción con la ubicación donde estan los xml que van a ser
- * léídos
  *
- * @author Luis
+ * @author Jeff
  */
-public class ConexionXMLDB {
-
+public class Conexion {
     public static Collection conectar() throws NoSuchMethodException, InstantiationException {
 
         try {
@@ -23,7 +24,7 @@ public class ConexionXMLDB {
                 database = (Database) cl.getDeclaredConstructor().newInstance();//Instanciando bd
                 DatabaseManager.registerDatabase(database); //Registro del driver
                 Collection col = DatabaseManager.getCollection(
-                        "xmldb:exist://localhost:8080/exist/xmlrpc/db/ColeccionesXML/ColeccionPruebas",
+                        "xmldb:exist://localhost:8080/exist/xmlrpc/db/ColeccionEmpleados",
                         "admin", ""); //uri-user-pass
                 return col;
             } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
@@ -39,4 +40,5 @@ public class ConexionXMLDB {
         }
         return null;
     }
+    
 }

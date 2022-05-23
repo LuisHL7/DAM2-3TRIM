@@ -1,16 +1,19 @@
-package testeandoconexion;
+package testeandoconexionxmldb;
 
-import org.xmldb.api.base.*;
-import org.xmldb.api.modules.*;
+import org.xmldb.api.base.Collection;
+import org.xmldb.api.base.Resource;
+import org.xmldb.api.base.ResourceIterator;
+import org.xmldb.api.base.ResourceSet;
+import org.xmldb.api.base.XMLDBException;
+import org.xmldb.api.modules.XPathQueryService;
 
 /**
- * Realizo la consulta despúes de conectarme satisfactoriamente
- * @author Luis
+ *
+ * @author Jeff
  */
-public class Main {
-
-    public static void main(String[] args) throws NoSuchMethodException, InstantiationException {
-        Collection col = ConexionXMLDB.conectar();
+public class MainXMLDB {
+    public static void main(String[] args) throws Exception {
+           Collection col = ConexionXMLDB.conectar();
         if (col != null) {
             try {
 //              String consultaXPath = "/bib/libro/titulo"; FUNCIONA
@@ -18,7 +21,8 @@ public class Main {
                 XPathQueryService servicio;
                 servicio = (XPathQueryService) col.getService("XPathQueryService", "1.0");
                 //ResourceSet result = servicio.query("for $dep in /departamentos/DEP_ROW return $dep");
-                ResourceSet result = servicio.query("for $libro in collection('/db/ColeccionesXML/ColeccionPruebas')/bib/libro return $libro/titulo");
+                ResourceSet result = servicio.query("for $book in collection('/db/ColeccionesXML/ColeccionPruebas')/bib/libro/titulo return $book");
+
                 ResourceIterator i = result.getIterator();  // recorrer los datos del recurso. 
                 if (!i.hasMoreResources()) { // comprueba si hay valores
                     System.out.println("La consulta no devuelve nada o está mal escrita");
@@ -39,5 +43,6 @@ public class Main {
             System.out.println("Error en la conexión. Comprueba datos.");
         }
     }
-
+    
+   
 }
