@@ -1,0 +1,116 @@
+• show dbs
+• use {bd}
+• show collections
+• db.dropDatabase()
+• help
+• db.nombreCol.find()
+
+CRUD (Create, Read, Update, Delete)
+➢ Create
+❑insert
+db.alumnos.insert({nombre:'Isabel',telefono:'654858585',curso:'1º DAM',nota:8});
+db.alumnos.insert(
+{ _id:1,nombre:'Pepe’,
+telefono:'654999999’,
+direccion:{calle: 'Avda. Galicia',numero: 33,ciudad: 'Vigo’},
+curso:'2º DAM’,
+nota:9});
+❑Save
+db.alumnos.save({nombre:'Eloy',telefono:699333333,curso:'2º DAM', nota:7});
+
+CRUD (Create, Read, Update, Delete)
+➢ Read -> db.nombreCol.find({filtro},{campo})
+• db.alumnos.find().sort({nombre:-1});//ordenación todos descendente
+• db.alumnos.find().sort({nombre:1});//ordenación todos ascendente
+• db.alumnos.find({nombre:'Juan’});//Juan
+• db.alumnos.find({nombre:'Juan'},{telefono:1});//el teléfono de Juan
+• db.alumnos.find({nombre:'Juan'},{telefono:0});//todo de Juan menos el teléfono
+• db.alumnos.find({curso:'1º DAM’});//todos 1DAM
+• db.alumnos.find({curso:'1º DAM'},{nombre:1,nota:1});//nombre y nota 1DAM
+• db.alumnos.find({},{nombre:1,nota:1});//nombre, nota de todos
+• db.alumnos.find({},{_id:0,nombre:1,nota:1});//no queremos que se muestre _id
+• db.alumnos.find({curso:'2º DAM'}).count();
+• db.alumnos.find().pretty();//resultado mucho más legible
+• db.alumnos.findOne();//si el comando encuentra más de un resultado que cumpla las condiciones de la consulta, tan solo nos devolverá el primero
+
+CRUD (Create, Read, Update, Delete)
+➢ Read
+❑ Búsquedas de Comparación
+• $eq,$ne
+• db.alumnos.find({nota:{$ne:7}});//docs con nota No = 7
+• $gt,$lt
+• $gte,$lte
+• db.alumnos.find({nota:{$gte:7}});//nota >= 7
+• $in,$nin
+• db.alumnos.find({nota:{$in:[6,8,9]}});
+• db.alumnos.find({nota:{$nin:[6,8,9]}});
+• $type //MongoDB puede guardar documentos con distintos tipos en el mismo campo
+db.alumnos.insert({nombre:'Lucía', telefono:619858585, curso:'1ºDAM', nota: 'ocho'});
+db.alumnos.insert({nombre:'Patricia', telefono:623585858, curso:'1ºDAM', nota: 'nueve'});
+• db.alumnos.find({nota:{$type:2}},{nombre:1,nota:1});
+• db.alumnos.find({nota:{$type:1}},{nombre:1,nota:1});
+
+CRUD (Create, Read, Update, Delete)
+➢ Read
+❑ Búsquedad Lógicos
+• $or
+db.alumnos.find({$or:[{nota:{$gt:8}},{curso:'1º DAM'}]});//alumnos de 1º DAM o los que tienen una nota mayor que 8.
+• $and//se maneja implícitamente, no es necesario especificarlo.
+db.alumnos.find({$and:[{nota:7},{curso:'2º DAM'}]}); db.alumnos.find({nota:7,curso:'2º DAM'});
+db.alumnos.find({nota:{$gte:7}},{curso:'2º DAM'});
+• $not - solo usarse con otros operadores $gt o $lt
+db.alumnos.find({nota:{$not:{$gt:8}}});
+• $nor – acepta 2 o más valores
+db.alumnos.find({$nor:[{nota:{$gt:8}},{curso:'1º DAM'}]});
+• $exist – busca la existencia de un campo
+-- dos alumnos sin nota
+db.alumnos.insert({nombre:'Alumno1',telefono:699111111,curso:'2º DAM'});
+db.alumnos.insert({nombre:'Alumno2',telefono:699222222,curso:'2º DAM'});
+db.alumnos.find({nota:{$exists:false}});
+db.alumnos.find({nota:{$exists:true}});
+
+CRUD (Create, Read, Update, Delete)
+➢ Update
+db.nombreColeccion.update(
+filtroBusqueda, //condición localización registros/documentos
+cambios_a_Realizar, //el resultado final del documento – los campos que no aparecen, se eliminan
+{
+upsert: booleano,
+multi: booleano
+});
+db.alumnos.update({nombre: "Ana"}, {nombre: "Ana María"})
+• $set - actualizar con nuevas propiedades
+db.alumnos.update({nombre: "Beatriz"}, {$set: {nota: 8, direccion:"Vigo"}});
+• OPCIÓN multi - cambio se realizará en todos los resultados
+… "}},{multi: true})
+• OPCIÓN upsert - inserta el documento si este no existe. Se comprueba toda la consulta en lugar de solo el _id.
+• $unset - eliminar propiedades de un documento
+db.alumnos.update({nombre: “Ana María"}, {$unset: {direccion:"Bilbao"}}, {multi: true})
+• $inc //incrementa en una cantidad numérica especificada el valor del campo aincrementar.
+db.alumnos.update({nombre: "Ana María"}, {$inc: {nota: 2}})
+
+CRUD (Create, Read, Update, Delete)
+➢ Delete
+• remove({nombre: valor}) - borra un documento que cumpla una condición
+db.alumnos.remove({telefono:'654858585’});//elimina doc con ese teléfono
+• remove() – borrar todos los elementos de la colección
+db.alumnos.remove({})
+• drop() – borra la colección
+db.alumnos.drop()
+
+En el ej. de la colección libros, habrá un array con los temas:
+db.libros.insert({codigo: 1, titulo: 'Código Limpio', precio: 35, editorial: 'Anaya', autor: 'Robert C. Martín’,
+temas: ['Nombres con sentido', 'Funciones', 'Comentarios’, 'Formato']})
+db.libros.insert({codigo: 2, titulo: 'Patrones de Diseño en Java’, precio: 32, editorial: 'Eni', autor: 'Laurent Debrauwer', temas:
+['Patrones de construcción', 'Patrones de construcción', 'Patrones de comportamiento']})
+db.libros.insert({codigo: 3, titulo: 'Java y Eclipse', precio: 40, editorial: 'Eni', autor: 'Fréderic Delechamp’,
+temas: ['Diseño','Conexion', 'MVC']})
+• Modificar
+o $set – modificar un campo
+o $push – añade elto. a un array
+o $addToSet – agrega eltos. a un array solo si estos no existen
+o $each – con los 2 anteriores para añadir varios
+o $pop – elimina primer (-1) u (otro) último
+o $pull – elimina el q cumpla el filtro
+db.libros.update({}, {$pull:{temas: {$in: ["Diseño", "XML"]}}},{multi: true})
+o $pullAll – todos los eltos.
