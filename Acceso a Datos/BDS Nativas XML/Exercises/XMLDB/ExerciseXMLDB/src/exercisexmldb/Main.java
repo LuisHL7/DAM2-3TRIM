@@ -13,7 +13,7 @@ package exercisexmldb;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-    Operaciones.crearColeccionYSubirFichero();
+            Menu.menuPrincipal();
     }
 
 }

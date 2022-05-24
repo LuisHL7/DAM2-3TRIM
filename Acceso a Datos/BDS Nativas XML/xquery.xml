@@ -33,6 +33,7 @@ return $book
 9.-Por cada libro, listar agrupado en un elemento <result> su titulo y autores
 for $book in doc("Collection/libros.xml")/bib/libro
 return <result> {$book/titulo} {$book/autor }</result>
-10.-Por cada libro, obtener su título y el número de autores, agrupados en un elemento <libro>
+10.-Por cada libro, obtener su título y el número de autores, agrupados en un elemento 
+<libro>
 for $book in doc("Collection/libros.xml")/bib/libro
 return <libro> {$book/titulo}<numero-de-autorers>{count($book/autor)}</numero-de-autorers></libro>
