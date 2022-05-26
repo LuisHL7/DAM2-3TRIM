@@ -2,11 +2,12 @@ package com.example.huapaya_luis_examenfinalzip
 
 import android.graphics.Color
 import android.os.Bundle
-import android.view.*
-import android.widget.CheckBox
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.huapaya_luis_examenfinalzip.databinding.ElementoBinding
@@ -16,6 +17,7 @@ class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
+    private var chequeados = booleanArrayOf(false, false, false)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,57 +29,128 @@ class FirstFragment : Fragment() {
 
 
         with(binding.recyclerView1) {
-            val listAlbum: MutableList<Album> = ArrayList()
             binding.btnRock.setOnClickListener {
+                chequeados[0] = true
+                chequeados[1] = false
+                chequeados[2] = false
                 binding.recyclerView1.visibility = View.VISIBLE
-                adapter = Custom1Adapter(cargarDatosRock())
+                adapter = Custom1Adapter(updateListado())
                 layoutManager = LinearLayoutManager(requireContext())
-//                binding.cbRock.isChecked = true
-//                binding.cbBlues.isChecked = false
-//                binding.cbJazz.isChecked = false
             }
+//                binding.recyclerView1.visibility = View.VISIBLE
+//                adapter = Custom1Adapter(cargarDatosRock())
+//                layoutManager = LinearLayoutManager(requireContext())
+////                binding.cbRock.isChecked = true
+////                binding.cbBlues.isChecked = false
+////                binding.cbJazz.isChecked = false
             binding.btnBlues.setOnClickListener {
+                chequeados[0] = false
+                chequeados[1] = true
+                chequeados[2] = false
                 binding.recyclerView1.visibility = View.VISIBLE
-                adapter = Custom1Adapter(cargarDatosBlues())
-                layoutManager = LinearLayoutManager(requireContext());
+                adapter = Custom1Adapter(updateListado())
+                layoutManager = LinearLayoutManager(requireContext())
 //                binding.cbRock.isChecked = false
 //                binding.cbBlues.isChecked = true
 //                binding.cbJazz.isChecked = false
+//                binding.cbJazz.isChecked = false
             }
             binding.btnJazz.setOnClickListener {
+                chequeados[0] = false
+                chequeados[1] = false
+                chequeados[2] = true
                 binding.recyclerView1.visibility = View.VISIBLE
-                adapter = Custom1Adapter(cargarDatosJazz())
-                layoutManager = LinearLayoutManager(requireContext());
+                adapter = Custom1Adapter(updateListado())
+                layoutManager = LinearLayoutManager(requireContext())
 //                binding.cbRock.isChecked = false
 //                binding.cbBlues.isChecked = false
 //                binding.cbJazz.isChecked = true
             }
 
-
             binding.cbRock.setOnCheckedChangeListener { buttonView, isChecked ->
-                listAlbum.addAll(cargarDatosRock());
+                when (buttonView.id) {
+                    R.id.cbRock -> {
+                        chequeados[0] = isChecked
+                    }
+                }
                 binding.recyclerView1.visibility = View.VISIBLE
-                adapter = Custom1Adapter(listAlbum)
+                adapter = Custom1Adapter(updateListado())
                 layoutManager = LinearLayoutManager(requireContext())
             }
-
             binding.cbBlues.setOnCheckedChangeListener { buttonView, isChecked ->
-                listAlbum.addAll(cargarDatosBlues());
+                when (buttonView.id) {
+                    R.id.cbBlues -> {
+                        chequeados[1] = isChecked
+                    }
+                }
                 binding.recyclerView1.visibility = View.VISIBLE
-                adapter = Custom1Adapter(listAlbum)
-                layoutManager = LinearLayoutManager(requireContext());
+                adapter = Custom1Adapter(updateListado())
+                layoutManager = LinearLayoutManager(requireContext())
             }
             binding.cbJazz.setOnCheckedChangeListener { buttonView, isChecked ->
-                listAlbum.addAll(cargarDatosJazz());
+                when (buttonView.id) {
+                    R.id.cbJazz -> {
+                        chequeados[2] = isChecked
+                    }
+                }
                 binding.recyclerView1.visibility = View.VISIBLE
-                adapter = Custom1Adapter(listAlbum)
-                layoutManager = LinearLayoutManager(requireContext());
+                adapter = Custom1Adapter(updateListado())
+                layoutManager = LinearLayoutManager(requireContext())
             }
+//            binding.cbRock.setOnCheckedChangeListener { buttonView, isChecked ->
+//                listAlbum.addAll(cargarDatosRock());
+//                binding.recyclerView1.visibility = View.VISIBLE
+//                adapter = MyOnCheckedChangeListener.Custom1Adapter(listAlbum)
+//                layoutManager = LinearLayoutManager(requireContext())
+//            }
+//
+//            binding.cbBlues.setOnCheckedChangeListener { buttonView, isChecked ->
+//                listAlbum.addAll(cargarDatosBlues());
+//                binding.recyclerView1.visibility = View.VISIBLE
+//                adapter = Custom1Adapter(listAlbum)
+//                layoutManager = LinearLayoutManager(requireContext());
+//            }
+//            binding.cbJazz.setOnCheckedChangeListener { buttonView, isChecked ->
+//                listAlbum.addAll(cargarDatosJazz());
+//                binding.recyclerView1.visibility = View.VISIBLE
+//                adapter = Custom1Adapter(listAlbum)
+//                layoutManager = LinearLayoutManager(requireContext());
+//            }
         }
 
         return binding.root
     }
 
+
+    private fun updateListado(): MutableList<Album> {
+        val listAlbum: MutableList<Album> = ArrayList()
+        if (chequeados[0]) listAlbum.addAll(cargarDatosRock())
+        if (chequeados[1]) listAlbum.addAll(cargarDatosBlues())
+        if (chequeados[2]) listAlbum.addAll(cargarDatosJazz())
+        return listAlbum
+    }
+
+    private fun showButtons() {
+        binding.btnRock.visibility = View.VISIBLE
+        binding.btnBlues.visibility = View.VISIBLE
+        binding.btnJazz.visibility = View.VISIBLE
+        binding.cbRock.visibility = View.GONE
+        binding.cbBlues.visibility = View.GONE
+        binding.cbJazz.visibility = View.GONE
+    }
+
+    private fun showChecks() {
+        binding.cbRock.visibility = View.VISIBLE
+        binding.cbBlues.visibility = View.VISIBLE
+        binding.cbJazz.visibility = View.VISIBLE
+        binding.btnRock.visibility = View.GONE
+        binding.btnBlues.visibility = View.GONE
+        binding.btnJazz.visibility = View.GONE
+
+        if (chequeados[0]) binding.cbRock.isChecked = true
+        else if (chequeados[1]) binding.cbBlues.isChecked = true
+        else if (chequeados[2]) binding.cbJazz.isChecked = true
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -94,21 +167,11 @@ class FirstFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.itemSimple -> {
-                binding.btnRock.visibility = View.VISIBLE
-                binding.btnBlues.visibility = View.VISIBLE
-                binding.btnJazz.visibility = View.VISIBLE
-                binding.cbRock.visibility = View.GONE
-                binding.cbBlues.visibility = View.GONE
-                binding.cbJazz.visibility = View.GONE
+                showButtons()
                 true
             }
             R.id.itemCompuesto -> {
-                binding.cbRock.visibility = View.VISIBLE
-                binding.cbBlues.visibility = View.VISIBLE
-                binding.cbJazz.visibility = View.VISIBLE
-                binding.btnRock.visibility = View.GONE
-                binding.btnBlues.visibility = View.GONE
-                binding.btnJazz.visibility = View.GONE
+                showChecks()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -127,6 +190,7 @@ class FirstFragment : Fragment() {
             val image = binding.imageMusic
             val info = binding.imageInfo
             val borrar = binding.imageRemove
+
 
             init {
                 mView.setOnClickListener {
