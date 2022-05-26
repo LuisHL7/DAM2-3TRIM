@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.huapaya_luis_examenfinalzip.MainActivity">
+
+    <item
+        android:id="@+id/itemSimple"
+        android:orderInCategory="100"
+        android:title="@string/simple"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/itemCompuesto"
+        android:orderInCategory="100"
+        android:title="@string/compuesto"
+        app:showAsAction="ifRoom" />
+</menu>

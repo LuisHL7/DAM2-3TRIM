@@ -13,3 +13,12 @@ Nota: Actualizar las dependecias de navigation es muy importante
  En el segundo build.gradle: id 'androidx.navigation.safeargs.kotlin'
  En el primer build.gradle: id 'androidx.navigation.safeargs.kotlin' version '2.4.1' apply false
 
+Examen Test 1:
+Para añadir una opción en el menú en el caso de simple y compuesta se tendria que crear un menú por cada opción osea un xml y depues de crear copiar este namespace
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+para poder usar el app:showAsAction="ifRoom" que hace que se muestre como lo queremos.
+
+Para ordenar bien los botones puse guideline horizontal, centre primero el boton de en medio y luego los de su costado      
+
+layoutManager = GridLayoutManager(requireContext(), 3)
+
