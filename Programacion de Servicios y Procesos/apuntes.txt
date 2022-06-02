@@ -1,0 +1,13 @@
+Sockets:
+TCP: Basado en la conexion, garantiza que los datos enviafos desde un extremo de la conexión lleguen al otro extremo 
+y en el mismo orden que fueron enviados. De lo contrario se notifica un error.
+UDP: No está basado en la conexión. Envia paquetes de datos independientes, denominados datagramas, de una aplicación
+a otra; el orden la entrega no es importante y no se garantiza la recepción de los paquetes enviados.
+
+-En TCP una aplicación servidor vincula un socket a un número de puerto específico, de esa manera un cliente puede
+comunicarse con el servidor enviándole peticiones a través de ese puerto.
+-En la comunicación basada en datagramas, como UDP, el paquete contiene el número de puerto de su destino y UDP 
+enruta el paquete a la aplicación adecuada.
+
+Dudas:
+1.- A que se refiere con que TCP es basado en la conexión?
