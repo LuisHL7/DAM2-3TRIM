@@ -8,27 +8,17 @@ import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) throws IOException {
-
-
-        System.out.println("Programa cliente iniciado");
+        System.out.println("Program client started");
         Socket client = new Socket("localhost", 6000);
 
-        // CREO FLUJO DE ENTRADA AL SERVIDOR
-        DataOutputStream output = new DataOutputStream(client.getOutputStream());
         Scanner scan = new Scanner(System.in);
-        System.out.println("Enter the number: ");
-        int number = scan.nextInt();
-        //send a number to server
-        output.writeInt(number);
+        System.out.print("Enter the number: ");
+        DataOutputStream output = new DataOutputStream(client.getOutputStream());
+        output.writeInt(scan.nextInt());
 
-        //CREO FLUJO DE ENTRADA AL SERVIDOR
         DataInputStream input = new DataInputStream(client.getInputStream());
-       //EL SERVIDOR ME ENVIA UN MENSAJE
         System.out.println("Sending to server: \n\t " + input.readInt());
 
-
-
-        //CERRAR STREAMS Y SOCKETS
         input.close();
         output.close();
         client.close();

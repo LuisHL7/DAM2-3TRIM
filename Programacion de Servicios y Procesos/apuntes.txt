@@ -11,3 +11,4 @@ enruta el paquete a la aplicación adecuada.
 
 Dudas:
 1.- A que se refiere con que TCP es basado en la conexión?
+2.- El socket cliente cuando se le especifica el puerto, es el puerto del servidor? Definitivamente es correcto
