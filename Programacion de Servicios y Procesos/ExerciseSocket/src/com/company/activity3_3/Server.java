@@ -11,7 +11,7 @@ public class Server {
     public static void main(String[] args) throws IOException {
         ServerSocket server = new ServerSocket(6000);
         System.out.println("Waiting to client.....");
-        Socket clientConnect = clientConnect =server.accept();
+        Socket clientConnect = server.accept();
 
         //CREO FLUJO DE SALIDA AL CLIENTE
         DataOutputStream output = new DataOutputStream(clientConnect.getOutputStream());

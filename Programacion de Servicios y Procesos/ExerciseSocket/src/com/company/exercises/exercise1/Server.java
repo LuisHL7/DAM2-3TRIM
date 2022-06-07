@@ -13,21 +13,15 @@ public class Server {
         System.out.println("Waiting to client.....");
         Socket clientConnect = server.accept();
         String string;
-        DataInputStream input;
-        DataOutputStream output = null;
+        DataInputStream input = new DataInputStream(clientConnect.getInputStream());
+        DataOutputStream output = new DataOutputStream(clientConnect.getOutputStream());
         do {
-            input = new DataInputStream(clientConnect.getInputStream());
             string = input.readUTF();
-            if (!string.equals("*")) {
-                output = new DataOutputStream(clientConnect.getOutputStream());
-                output.writeUTF("La cadena " + string + " tiene " + string.length() + " caracteres");
-            }
+            if (!string.equals("*")) output.writeUTF("La cadena " + string + " tiene " + string.length() + " caracteres");
         } while (!string.equals("*")) ;
 
         input.close();
-        if(output != null){
-            output.close();
-        }
+        output.close();
         clientConnect.close();
         System.out.println("Closed Server.");
         server.close();

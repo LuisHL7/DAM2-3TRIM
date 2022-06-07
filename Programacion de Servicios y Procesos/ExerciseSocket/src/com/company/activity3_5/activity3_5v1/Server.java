@@ -11,7 +11,7 @@ public class Server {
         ServerSocket server = new ServerSocket(6000);
         System.out.println("Waiting to client.....");
 
-        for (int i = 1; i < 4; i++) {
+        for (int i = 1; i <= 3; i++) {
             Socket clientConnect = server.accept();
             DataOutputStream output = new DataOutputStream(clientConnect.getOutputStream());
             output.writeUTF("HELLO CLIENT " + i + " FROM SERVER");

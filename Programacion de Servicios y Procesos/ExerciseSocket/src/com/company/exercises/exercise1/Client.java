@@ -12,23 +12,19 @@ public class Client {
         Socket clientConnect = new Socket("localhost", 6000);
         Scanner scanner = new Scanner(System.in);
         String string;
-        DataOutputStream output;
-        DataInputStream input = null;
+
+        DataOutputStream output = new DataOutputStream(clientConnect.getOutputStream());
+        DataInputStream input = new DataInputStream(clientConnect.getInputStream());
+
         do {
             System.out.print("Enter the string: ");
             string = scanner.nextLine();
-            output = new DataOutputStream(clientConnect.getOutputStream());
             output.writeUTF(string);
-            if(!string.equals("*")){
-                input = new DataInputStream(clientConnect.getInputStream());
-                System.out.println("Sending to server: \n\t " + input.readUTF());
-            }
-
+            if(!string.equals("*")) System.out.println("Sending to server: \n\t " + input.readUTF());
         } while (!string.equals("*"));
+
         output.close();
-        if(input != null){
-            input.close();
-        }
+        input.close();
         System.out.println("Closed client");
         clientConnect.close();
     }

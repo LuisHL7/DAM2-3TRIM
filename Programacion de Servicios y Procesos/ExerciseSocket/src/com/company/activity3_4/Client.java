@@ -17,7 +17,7 @@ public class Client {
         output.writeInt(scan.nextInt());
 
         DataInputStream input = new DataInputStream(client.getInputStream());
-        System.out.println("Sending to server: \n\t " + input.readInt());
+        System.out.println("The square is?: \n\t " + input.readInt());
 
         input.close();
         output.close();
