@@ -1,4 +1,4 @@
-package com.company.examples.example2UDP.example2;
+package com.company.examples.example2UDP.example3;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

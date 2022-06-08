@@ -1,34 +1,40 @@
 package com.company.activity3_8;
 
 import java.io.*;
-import java.net.DatagramPacket;
-import java.net.MulticastSocket;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 
 public class Server {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        ServerSocket server = new ServerSocket(6000);
-        System.out.println("Waiting the client");
-        Socket client = server.accept();
-        byte[] dataRecieved = new byte[1024];
-        System.out.println("llega");
-        DatagramPacket packageRecieved = new DatagramPacket(dataRecieved,dataRecieved.length);
-        MulticastSocket socket = new MulticastSocket(6000);
-        socket.receive(packageRecieved);
-        ByteArrayInputStream bais = new ByteArrayInputStream(dataRecieved);
+        DatagramSocket socket = new DatagramSocket(12345);
+        System.out.println("Waiting to datagram of client");
+
+        byte[] dataReceived = new byte[1024];
+        DatagramPacket received = new DatagramPacket(dataReceived, dataReceived.length);
+        socket.receive(received);
+
+        ByteArrayInputStream bais = new ByteArrayInputStream(dataReceived);
         ObjectInputStream input = new ObjectInputStream(bais);
-        Person person = (Person) input.readObject();
-        System.out.println("Persona recebida del cliente: " + person.toString());
-        person.setName("Juan");
-        person.setAge(25);
-        input.close();
-        //Send
+
+        Person personRead = (Person) input.readObject();
+        System.out.println("Persona recebida del cliente: " + personRead);
+
+        Person person = new Person();
+        person.setName("Jeff");
+        person.setAge(19);
+
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ObjectOutputStream output = new ObjectOutputStream(baos);
         output.writeObject(person);
-        output.close();
+
         byte[] bytes = baos.toByteArray();
+        DatagramPacket sender = new DatagramPacket(bytes, bytes.length,received.getAddress(), received.getPort());
+        socket.send(sender);
+        System.out.println("Persona enviada al cliente: " + person);
+
+        output.close();
+        input.close();
+        socket.close();
+
 
     }
 
