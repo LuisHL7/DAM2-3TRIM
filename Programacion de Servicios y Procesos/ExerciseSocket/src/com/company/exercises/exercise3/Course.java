@@ -1,6 +1,8 @@
 package com.company.exercises.exercise3;
 
-public class Course {
+import java.io.Serializable;
+
+public class Course implements Serializable {
     private String id;
     private String description;
 
@@ -27,5 +29,13 @@ public class Course {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id='" + id + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

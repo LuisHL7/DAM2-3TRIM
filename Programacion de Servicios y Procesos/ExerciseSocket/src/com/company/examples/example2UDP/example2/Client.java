@@ -16,8 +16,8 @@ public class Client {
         DatagramSocket socket = new DatagramSocket(34567);
         DatagramPacket send = new DatagramPacket(mensaje, mensaje.length, destino, 12345);
         socket.send(send);
-        System.out.println("Waiting datagram");
 
+        System.out.println("Waiting datagram");
         byte[] mensajeRecibido = new byte [1024];
         DatagramPacket receive = new DatagramPacket(mensajeRecibido, mensajeRecibido.length);
         socket.receive(receive);

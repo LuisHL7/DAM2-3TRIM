@@ -1,6 +1,8 @@
 package com.company.exercises.exercise3;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable {
     private String idStudent;
     private String name;
     private Course course;
