@@ -5,12 +5,14 @@ import java.io.Serializable;
 public class Especialidad implements Serializable {
     private int id;
     private String nombreEspe;
-    private static int generarCodigo = 0;
 
 
+    public Especialidad() {
 
-    public Especialidad(String nombreEspe) {
-        this.id = generarCodigo++;
+    }
+
+    public Especialidad(int id, String nombreEspe) {
+        this.id = id;
         this.nombreEspe = nombreEspe;
     }
 
@@ -26,13 +28,6 @@ public class Especialidad implements Serializable {
         this.nombreEspe = nombreEspe;
     }
 
-    public static int getGenerarCodigo() {
-        return generarCodigo;
-    }
-
-    public static void setGenerarCodigo(int generarCodigo) {
-        Especialidad.generarCodigo = generarCodigo;
-    }
 
     @Override
     public String toString() {

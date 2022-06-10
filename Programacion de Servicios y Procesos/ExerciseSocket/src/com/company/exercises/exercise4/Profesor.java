@@ -8,13 +8,13 @@ public class Profesor implements Serializable {
     private String nombre;
     private Asignatura[] asignaturas;
     private Especialidad especialidad;
-    private static int generarCodigo = 0;
+
 
     public Profesor() {
     }
 
-    public Profesor(String nombre, Asignatura[] asignaturas, Especialidad especialidad) {
-        this.idProfesor = generarCodigo++;
+    public Profesor(int idProfesor, String nombre, Asignatura[] asignaturas, Especialidad especialidad) {
+        this.idProfesor = idProfesor;
         this.nombre = nombre;
         this.asignaturas = asignaturas;
         this.especialidad = especialidad;

@@ -1,32 +1,62 @@
 package com.company.exercises.exercise4;
 
+import com.company.exercises.exercise3.Student;
+
 import java.io.*;
 import java.net.Socket;
-import java.util.Scanner;
+
 
 /**
  * 1.-array de 5 objetos
  */
 public class Client {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        System.out.println("Program client started");
+        Socket client = new Socket("localhost", 6001);
 
-        String Host = "localhost";
-        int Puerto = 6000;// puerto remoto
-        Socket Cliente = new Socket(Host, Puerto);
+        BufferedReader entry = new BufferedReader(new InputStreamReader(System.in));
 
-        // CREO FLUJO DE SALIDA AL SERVIDOR
-        OutputStream salida = null;
-        salida = Cliente.getOutputStream();
-        DataOutputStream fsalida = new DataOutputStream(salida);
+        DataOutputStream output = new DataOutputStream(client.getOutputStream());
 
-        // CREO FLUJO DE ENTRADA DE SERVIDOR
-        InputStream entrada = null;
-        entrada = Cliente.getInputStream();
+        ObjectInputStream input = new ObjectInputStream(client.getInputStream());
 
-        DataInputStream flujoEntrada = new DataInputStream(entrada);
+        Integer code = (Integer) input.readObject();
+        System.out.println("SOY EL CLIENTE: " + code);
 
-        String cadena;
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Introduce cadena: ");
+        String id = "";
+        Profesor teacher = new Profesor();
+        do {
+            System.out.println("=============================================================");
+            System.out.print("Introduce identificador a consultar: ");
+            id = entry.readLine();
+            if (!id.trim().equals("*")) {
+                //codigo profe
+                output.writeUTF(id);
+
+                //objeto profe
+                teacher = (Profesor) input.readObject();
+
+                System.out.println("Nombre: " + teacher.getNombre() + ", Especialidad: "
+                        + teacher.getEspecialidad().getId() + " - " + teacher.getEspecialidad().getNombreEspe());
+
+                try {
+                    for (int i = 0; i < teacher.getAsignaturas().length; i++) {
+                        System.out.println("Asignatura: " + teacher.getAsignaturas()[i].getId() + " - " + teacher.getAsignaturas()[i].getNombreAsignatura());
+                    }
+                } catch (java.lang.NullPointerException ignored) {
+
+                }
+            }
+        } while (!id.trim().equals("*"));
+
+
+        try {
+            input.close();
+            output.close();
+            client.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

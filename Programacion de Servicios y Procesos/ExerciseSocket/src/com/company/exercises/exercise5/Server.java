@@ -9,8 +9,7 @@ public class Server {
         ServerSocket server = new ServerSocket(44444);
         System.out.println("Server started");
         while(true){
-            Socket client = new Socket();
-            client = server.accept();
+            Socket client = server.accept();
             ThreadServer thread = new ThreadServer(client);
             thread.start();
         }

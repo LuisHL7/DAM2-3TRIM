@@ -2,13 +2,17 @@ package com.company.exercises.exercise4;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Asignatura implements Serializable {
     private int id;
     private String nombreAsignatura;
-    private static int generarCodigo = 0;
 
-    public Asignatura(String nombreAsignatura) {
-        this.id = generarCodigo++;
+
+    public Asignatura() {
+    }
+
+    public Asignatura(int id, String nombreAsignatura) {
+        this.id = id;
         this.nombreAsignatura = nombreAsignatura;
     }
 
@@ -24,13 +28,6 @@ public class Asignatura implements Serializable {
         this.nombreAsignatura = nombreAsignatura;
     }
 
-    public static int getGenerarCodigo() {
-        return generarCodigo;
-    }
-
-    public static void setGenerarCodigo(int generarCodigo) {
-        Asignatura.generarCodigo = generarCodigo;
-    }
 
     @Override
     public String toString() {

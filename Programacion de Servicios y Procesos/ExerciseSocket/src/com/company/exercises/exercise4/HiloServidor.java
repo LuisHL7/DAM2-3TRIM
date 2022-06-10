@@ -1,55 +1,81 @@
 package com.company.exercises.exercise4;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 
-public class HiloServidor extends Thread{
-    private int id;
-    private Profesor [] teacherList;
-    private Socket client;
+public class HiloServidor extends Thread {
+    private Integer idClient;
+    private Profesor[] teacherList;
+    private Socket client = null;
+    ObjectOutputStream output;
+    DataInputStream input;
 
-    public HiloServidor(int id, Profesor[] teacherList, Socket client) {
-        this.id = id;
+
+    public HiloServidor(int idClient, Profesor[] teacherList, Socket client) {
+        this.idClient = idClient;
         this.teacherList = teacherList;
         this.client = client;
+        try {
+            output = new ObjectOutputStream(client.getOutputStream());
+            input = new DataInputStream(client.getInputStream());
+        } catch (IOException e) {
+            System.out.println("ERROR DE E/S con cliente " + idClient);
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void run() {
+        String code = "";
+        //codigo socket
         try {
-            DataOutputStream outputId = new DataOutputStream(client.getOutputStream());
-            outputId.writeInt(id);
+            output.writeObject(idClient);
+        } catch (IOException e2) {
+            System.out.println("ERROR AL ENVIAR IDCLIENTE CON CLIENTE " + idClient);
+            e2.printStackTrace();
+        }
+        while (!code.trim().equals("*")) {
+            //codigo profesor
+            try {
+                try {
+                    code = input.readUTF();
+                }catch(SocketException dd){
+                    System.out.println("\tERROR AL LEER EL CLIENTE: "+idClient);
+                    break;
+                }catch (EOFException EO){
+                    System.out.println("EL CLIENTE "+ idClient+" HA FINALIZADO ");
+                    break;
+                }
 
-            ObjectInputStream input = new ObjectInputStream(client.getInputStream());
-            int code = (int) input.readObject();
-
-            System.out.println("Searching id: \n\t" + code + " by client " + id);
-
-            ObjectOutputStream output = new ObjectOutputStream(client.getOutputStream());
-            output.writeObject(searchTeacher(teacherList, code));
-
-        } catch (ClassNotFoundException | IOException e) {
+                System.out.println("\tSearching id: " + code + " by client " + idClient);
+                output.reset();
+                output.writeObject(searchTeacher(teacherList, Integer.parseInt(code)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("FIN CON: " + client.toString() + " DEL CLIENTE:  "+idClient);
+        try {
+            if (input != null) input.close();
+            if (output != null) output.close();
+            client.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
+
     }
 
-    private static Profesor searchTeacher(Profesor[] teacher, int code ) {
-        Profesor mr = null;
+    private static Profesor searchTeacher(Profesor[] teacher, int code) {
+        Especialidad noexiste = new Especialidad(0, "sin datos");
+        Profesor profesor = new Profesor(0, "No existe", null, noexiste);
         for (int i = 0; i < teacher.length; i++) {
-            if(teacher[i].getIdProfesor() == code){
-                mr = teacher[i];
+            if (teacher[i].getIdProfesor() == code) {
+                profesor = teacher[i];
             }
         }
-        if(mr == null){
-            mr = new Profesor();
-            mr.setIdProfesor(0);
-            mr.setNombre("No existe");
-        }
 
-        return mr;
+        return profesor;
     }
 }

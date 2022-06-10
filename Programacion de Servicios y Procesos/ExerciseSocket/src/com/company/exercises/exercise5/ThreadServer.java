@@ -9,7 +9,7 @@ import java.net.Socket;
 public class ThreadServer extends Thread {
     BufferedReader input;
     PrintWriter output;
-    Socket socket = null;
+    Socket socket ;
 
     public ThreadServer(Socket socket) throws IOException {
         this.socket = socket;
